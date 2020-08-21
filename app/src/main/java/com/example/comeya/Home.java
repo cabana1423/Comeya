@@ -62,7 +62,7 @@ public class Home extends Fragment {
 
     }
     private RecyclerView recyclerViewmenu;
-    private Menureciclerviewadaptador adaptadormenu;
+    private Menu_adapter adaptadormenu;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -71,15 +71,15 @@ public class Home extends Fragment {
         recyclerViewmenu= (RecyclerView)root.findViewById(R.id.listaViewMenu);
         recyclerViewmenu.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        adaptadormenu=new Menureciclerviewadaptador(obtenermenu());
+        adaptadormenu=new Menu_adapter(obtenermenu());
         recyclerViewmenu.setAdapter(adaptadormenu);
         return root;
     }
-    public List<menuView>obtenermenu(){
-        List<menuView> menu=new ArrayList<>();
-        menu.add(new menuView("San isidro","200 bs","un bacalao ccon buen sabor",R.drawable.image_defect));
-        menu.add(new menuView("San isidro","200 bs","un bacalao ccon buen sabor",R.drawable.image_defect));
-        menu.add(new menuView("San isidro","200 bs","un bacalao ccon buen sabor",R.drawable.image_defect));
+    public List<Menuview>obtenermenu(){
+        List<Menuview> menu=new ArrayList<>();
+        menu.add(new Menuview("San isidro","200 bs","un bacalao ccon buen sabor",R.drawable.image_defect));
+        menu.add(new Menuview("San isidro","200 bs","un bacalao ccon buen sabor",R.drawable.image_defect));
+        menu.add(new Menuview("San isidro","200 bs","un bacalao ccon buen sabor",R.drawable.image_defect));
 
         return menu;
     }

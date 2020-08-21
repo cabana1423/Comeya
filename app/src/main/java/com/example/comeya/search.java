@@ -60,7 +60,7 @@ public class search extends Fragment {
         }
     }
     private RecyclerView recyclerViewrest;
-    private Rest_reciclerviewadaptor adaptadorrest;
+    private Rest_adaptor adaptadorrest;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -69,7 +69,7 @@ public class search extends Fragment {
         recyclerViewrest= (RecyclerView)root.findViewById(R.id.listViewRest);
         recyclerViewrest.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        adaptadorrest=new Rest_reciclerviewadaptor(obtenerRest());
+        adaptadorrest=new Rest_adaptor(obtenerRest());
         recyclerViewrest.setAdapter(adaptadorrest);
         return root;
     }
