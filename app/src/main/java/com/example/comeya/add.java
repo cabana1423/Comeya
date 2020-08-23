@@ -1,12 +1,23 @@
 package com.example.comeya;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.Toast;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -52,13 +63,41 @@ public class add extends Fragment {
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
+
+
         }
     }
+    private FloatingActionButton crear_rest;
+    Context context;
+    private RecyclerView recyclerViewrest;
+    private MyRest_Adapter adaptadorrest;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_add, container, false);
+        View vista = inflater.inflate(R.layout.fragment_add, container, false);
+        crear_rest=(FloatingActionButton)vista.findViewById(R.id.addrest_floatingButton);
+        context=vista.getContext();
+        crear_rest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(context,crear_Myrest.class);
+                context.startActivity(intent);
+            }
+        });
+        recyclerViewrest= (RecyclerView)vista.findViewById(R.id.Myrestview_list);
+        recyclerViewrest.setLayoutManager(new LinearLayoutManager(getContext()));
+        adaptadorrest=new MyRest_Adapter(obtenerMyRest());
+        recyclerViewrest.setAdapter(adaptadorrest);
+        return vista;
+    }
+    public List<restView> obtenerMyRest(){
+        List<restView> rest=new ArrayList<>();
+        rest.add(new restView("San isidro","boqueron","72737475",R.drawable.image_defect));
+        rest.add(new restView("San isidro","boqueron","72737475",R.drawable.image_defect));
+        rest.add(new restView("San isidro","boqueron","72737475",R.drawable.image_defect));
+
+        return rest;
     }
 }
