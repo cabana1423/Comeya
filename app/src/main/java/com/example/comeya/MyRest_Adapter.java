@@ -41,7 +41,7 @@ public class MyRest_Adapter extends RecyclerView.Adapter<MyRest_Adapter.ViewHold
         public void onClick(View view) {
             switch (view.getId()){
                 case R.id.Restgroupview:
-                    Intent intent=new Intent(context,gestionar_rest.class);
+                    Intent intent=new Intent(context,administrar_rest.class);
                     context.startActivity(intent);
                     break;
             }

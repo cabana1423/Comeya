@@ -2,11 +2,9 @@ package com.example.comeya;
 
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -18,7 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-public class Pedido_adapter extends RecyclerView.Adapter<Pedido_adapter.ViewHolder>{
+public class GestionarMenu_adapter extends RecyclerView.Adapter<GestionarMenu_adapter.ViewHolder>{
 
 
     public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -47,14 +45,14 @@ public class Pedido_adapter extends RecyclerView.Adapter<Pedido_adapter.ViewHold
         public void onClick(View view) {
             switch (view.getId()){
                 case R.id.groupviewpedidoproducto:
-                    Toast.makeText(context, "realizaste un pedido", Toast.LENGTH_LONG).show();
+                    Toast.makeText(context, "Eliminado", Toast.LENGTH_LONG).show();
                     break;
             }
         }
     }
     public List<PedidoView> listaProduc;
 
-    public Pedido_adapter(List<PedidoView>listaPedido){
+    public GestionarMenu_adapter(List<PedidoView>listaPedido){
         this.listaProduc =listaPedido;
     }
 
