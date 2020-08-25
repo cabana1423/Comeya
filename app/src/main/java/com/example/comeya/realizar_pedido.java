@@ -4,7 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +16,7 @@ import java.util.List;
 public class realizar_pedido extends AppCompatActivity {
     private RecyclerView recyclerViewproduct;
     private Pedido_adapter adaptadorProduct;
+    private FloatingActionButton siguiente;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,6 +26,13 @@ public class realizar_pedido extends AppCompatActivity {
 
         adaptadorProduct = new Pedido_adapter(obtenerproduc());
         recyclerViewproduct.setAdapter(adaptadorProduct);
+        siguiente=(FloatingActionButton)findViewById(R.id.Pedido_buton_siguiente);
+        siguiente.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(realizar_pedido.this, Confirmar_pedido.class ));
+            }
+        });
     }
 
     private List<PedidoView> obtenerproduc() {

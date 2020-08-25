@@ -84,4 +84,6 @@ public class Menu_adapter extends RecyclerView.Adapter<Menu_adapter.ViewHolder>{
     public int getItemCount() {
         return listaMenu.size();
     }
+
+    
 }

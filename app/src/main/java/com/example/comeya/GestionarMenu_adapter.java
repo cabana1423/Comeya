@@ -3,6 +3,7 @@ package com.example.comeya;
 
 import android.content.Context;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -10,16 +11,18 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.PopupMenu;
 import androidx.cardview.widget.CardView;
+import androidx.core.widget.PopupMenuCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 
 import java.util.List;
 
-public class GestionarMenu_adapter extends RecyclerView.Adapter<GestionarMenu_adapter.ViewHolder>{
+public class GestionarMenu_adapter extends RecyclerView.Adapter<GestionarMenu_adapter.ViewHolder> {
 
 
-    public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, PopupMenu.OnMenuItemClickListener {
         //variable context para acceder a otra activity
         Context context;
         private TextView titleprduc, precio, descripcion;
@@ -35,19 +38,26 @@ public class GestionarMenu_adapter extends RecyclerView.Adapter<GestionarMenu_ad
             descripcion =(TextView)itemView.findViewById(R.id.produc_descripcion);
             fotopruct =(ImageView) itemView.findViewById(R.id.produc_img);
             pedido =(CardView) itemView.findViewById(R.id.groupviewpedidoproducto);
-        }
-
-        void setOnClickListeners(){
             pedido.setOnClickListener(this);
+        }
+        public void onClick(View v){
+            showPopMenu(v);
+        }
+        private void showPopMenu(View view){
+            PopupMenu popupMenu=new PopupMenu(view.getContext(), view);
+            popupMenu.inflate(R.menu.option_gestionarmenu);
+            popupMenu.setOnMenuItemClickListener(this);
+            popupMenu.show();
         }
 
         @Override
-        public void onClick(View view) {
-            switch (view.getId()){
-                case R.id.groupviewpedidoproducto:
-                    Toast.makeText(context, "Eliminado", Toast.LENGTH_LONG).show();
-                    break;
+        public boolean onMenuItemClick(MenuItem item) {
+            switch (item.getItemId()){
+                case R.id.delete_menu:
+                    Toast.makeText(context, "eliminaste este menu :(", Toast.LENGTH_LONG).show();
+                    return true;
             }
+            return false;
         }
     }
     public List<PedidoView> listaProduc;
@@ -71,7 +81,7 @@ public class GestionarMenu_adapter extends RecyclerView.Adapter<GestionarMenu_ad
         holder.descripcion.setText(listaProduc.get(position).getDescripcion());
         holder.fotopruct.setImageResource(listaProduc.get(position).getFotoproducto());
         //eventos
-        holder.setOnClickListeners();
+
     }
     @Override
     public int getItemCount() {

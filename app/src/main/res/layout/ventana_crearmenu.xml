@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:id="@+id/ventanamenu_nombre"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginEnd="0dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="nombre" />
+
+    <EditText
+        android:id="@+id/ventanamenu_precio"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ventanamenu_nombre"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="7dp"
+        android:layout_marginEnd="0dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="precio" />
+
+    <EditText
+        android:id="@+id/ventanamenu_decrip"
+        android:layout_width="match_parent"
+        android:layout_height="87dp"
+        android:layout_below="@+id/ventanamenu_precio"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="0dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Descripcion" />
+
+    <ImageButton
+        android:id="@+id/ventanamenu_img"
+        android:layout_width="198dp"
+        android:layout_height="81dp"
+        android:layout_below="@+id/ventanamenu_decrip"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="106dp"
+        android:layout_marginTop="22dp"
+        android:layout_marginEnd="107dp"
+        app:srcCompat="@drawable/ic_baseline_restaurant_24" />
+
+</RelativeLayout>

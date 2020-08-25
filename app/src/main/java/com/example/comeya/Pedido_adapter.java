@@ -12,7 +12,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.view.menu.MenuView;
 import androidx.cardview.widget.CardView;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 
@@ -24,6 +28,7 @@ public class Pedido_adapter extends RecyclerView.Adapter<Pedido_adapter.ViewHold
     public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         //variable context para acceder a otra activity
         Context context;
+        private Context ctxContext;
         private TextView titleprduc, precio, descripcion;
         private ImageView fotopruct;
         private CardView pedido;
@@ -47,11 +52,16 @@ public class Pedido_adapter extends RecyclerView.Adapter<Pedido_adapter.ViewHold
         public void onClick(View view) {
             switch (view.getId()){
                 case R.id.groupviewpedidoproducto:
-                    Toast.makeText(context, "realizaste un pedido", Toast.LENGTH_LONG).show();
+                    openVentana();
                     break;
             }
         }
+        private void openVentana() {
+            Ventanarealizarpedido ventanarealizarpedido=new Ventanarealizarpedido();
+            ventanarealizarpedido.show(((AppCompatActivity)context).getSupportFragmentManager(),"example dialogo");
+        }
     }
+
     public List<PedidoView> listaProduc;
 
     public Pedido_adapter(List<PedidoView>listaPedido){

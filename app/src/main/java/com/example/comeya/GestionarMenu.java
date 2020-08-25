@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -79,9 +80,7 @@ public class GestionarMenu extends Fragment {
         crear_Menu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /*Intent intent=new Intent(context,crear_Myrest.class);
-                context.startActivity(intent);*/
-                Toast.makeText(context, "creaste un nuevo menu", Toast.LENGTH_LONG).show();
+                openVentana();
             }
         });
         recyclerViewproduct = (RecyclerView) vista.findViewById(R.id.ListMymenus);
@@ -91,6 +90,11 @@ public class GestionarMenu extends Fragment {
         recyclerViewproduct.setAdapter(adaptadorProduct);
         return  vista;
     }
+    private void openVentana() {
+        Ventanacrearmenu ventanacrearmenu=new Ventanacrearmenu();
+        ventanacrearmenu.show(getActivity().getSupportFragmentManager(),"example dialogo");
+    }
+
     private List<PedidoView> obtenerproduc() {
         List<PedidoView> produc = new ArrayList<>();
         produc.add(new PedidoView("San isidro", "un rico manjar lleno de sabor y deliciosa salsa barbacu 100 porciento natural", "200 bs", R.drawable.image_defect));

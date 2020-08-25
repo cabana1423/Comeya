@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/listview_confirmarP"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/view_confirmar_cantidad"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/view_confirmar_titulo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="11dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="342dp"
+            android:text="TextView" />
+
+        <EditText
+            android:id="@+id/editTextTextPersonName"
+            android:layout_width="85dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/view_confirmar_titulo"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="27dp"
+            android:layout_marginTop="5dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="number" />
+
+        <TextView
+            android:id="@+id/view_confirmar_total"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/view_confirmar_titulo"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="20dp"
+            android:layout_toEndOf="@+id/editTextTextPersonName"
+            android:text="TextView" />
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>
