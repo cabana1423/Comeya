@@ -10,7 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.getbase.floatingactionbutton.FloatingActionButton;
+import com.getbase.floatingactionbutton.FloatingActionsMenu;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -60,22 +61,34 @@ public class Gestionar_rest extends Fragment {
     }
 
     Context context;
-    private FloatingActionButton editar_rest;
+    FloatingActionsMenu grupoBotones;
+    FloatingActionButton editar_rest,eliminar_rest;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View vista= inflater.inflate(R.layout.fragment_gestionarrest, container, false);
-        editar_rest =(FloatingActionButton)vista.findViewById(R.id.buton_Editrest);
+        grupoBotones=vista.findViewById(R.id.groupbotones_editrest);
+        editar_rest =vista.findViewById(R.id.groupbotonactualizar_rest);
         context=vista.getContext();
         editar_rest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /*Intent intent=new Intent(context,crear_Myrest.class);
-                context.startActivity(intent);*/
-                Toast.makeText(context, "editaste el rest :)", Toast.LENGTH_LONG).show();
+                openVentana();
+            }
+        });
+        eliminar_rest=vista.findViewById(R.id.groupbotoneliminar_rest);
+        eliminar_rest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(context, ":( eliminaste este rest", Toast.LENGTH_LONG).show();
             }
         });
         return vista;
+    }
+    private void openVentana() {
+        Ventana_editar_rest ventana_editar_rest=new Ventana_editar_rest();
+        ventana_editar_rest.show(getActivity().getSupportFragmentManager(),"example dialogo");
     }
 }

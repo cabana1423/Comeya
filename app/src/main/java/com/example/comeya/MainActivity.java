@@ -29,10 +29,14 @@ public class MainActivity extends AppCompatActivity {
         boton_singin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, register_user.class ));
+                openVentana();
             }
         });
 
+    }
+    private void openVentana() {
+        Ventana_registerUser ventana_registerUser=new Ventana_registerUser();
+        ventana_registerUser.show(getSupportFragmentManager(),"Usuario Registrado");
     }
     @Override
     protected void onStart() {

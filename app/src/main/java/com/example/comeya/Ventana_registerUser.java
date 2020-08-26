@@ -13,32 +13,32 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDialogFragment;
 
-public class Ventanacrearmenu extends AppCompatDialogFragment {
-    private EditText nombre,precio,descripcion;
+public class Ventana_registerUser extends AppCompatDialogFragment {
+    private EditText nombre,email,password;
 
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
         AlertDialog.Builder builder=new AlertDialog.Builder(getActivity());
         LayoutInflater inflater=getActivity().getLayoutInflater();
-        View view=inflater.inflate(R.layout.ventana_crearmenu,null);
+        View view=inflater.inflate(R.layout.ventana_register_user,null);
         builder.setView(view)
-                .setTitle("Agregar nuevo menu")
+                .setTitle("registro")
                 .setNegativeButton("cancel", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
 
                     }
                 })
-                .setPositiveButton("registrar", new DialogInterface.OnClickListener() {
+                .setNegativeButton("Registrar", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         Toast.makeText(getContext(), "realizaste un pedido", Toast.LENGTH_LONG).show();
                     }
                 });
-        nombre =view.findViewById(R.id.ventanamenu_nombre);
-        precio =view.findViewById(R.id.ventanamenu_precio);
-        descripcion =view.findViewById(R.id.ventanamenu_decrip);
+        nombre =view.findViewById(R.id.ventanaregister_nombre);
+        email =view.findViewById(R.id.ventanaregister_email);
+        password =view.findViewById(R.id.ventanaregister_password);
         return builder.create();
     }
 }

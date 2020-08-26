@@ -1,6 +1,7 @@
 package com.example.comeya;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -17,6 +18,7 @@ public class realizar_pedido extends AppCompatActivity {
     private RecyclerView recyclerViewproduct;
     private Pedido_adapter adaptadorProduct;
     private FloatingActionButton siguiente;
+    private CardView ver_rest;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,7 +35,19 @@ public class realizar_pedido extends AppCompatActivity {
                 startActivity(new Intent(realizar_pedido.this, Confirmar_pedido.class ));
             }
         });
+        ver_rest=(CardView)findViewById(R.id.contenedor_rest_pedido);
+        ver_rest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openVentana();
+            }
+        });
     }
+    private void openVentana() {
+        Ventana_vista_rest ventana_vista_rest=new Ventana_vista_rest();
+        ventana_vista_rest.show(getSupportFragmentManager(),"example dialogo");
+    }
+
 
     private List<PedidoView> obtenerproduc() {
         List<PedidoView> produc = new ArrayList<>();

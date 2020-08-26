@@ -9,13 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Confirmar_pedido"></activity>
+        <activity android:name=".Confirmar_pedido" />
         <activity android:name=".administrar_rest" />
         <activity android:name=".gestionar_rest" />
         <activity android:name=".crear_Myrest" />
         <activity android:name=".realizar_pedido" />
         <activity android:name=".entrada" />
-        <activity android:name=".register_user" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

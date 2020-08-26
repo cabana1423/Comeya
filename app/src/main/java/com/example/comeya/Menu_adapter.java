@@ -11,6 +11,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 
@@ -24,7 +26,7 @@ public class Menu_adapter extends RecyclerView.Adapter<Menu_adapter.ViewHolder>{
         Context context;
         private TextView titleRest, precio, descripcion;
         private ImageView fotoMenu;
-        private Button btverrest, btpedido;
+        private CardView principalRest, principalMenu;
 
         public ViewHolder(View itemView){
             super(itemView);
@@ -34,27 +36,30 @@ public class Menu_adapter extends RecyclerView.Adapter<Menu_adapter.ViewHolder>{
             precio =(TextView)itemView.findViewById(R.id.Menuview_precio);
             descripcion =(TextView)itemView.findViewById(R.id.Menuview_descrip);
             fotoMenu =(ImageView) itemView.findViewById(R.id.imageViewMenu);
-            btverrest =(Button) itemView.findViewById(R.id.botMenuview_verRest);
-            btpedido =(Button) itemView.findViewById(R.id.botMenuview_hacerpedido);
+            principalRest =(CardView) itemView.findViewById(R.id.principalview_rest);
+            principalMenu =(CardView) itemView.findViewById(R.id.principalview_menu);
         }
 
         void setOnClickListeners(){
-            btpedido.setOnClickListener(this);
-            btverrest.setOnClickListener(this);
+            principalRest.setOnClickListener(this);
+            principalMenu.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View view) {
             switch (view.getId()){
-                case R.id.botMenuview_hacerpedido:
-                    Intent intent=new Intent(context,realizar_pedido.class);
-                    context.startActivity(intent);
+                case R.id.principalview_rest:
+                    openVentana();
                     break;
-                case R.id.botMenuview_verRest:
+                case R.id.principalview_menu:
                     Intent intent2=new Intent(context,realizar_pedido.class);
                     context.startActivity(intent2);
                     break;
             }
+        }
+        private void openVentana() {
+            Ventana_vista_rest ventana_vista_rest=new Ventana_vista_rest();
+            ventana_vista_rest.show(((AppCompatActivity)context).getSupportFragmentManager(),"example dialogo");
         }
     }
     public List<Menuview> listaMenu;
