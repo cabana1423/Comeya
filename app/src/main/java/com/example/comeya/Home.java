@@ -1,17 +1,31 @@
 package com.example.comeya;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
+
+import com.example.comeya.utils.EndPoints;
+import com.example.comeya.utils.UserDataServer;
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.JsonHttpResponseHandler;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import cz.msebera.android.httpclient.Header;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -59,29 +73,48 @@ public class Home extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        context=getActivity();
 
     }
-    private RecyclerView recyclerViewmenu;
-    private Menu_adapter adaptadormenu;
+    Context context;
+    RecyclerView recyclerViewmenu;
+    LinearLayoutManager lnmenu;
+    Menu_adapter adaptadormenu;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View root =inflater.inflate(R.layout.fragment_home, container, false);
-        recyclerViewmenu= (RecyclerView)root.findViewById(R.id.listaViewMenu);
-        recyclerViewmenu.setLayoutManager(new LinearLayoutManager(getContext()));
-
-        adaptadormenu=new Menu_adapter(obtenermenu());
+        recyclerViewmenu=root.findViewById(R.id.listaViewMenu);
+        lnmenu=new GridLayoutManager(context,4);
+        //recyclerViewmenu.setLayoutManager(new LinearLayoutManager(getContext()));
+        adaptadormenu=new Menu_adapter(context);
+        recyclerViewmenu.setLayoutManager(lnmenu);
         recyclerViewmenu.setAdapter(adaptadormenu);
+        obtenermenu();
         return root;
     }
-    public List<Menuview>obtenermenu(){
-        List<Menuview> menu=new ArrayList<>();
-        menu.add(new Menuview("San isidro","200 bs","un bacalao ccon buen sabor",R.drawable.image_defect));
-        menu.add(new Menuview("San isidro","200 bs","un bacalao ccon buen sabor",R.drawable.image_defect));
-        menu.add(new Menuview("San isidro","200 bs","un bacalao ccon buen sabor",R.drawable.image_defect));
 
-        return menu;
+    private void obtenermenu() {
+        AsyncHttpClient client=new AsyncHttpClient();
+        client.addHeader("Authorization", UserDataServer.TOKEN);
+        client.get(EndPoints.SERVICE_LISTMENU,null,new JsonHttpResponseHandler(){
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
+                super.onSuccess(statusCode, headers, response);
+                for (int i=0;i<response.length();i++){
+                    try {
+                        JSONObject obj =response.getJSONObject(i);
+                        adaptadormenu.add(new Menuview(obj.getString("nombre_menu"),obj.getString("precio"), obj.getString("descripcion")/*,obj.getString("fotomenu")*/));
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                        Toast.makeText(context,""+e,Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+        });
+
     }
 
 }

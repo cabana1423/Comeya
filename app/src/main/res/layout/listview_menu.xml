@@ -7,10 +7,9 @@
     app:layout_constraintLeft_toRightOf="parent"
     app:layout_constraintRight_toRightOf="parent">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="wrap_content">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/principalview_rest"
@@ -25,6 +24,10 @@
                     android:id="@+id/imageView2"
                     android:layout_width="97dp"
                     android:layout_height="54dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="0dp"
+                    android:layout_marginTop="0dp"
                     app:srcCompat="@drawable/image_defect" />
 
                 <TextView
@@ -32,10 +35,11 @@
                     android:layout_width="262dp"
                     android:layout_height="34dp"
                     android:layout_alignParentTop="true"
-                    android:layout_marginStart="11dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="15dp"
                     android:layout_marginTop="13dp"
-                    android:layout_toEndOf="@+id/imageView2"
-                    android:text="TextView" />
+                    android:layout_marginEnd="37dp"
+                    android:layout_toEndOf="@+id/imageView2" />
 
             </RelativeLayout>
 
@@ -44,33 +48,53 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/principalview_menu"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="352dp"
+            android:layout_below="@+id/principalview_rest"
+            android:layout_marginTop="2dp">
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:layout_height="343dp">
 
                 <ImageView
                     android:id="@+id/imageViewMenu"
-                    android:layout_width="match_parent"
-                    android:layout_height="264dp" />
+                    android:layout_width="409dp"
+                    android:layout_height="262dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="2dp"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginEnd="0dp"
+                    android:background="@drawable/edit" />
 
                 <TextView
                     android:id="@+id/Menuview_precio"
                     android:layout_width="149dp"
                     android:layout_height="wrap_content"
-                    android:text="TextView" />
+                    android:layout_below="@+id/imageViewMenu"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="250dp" />
 
                 <TextView
                     android:id="@+id/Menuview_descrip"
-                    android:layout_width="match_parent"
-                    android:layout_height="59dp"
-                    android:text="TextView" />
-            </LinearLayout>
+                    android:layout_width="386dp"
+                    android:layout_height="52dp"
+                    android:layout_below="@+id/Menuview_precio"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginStart="13dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginEnd="12dp"
+                    android:layout_marginBottom="1dp" />
+            </RelativeLayout>
 
         </androidx.cardview.widget.CardView>
 
-    </LinearLayout>
+    </RelativeLayout>
 
 </androidx.cardview.widget.CardView>

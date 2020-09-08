@@ -2,22 +2,20 @@ package com.example.comeya;
 
 public class Menuview {
 
-    private String titleRest, precio, descripcion;
-    private  int fotomenu;
+    private String nombre_menu, precio, descripcion;
 
-    public Menuview(String titleRest, String precio, String descripcion, int fotomenu) {
-        this.titleRest = titleRest;
+    public Menuview(String nombre_menu, String precio, String descripcion) {
+        this.nombre_menu = nombre_menu;
         this.precio = precio;
         this.descripcion = descripcion;
-        this.fotomenu = fotomenu;
     }
 
-    public String getTitleRest() {
-        return titleRest;
+    public String getNombre_menu() {
+        return nombre_menu;
     }
 
-    public void setTitleRest(String titleRest) {
-        this.titleRest = titleRest;
+    public void setNombre_menu(String nombre_menu) {
+        this.nombre_menu = nombre_menu;
     }
 
     public String getPrecio() {
@@ -34,14 +32,6 @@ public class Menuview {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
-    }
-
-    public int getFotomenu() {
-        return fotomenu;
-    }
-
-    public void setFotomenu(int fotomenu) {
-        this.fotomenu = fotomenu;
     }
 }
 

@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -16,79 +17,54 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 
+import com.bumptech.glide.Glide;
+
+import java.util.ArrayList;
 import java.util.List;
 
-public class Menu_adapter extends RecyclerView.Adapter<Menu_adapter.ViewHolder>{
-
-
-    public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        //variable context para acceder a otra activity
-        Context context;
-        private TextView titleRest, precio, descripcion;
-        private ImageView fotoMenu;
-        private CardView principalRest, principalMenu;
-
-        public ViewHolder(View itemView){
-            super(itemView);
-            //acceder a activity
-            context=itemView.getContext();
-            titleRest=(TextView)itemView.findViewById(R.id.Menuview_titleRest);
-            precio =(TextView)itemView.findViewById(R.id.Menuview_precio);
-            descripcion =(TextView)itemView.findViewById(R.id.Menuview_descrip);
-            fotoMenu =(ImageView) itemView.findViewById(R.id.imageViewMenu);
-            principalRest =(CardView) itemView.findViewById(R.id.principalview_rest);
-            principalMenu =(CardView) itemView.findViewById(R.id.principalview_menu);
-        }
-
-        void setOnClickListeners(){
-            principalRest.setOnClickListener(this);
-            principalMenu.setOnClickListener(this);
-        }
-
-        @Override
-        public void onClick(View view) {
-            switch (view.getId()){
-                case R.id.principalview_rest:
-                    openVentana();
-                    break;
-                case R.id.principalview_menu:
-                    Intent intent2=new Intent(context,realizar_pedido.class);
-                    context.startActivity(intent2);
-                    break;
-            }
-        }
-        private void openVentana() {
-            Ventana_vista_rest ventana_vista_rest=new Ventana_vista_rest();
-            ventana_vista_rest.show(((AppCompatActivity)context).getSupportFragmentManager(),"example dialogo");
-        }
+public class Menu_adapter extends RecyclerView.Adapter<Menu_adapter.Holdermenu>{
+    Context context;
+    ArrayList<Menuview> lista_menu;
+    Menu_adapter(Context context){
+        this.context=context;
+        lista_menu=new ArrayList<>();
     }
-    public List<Menuview> listaMenu;
-
-    public Menu_adapter(List<Menuview>listaMenu){
-        this.listaMenu =listaMenu;
+    void add(Menuview menu){
+        lista_menu.add(menu);
+        notifyItemInserted(lista_menu.indexOf(menu));
     }
-
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.listview_menu,parent,false);
-        ViewHolder viewHolder=new ViewHolder(view);
-        return viewHolder;
+    public Holdermenu onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view   =LayoutInflater.from(parent.getContext()).inflate(R.layout.listview_menu,parent,false);
+        Holdermenu holdermenu=new Holdermenu(view);
+        return holdermenu;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.titleRest.setText(listaMenu.get(position).getTitleRest());
-        holder.precio.setText(listaMenu.get(position).getPrecio());
-        holder.descripcion.setText(listaMenu.get(position).getDescripcion());
-        holder.fotoMenu.setImageResource(listaMenu.get(position).getFotomenu());
-        //eventos
-        holder.setOnClickListeners();
+    public void onBindViewHolder(@NonNull Holdermenu holder, int position) {
+        holder.nombre_menu.setText(lista_menu.get(position).getNombre_menu());
+        holder.precio.setText(lista_menu.get(position).getPrecio());
+        holder.descripcion.setText(lista_menu.get(position).getDescripcion());
+       /* Menuview it=lista_menu.get(position);
+        Glide.with(context).load(it.getFotomenu()).into(holder.fotomenu);*/
     }
+
     @Override
     public int getItemCount() {
-        return listaMenu.size();
+    return lista_menu.size();
     }
 
-    
+    class Holdermenu extends RecyclerView.ViewHolder{
+        TextView nombre_menu,precio,descripcion;
+        //ImageView fotomenu;
+        public Holdermenu(@NonNull View itemView) {
+            super(itemView);
+            nombre_menu=itemView.findViewById(R.id.Menuview_titleRest);
+            precio=itemView.findViewById(R.id.Menuview_precio);
+            descripcion=itemView.findViewById(R.id.Menuview_descrip);
+            //fotomenu=itemView.findViewById(R.id.imageViewMenu);
+        }
+    }
+
 }
