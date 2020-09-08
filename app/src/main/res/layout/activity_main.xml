@@ -12,7 +12,7 @@
         android:layout_height="57dp"
         android:layout_marginTop="180dp"
         android:ems="10"
-        android:text="Email"
+        android:text="Mario@gmail.com"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.52"
         app:layout_constraintStart_toStartOf="parent"
@@ -27,6 +27,7 @@
         android:autofillHints=""
         android:ems="10"
         android:inputType="textPassword"
+        android:text="Hola1234#"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/email" />

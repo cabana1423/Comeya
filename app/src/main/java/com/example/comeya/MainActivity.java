@@ -6,11 +6,24 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
+
+import com.example.comeya.utils.EndPoints;
+import com.example.comeya.utils.UserDataServer;
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.JsonHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import cz.msebera.android.httpclient.Header;
 
 public class MainActivity extends AppCompatActivity {
     Button boton_login ;
     Button boton_singin;
+    private MainActivity root=this;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,7 +36,32 @@ public class MainActivity extends AppCompatActivity {
         boton_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, entrada.class ));
+
+                AsyncHttpClient clien=new AsyncHttpClient();
+                EditText email =root.findViewById(R.id.email);
+                EditText password =root.findViewById(R.id.pass);
+                RequestParams params=new RequestParams();
+                params.add("email", email.getText().toString());
+                params.add("password", password.getText().toString());
+                clien.post(EndPoints.SERVICE_LOGIN,params,new JsonHttpResponseHandler(){
+                    @Override
+                    public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                        try {
+                            if(response.has("msn"))
+                                UserDataServer.MSN=response.getString("msn");
+                            if (response.has("token"))
+                                UserDataServer.TOKEN=response.getString("token");
+                            if(UserDataServer.TOKEN.length()>150){
+                                startActivity(new Intent(MainActivity.this, entrada.class ));
+                            }else{
+                                Toast.makeText(root,response.getString("msn"),Toast.LENGTH_LONG).show();
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
             }
         });
         boton_singin.setOnClickListener(new View.OnClickListener() {
