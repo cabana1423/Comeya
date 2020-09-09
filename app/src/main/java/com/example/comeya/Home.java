@@ -22,9 +22,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import cz.msebera.android.httpclient.Header;
 
 /**
@@ -87,7 +84,7 @@ public class Home extends Fragment {
         // Inflate the layout for this fragment
         View root =inflater.inflate(R.layout.fragment_home, container, false);
         recyclerViewmenu=root.findViewById(R.id.listaViewMenu);
-        lnmenu=new GridLayoutManager(context,4);
+        lnmenu=new GridLayoutManager(context,1);
         //recyclerViewmenu.setLayoutManager(new LinearLayoutManager(getContext()));
         adaptadormenu=new Menu_adapter(context);
         recyclerViewmenu.setLayoutManager(lnmenu);
@@ -95,7 +92,7 @@ public class Home extends Fragment {
         obtenermenu();
         return root;
     }
-
+    //private String nombre_menu,precio,descripcion,foto;
     private void obtenermenu() {
         AsyncHttpClient client=new AsyncHttpClient();
         client.addHeader("Authorization", UserDataServer.TOKEN);
@@ -106,7 +103,9 @@ public class Home extends Fragment {
                 for (int i=0;i<response.length();i++){
                     try {
                         JSONObject obj =response.getJSONObject(i);
-                        adaptadormenu.add(new Menuview(obj.getString("nombre_menu"),obj.getString("precio"), obj.getString("descripcion")/*,obj.getString("fotomenu")*/));
+                        adaptadormenu.add(new Menuview(obj.getString("nombre_menu"),obj.getString("precio"),
+                                obj.getString("descripcion"),obj.getString("foto_produc")));
+
                     } catch (JSONException e) {
                         e.printStackTrace();
                         Toast.makeText(context,""+e,Toast.LENGTH_SHORT).show();
@@ -118,3 +117,31 @@ public class Home extends Fragment {
     }
 
 }
+
+
+
+
+
+/*
+if (obj.has("nombre_menu")){
+                            nombre_menu=obj.getString("nombre_menu");
+                        }
+                        else
+                            nombre_menu="";
+                        if (obj.has("precio")){
+                            precio=obj.getString("precio");
+                        }
+                        else
+                            precio="";
+                        if (obj.has("descripcion")){
+                            descripcion=obj.getString("descripcion");
+                        }
+                        else
+                            descripcion="";
+                        if (obj.has("foto_produc")){
+                            foto=obj.getString("foto_produc");
+                        }
+                        else
+                            foto="";
+                        adaptadormenu.add(new Menuview(nombre_menu,precio, descripcion,foto));*/
+

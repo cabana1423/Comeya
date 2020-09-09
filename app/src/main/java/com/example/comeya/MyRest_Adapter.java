@@ -67,7 +67,7 @@ public class MyRest_Adapter extends RecyclerView.Adapter<MyRest_Adapter.ViewHold
         holder.titleRest.setText(MylistaRestview.get(position).getTitleRest());
         holder.direccion.setText(MylistaRestview.get(position).getDireccion());
         holder.telefono.setText(MylistaRestview.get(position).getTelefono());
-        holder.fotorest.setImageResource(MylistaRestview.get(position).getFotorest());
+        //holder.fotorest.setImageResource(MylistaRestview.get(position).getFotorest());
         holder.setOnclickCardview();
     }
 

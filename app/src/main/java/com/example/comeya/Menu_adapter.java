@@ -6,8 +6,6 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -20,7 +18,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class Menu_adapter extends RecyclerView.Adapter<Menu_adapter.Holdermenu>{
     Context context;
@@ -36,9 +33,9 @@ public class Menu_adapter extends RecyclerView.Adapter<Menu_adapter.Holdermenu>{
     @NonNull
     @Override
     public Holdermenu onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view   =LayoutInflater.from(parent.getContext()).inflate(R.layout.listview_menu,parent,false);
-        Holdermenu holdermenu=new Holdermenu(view);
-        return holdermenu;
+            View view   =LayoutInflater.from(parent.getContext()).inflate(R.layout.listview_menu,parent,false);
+            Holdermenu holdermenu=new Holdermenu(view);
+            return holdermenu;
     }
 
     @Override
@@ -46,8 +43,9 @@ public class Menu_adapter extends RecyclerView.Adapter<Menu_adapter.Holdermenu>{
         holder.nombre_menu.setText(lista_menu.get(position).getNombre_menu());
         holder.precio.setText(lista_menu.get(position).getPrecio());
         holder.descripcion.setText(lista_menu.get(position).getDescripcion());
-       /* Menuview it=lista_menu.get(position);
-        Glide.with(context).load(it.getFotomenu()).into(holder.fotomenu);*/
+        Menuview it=lista_menu.get(position);
+        Glide.with(context).load(it.getFotomenu()).centerCrop().into(holder.fotomenu);
+        holder.setOnclickCardview();
     }
 
     @Override
@@ -55,15 +53,40 @@ public class Menu_adapter extends RecyclerView.Adapter<Menu_adapter.Holdermenu>{
     return lista_menu.size();
     }
 
-    class Holdermenu extends RecyclerView.ViewHolder{
+    class Holdermenu extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView nombre_menu,precio,descripcion;
-        //ImageView fotomenu;
+        ImageView fotomenu;
+        CardView viewrest,viewmenu;
         public Holdermenu(@NonNull View itemView) {
             super(itemView);
             nombre_menu=itemView.findViewById(R.id.Menuview_titleRest);
             precio=itemView.findViewById(R.id.Menuview_precio);
             descripcion=itemView.findViewById(R.id.Menuview_descrip);
-            //fotomenu=itemView.findViewById(R.id.imageViewMenu);
+            fotomenu=itemView.findViewById(R.id.imageViewMenu);
+            viewrest=itemView.findViewById(R.id.principalview_rest);
+            viewmenu=itemView.findViewById(R.id.principalview_menu);
+        }
+
+        public void setOnclickCardview() {
+            viewrest.setOnClickListener(this);
+            viewmenu.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View view) {
+            switch (view.getId()){
+                case R.id.principalview_rest:
+                    openVentana();
+                    break;
+                case R.id.principalview_menu:
+                    Intent intent2=new Intent(context,realizar_pedido.class);
+                    context.startActivity(intent2);
+                    break;
+            }
+        }
+        private void openVentana() {
+            Ventana_vista_rest ventana_vista_rest=new Ventana_vista_rest();
+            ventana_vista_rest.show(((AppCompatActivity)context).getSupportFragmentManager(),"example dialogo");
         }
     }
 

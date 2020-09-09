@@ -1,17 +1,28 @@
 package com.example.comeya;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.example.comeya.utils.EndPoints;
+import com.example.comeya.utils.UserDataServer;
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.JsonHttpResponseHandler;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import cz.msebera.android.httpclient.Header;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -58,27 +69,46 @@ public class search extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        context=getActivity();
+
     }
-    private RecyclerView recyclerViewrest;
-    private Rest_adaptor adaptadorrest;
+    Context context;
+    RecyclerView recyclerViewrest;
+    LinearLayoutManager lnrest;
+    Rest_adaptor adaptadorrest;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View root =inflater.inflate(R.layout.fragment_search, container, false);
-        recyclerViewrest= (RecyclerView)root.findViewById(R.id.listViewRest);
-        recyclerViewrest.setLayoutManager(new LinearLayoutManager(getContext()));
-
-        adaptadorrest=new Rest_adaptor(obtenerRest());
+        recyclerViewrest =root.findViewById(R.id.listViewRest);
+        lnrest =new GridLayoutManager(context,1);
+        adaptadorrest =new Rest_adaptor(context);
+        recyclerViewrest.setLayoutManager(lnrest);
         recyclerViewrest.setAdapter(adaptadorrest);
+        obtener_rest();
         return root;
     }
-    public List<restView> obtenerRest(){
-        List<restView> rest=new ArrayList<>();
-        rest.add(new restView("San isidro","boqueron","72737475",R.drawable.image_defect));
-        rest.add(new restView("San isidro","boqueron","72737475",R.drawable.image_defect));
-        rest.add(new restView("San isidro","boqueron","72737475",R.drawable.image_defect));
 
-        return rest;
+    private void obtener_rest() {
+        AsyncHttpClient client=new AsyncHttpClient();
+        client.addHeader("Authorization", UserDataServer.TOKEN);
+        client.get(EndPoints.SERVICE_LISTREST,null,new JsonHttpResponseHandler(){
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
+                super.onSuccess(statusCode, headers, response);
+                for (int i=0;i<response.length();i++){
+                    try {
+                        JSONObject obj =response.getJSONObject(i);
+                        adaptadorrest.add(new restView(obj.getString("nombre_rest"),obj.getString("calle"),obj.getString("telefono"),obj.getString("foto_lugar")));
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                        Toast.makeText(context,""+e,Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+        });
     }
+
 }

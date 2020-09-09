@@ -8,35 +8,67 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 
-import java.util.List;
+import com.bumptech.glide.Glide;
 
-public class Rest_adaptor extends RecyclerView.Adapter<Rest_adaptor.ViewHolder> {
-    public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        private TextView titleRest, direccion, telefono;
-        private ImageView fotorest;
-        private CardView vista;
-        Context context;
+import java.util.ArrayList;
 
-        public ViewHolder(View itemView){
+public class Rest_adaptor extends RecyclerView.Adapter<Rest_adaptor.Holderrest>{
+    Context context;
+    ArrayList<restView> lista_rest;
+    Rest_adaptor(Context context){
+        this.context=context;
+        lista_rest =new ArrayList<>();
+    }
+    void add(restView rest){
+        lista_rest.add(rest);
+        notifyItemInserted(lista_rest.indexOf(rest));
+    }
+
+    @NonNull
+    @Override
+    public Holderrest onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view   =LayoutInflater.from(parent.getContext()).inflate(R.layout.listview_rest,parent,false);
+        Holderrest holderrest=new Holderrest(view);
+        return holderrest;
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull Holderrest holder, int position) {
+        holder.titleRest.setText(lista_rest.get(position).getTitleRest());
+        holder.direccion.setText(lista_rest.get(position).getDireccion());
+        holder.telefono.setText(lista_rest.get(position).getTelefono());
+        restView it=lista_rest.get(position);
+        Glide.with(context).load(it.getFotorest()).centerCrop().into(holder.fotorest);
+        holder.setOnclickCardview();
+    }
+
+    @Override
+    public int getItemCount() {
+        return lista_rest.size();
+    }
+
+    public class Holderrest extends RecyclerView.ViewHolder implements View.OnClickListener {
+        TextView titleRest, direccion, telefono;
+        ImageView fotorest;
+        CardView viewrest;
+        public Holderrest(@NonNull View itemView) {
             super(itemView);
-            context=itemView.getContext();
-            titleRest=(TextView)itemView.findViewById(R.id.Restviewtitulo);
-            direccion=(TextView)itemView.findViewById(R.id.Resyviewdireccion);
-            telefono=(TextView)itemView.findViewById(R.id.Restviewphone);
-            fotorest=(ImageView) itemView.findViewById(R.id.Restviewimg);
-            vista=(CardView) itemView.findViewById(R.id.Restgroupview);
-
+            titleRest=itemView.findViewById(R.id.Restviewtitulo);
+            direccion=itemView.findViewById(R.id.Resyviewdireccion);
+            telefono=itemView.findViewById(R.id.Restviewphone);
+            fotorest=itemView.findViewById(R.id.Restviewimg);
+            viewrest=itemView.findViewById(R.id.Restgroupview);
         }
-        void setOnclickCardview(){
-            vista.setOnClickListener(this);
-        };
+
+        public void setOnclickCardview() {
+            viewrest.setOnClickListener(this);
+        }
 
         @Override
         public void onClick(View view) {
@@ -47,33 +79,7 @@ public class Rest_adaptor extends RecyclerView.Adapter<Rest_adaptor.ViewHolder> 
                     break;
             }
         }
-
-    }
-    public List<restView> listaRestview;
-
-    public Rest_adaptor(List<restView>listaRestview){
-        this.listaRestview=listaRestview;
-    }
-
-    @NonNull
-    @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.listview_rest,parent,false);
-        ViewHolder viewHolder=new ViewHolder(view);
-        return viewHolder;
-    }
-
-    @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.titleRest.setText(listaRestview.get(position).getTitleRest());
-        holder.direccion.setText(listaRestview.get(position).getDireccion());
-        holder.telefono.setText(listaRestview.get(position).getTelefono());
-        holder.fotorest.setImageResource(listaRestview.get(position).getFotorest());
-        holder.setOnclickCardview();
-    }
-
-    @Override
-    public int getItemCount() {
-        return listaRestview.size();
     }
 }
+
+

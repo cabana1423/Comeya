@@ -88,16 +88,16 @@ public class add extends Fragment {
         });
         recyclerViewrest= (RecyclerView)vista.findViewById(R.id.Myrestview_list);
         recyclerViewrest.setLayoutManager(new LinearLayoutManager(getContext()));
-        adaptadorrest=new MyRest_Adapter(obtenerMyRest());
+        //adaptadorrest=new MyRest_Adapter(obtenerMyRest());
         recyclerViewrest.setAdapter(adaptadorrest);
         return vista;
     }
-    public List<restView> obtenerMyRest(){
+    /*public List<restView> obtenerMyRest(){
         List<restView> rest=new ArrayList<>();
         rest.add(new restView("San isidro","boqueron","72737475",R.drawable.image_defect));
         rest.add(new restView("San isidro","boqueron","72737475",R.drawable.image_defect));
         rest.add(new restView("San isidro","boqueron","72737475",R.drawable.image_defect));
 
         return rest;
-    }
+    }*/
 }
