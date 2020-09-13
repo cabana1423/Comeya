@@ -28,7 +28,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.179"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/MyRest_imagenLoad" />
 
     <EditText
         android:id="@+id/Myrest_nit"
@@ -55,7 +55,7 @@
         app:layout_constraintTop_toBottomOf="@+id/Myrest_propietario" />
 
     <EditText
-        android:id="@+id/Mytext_telefono"
+        android:id="@+id/Myrest_telefono"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -79,32 +79,32 @@
         app:layout_constraintTop_toBottomOf="@+id/Myrest_nit" />
 
     <com.google.android.gms.maps.MapView
-        android:id="@+id/mapView"
+        android:id="@+id/Myrest_mapView"
         android:layout_width="313dp"
         android:layout_height="146dp"
         android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.367"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Mytext_telefono" />
+        app:layout_constraintTop_toBottomOf="@+id/Myrest_telefono" />
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="106dp"
-        android:layout_height="73dp"
+    <ImageButton
+        android:id="@+id/MyRest_imagenLoad"
+        android:layout_width="189dp"
+        android:layout_height="112dp"
         android:layout_marginTop="8dp"
+        android:src="@drawable/image_defect"
         app:layout_constraintEnd_toStartOf="@+id/Myrest_Bcargar"
-        app:layout_constraintHorizontal_bias="0.861"
+        app:layout_constraintHorizontal_bias="0.568"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Myrest_text1"
-        app:srcCompat="@drawable/image_defect" />
+        app:layout_constraintTop_toBottomOf="@+id/Myrest_text1" />
 
     <Button
         android:id="@+id/Myrest_Bcargar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="160dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="68dp"
         android:text="cargar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Myrest_text1" />
@@ -119,7 +119,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.489"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mapView"
+        app:layout_constraintTop_toBottomOf="@+id/Myrest_mapView"
         app:layout_constraintVertical_bias="1.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

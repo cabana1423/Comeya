@@ -55,8 +55,8 @@ public class Rest_adaptor extends RecyclerView.Adapter<Rest_adaptor.Holderrest>{
 
     public class Holderrest extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView titleRest, direccion, telefono;
-        ImageView fotorest;
         CardView viewrest;
+        ImageView fotorest;
         public Holderrest(@NonNull View itemView) {
             super(itemView);
             titleRest=itemView.findViewById(R.id.Restviewtitulo);

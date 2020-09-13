@@ -1,5 +1,6 @@
 package com.example.comeya;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -51,10 +52,12 @@ public class MainActivity extends AppCompatActivity {
                                 UserDataServer.MSN=response.getString("msn");
                             if (response.has("token"))
                                 UserDataServer.TOKEN=response.getString("token");
+                            if(response.has("id"))
+                                UserDataServer.ID=response.getString("id");
                             if(UserDataServer.TOKEN.length()>150){
                                 startActivity(new Intent(MainActivity.this, entrada.class ));
                             }else{
-                                Toast.makeText(root,response.getString("msn"),Toast.LENGTH_LONG).show();
+                                Toast.makeText(getApplicationContext(),response.getString("msn"),Toast.LENGTH_LONG).show();
                             }
 
                         } catch (JSONException e) {
@@ -72,6 +75,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+
     private void openVentana() {
         Ventana_registerUser ventana_registerUser=new Ventana_registerUser();
         ventana_registerUser.show(getSupportFragmentManager(),"Usuario Registrado");

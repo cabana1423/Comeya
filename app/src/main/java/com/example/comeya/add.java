@@ -5,19 +5,26 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.comeya.utils.EndPoints;
+import com.example.comeya.utils.UserDataServer;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.JsonHttpResponseHandler;
 
-import java.util.ArrayList;
-import java.util.List;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import cz.msebera.android.httpclient.Header;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -63,22 +70,22 @@ public class add extends Fragment {
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
-
-
         }
+        context=getActivity();
     }
-    private FloatingActionButton crear_rest;
     Context context;
-    private RecyclerView recyclerViewrest;
-    private MyRest_Adapter adaptadorrest;
+    RecyclerView recyclerViewrest;
+    LinearLayoutManager lnmyrest;
+    MyRest_Adapter adaptadormyrest;
+    private FloatingActionButton crear_rest;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View vista = inflater.inflate(R.layout.fragment_add, container, false);
-        crear_rest=(FloatingActionButton)vista.findViewById(R.id.addrest_floatingButton);
-        context=vista.getContext();
+        View root = inflater.inflate(R.layout.fragment_add, container, false);
+        recyclerViewrest =root.findViewById(R.id.Myrestview_list);
+        crear_rest=(FloatingActionButton)root.findViewById(R.id.addrest_floatingButton);
         crear_rest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -86,12 +93,35 @@ public class add extends Fragment {
                 context.startActivity(intent);
             }
         });
-        recyclerViewrest= (RecyclerView)vista.findViewById(R.id.Myrestview_list);
-        recyclerViewrest.setLayoutManager(new LinearLayoutManager(getContext()));
-        //adaptadorrest=new MyRest_Adapter(obtenerMyRest());
-        recyclerViewrest.setAdapter(adaptadorrest);
-        return vista;
+        lnmyrest =new GridLayoutManager(context,1);
+        adaptadormyrest =new MyRest_Adapter(context);
+        recyclerViewrest.setLayoutManager(lnmyrest);
+        recyclerViewrest.setAdapter(adaptadormyrest);
+        obtener_rest();
+        return root;
     }
+
+    private void obtener_rest() {
+        AsyncHttpClient client=new AsyncHttpClient();
+        client.addHeader("Authorization", UserDataServer.TOKEN);
+        client.get(EndPoints.SERVICE_LISTREST,null,new JsonHttpResponseHandler(){
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
+                super.onSuccess(statusCode, headers, response);
+                for (int i=0;i<response.length();i++){
+                    try {
+                        JSONObject obj =response.getJSONObject(i);
+                        adaptadormyrest.add(new restView(obj.getString("nombre_rest"),obj.getString("calle"),obj.getString("telefono"),obj.getString("foto_lugar")));
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                        Toast.makeText(context,""+e,Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+        });
+    }
+
     /*public List<restView> obtenerMyRest(){
         List<restView> rest=new ArrayList<>();
         rest.add(new restView("San isidro","boqueron","72737475",R.drawable.image_defect));
