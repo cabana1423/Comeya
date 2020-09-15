@@ -10,4 +10,11 @@ public class EndPoints {
     //register rest
     public static String SERVICE_UPIMGREST= URL+"api_v1.0/restimg?id=";
     public static String SERV_REG_REST= URL+"api_v1.0/rest?id=";
+
+
+
+
+
+
+    /*para mapview*/public static final String MAPVIEW_BUNDLE_KEY="MapViewBundleKey";
 }

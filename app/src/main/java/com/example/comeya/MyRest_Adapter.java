@@ -21,6 +21,7 @@ import java.util.ArrayList;
 public class MyRest_Adapter extends RecyclerView.Adapter<MyRest_Adapter.HolderMyrest> {
     Context context;
     ArrayList<restView> lista_myrest;
+    public String id_rest="";
     MyRest_Adapter(Context context){
         this.context=context;
         lista_myrest =new ArrayList<>();
@@ -44,6 +45,7 @@ public class MyRest_Adapter extends RecyclerView.Adapter<MyRest_Adapter.HolderMy
         holder.direccion.setText(lista_myrest.get(position).getDireccion());
         holder.telefono.setText(lista_myrest.get(position).getTelefono());
         restView it=lista_myrest.get(position);
+        id_rest=it.getId_rest();
         Glide.with(context).load(it.getFotorest()).centerCrop().into(holder.fotorest);
         holder.setOnclickCardview();
     }

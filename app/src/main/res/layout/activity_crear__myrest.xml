@@ -44,15 +44,15 @@
 
     <EditText
         android:id="@+id/Myrestcalle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="246dp"
+        android:layout_height="47dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="40dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="calle"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.179"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Myrest_propietario" />
+        app:layout_constraintTop_toBottomOf="@+id/Myrest_imgmapView" />
 
     <EditText
         android:id="@+id/Myrest_telefono"
@@ -64,7 +64,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.179"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Myrestcalle" />
+        app:layout_constraintTop_toBottomOf="@+id/Myrest_propietario" />
 
     <EditText
         android:id="@+id/Myrest_propietario"
@@ -78,24 +78,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Myrest_nit" />
 
-    <com.google.android.gms.maps.MapView
-        android:id="@+id/Myrest_mapView"
-        android:layout_width="313dp"
-        android:layout_height="146dp"
-        android:layout_marginTop="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.367"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Myrest_telefono" />
-
     <ImageButton
         android:id="@+id/MyRest_imagenLoad"
-        android:layout_width="189dp"
-        android:layout_height="112dp"
+        android:layout_width="144dp"
+        android:layout_height="80dp"
         android:layout_marginTop="8dp"
         android:src="@drawable/image_defect"
         app:layout_constraintEnd_toStartOf="@+id/Myrest_Bcargar"
-        app:layout_constraintHorizontal_bias="0.568"
+        app:layout_constraintHorizontal_bias="0.734"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Myrest_text1" />
 
@@ -103,8 +93,8 @@
         android:id="@+id/Myrest_Bcargar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
-        android:layout_marginEnd="68dp"
+        android:layout_marginTop="44dp"
+        android:layout_marginEnd="52dp"
         android:text="cargar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Myrest_text1" />
@@ -113,13 +103,22 @@
         android:id="@+id/Myrest_Bcrear"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
         android:text="crear"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.489"
+        app:layout_constraintHorizontal_bias="0.393"
+        app:layout_constraintStart_toEndOf="@+id/Myrestcalle" />
+
+    <ImageButton
+        android:id="@+id/Myrest_imgmapView"
+        android:layout_width="183dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="40dp"
+        android:background="@color/common_google_signin_btn_text_dark_disabled"
+        android:src="@drawable/add"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.25"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Myrest_mapView"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toBottomOf="@+id/Myrest_telefono" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
