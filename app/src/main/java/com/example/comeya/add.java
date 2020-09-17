@@ -112,7 +112,7 @@ public class add extends Fragment {
                     try {
                         JSONObject obj =response.getJSONObject(i);
                         adaptadormyrest.add(new restView(obj.getString("nombre_rest"),obj.getString("calle")
-                                ,obj.getString("telefono"),obj.getString("foto_lugar"),obj.getString("_id")));
+                                ,obj.getString("telefono"),obj.getString("foto_lugar"),obj.getString("lat"),obj.getString("lon"),obj.getString("_id")));
 
                     } catch (JSONException e) {
                         e.printStackTrace();

@@ -10,6 +10,7 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
+import android.widget.TextView;
 
 import com.google.android.material.tabs.TabLayout;
 
@@ -28,6 +29,12 @@ public class administrar_rest extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_administrar_rest);
+        //rescate de la variable recibida
+        Bundle extra =getIntent().getExtras();
+        if(extra!=null){
+            String id_Rest=extra.getString("headerCode");
+        }
+
 
         toolbar=findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

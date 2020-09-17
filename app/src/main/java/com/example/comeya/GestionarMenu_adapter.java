@@ -2,37 +2,67 @@ package com.example.comeya;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.widget.PopupMenu;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
-import androidx.core.widget.PopupMenuCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 
-import java.util.List;
+import com.bumptech.glide.Glide;
 
-public class GestionarMenu_adapter extends RecyclerView.Adapter<GestionarMenu_adapter.ViewHolder> {
+import java.util.ArrayList;
 
+public class GestionarMenu_adapter extends RecyclerView.Adapter<GestionarMenu_adapter.Holdermenu>{
+    Context context;
+    ArrayList<PedidoView> lista_menu;
+    GestionarMenu_adapter(Context context){
+        this.context=context;
+        lista_menu=new ArrayList<>();
+    }
+    void add(PedidoView menu){
+        lista_menu.add(menu);
+        notifyItemInserted(lista_menu.indexOf(menu));
+    }
+    @NonNull
+    @Override
+    public Holdermenu onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view   =LayoutInflater.from(parent.getContext()).inflate(R.layout.listview_pedido,parent,false);
+        Holdermenu holdermenu=new Holdermenu(view);
+        return holdermenu;
+    }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, PopupMenu.OnMenuItemClickListener {
-        //variable context para acceder a otra activity
-        Context context;
+    @Override
+    public void onBindViewHolder(@NonNull Holdermenu holder, int position) {
+        holder.titleprduc.setText(lista_menu.get(position).getTitleproducto());
+        holder.precio.setText(lista_menu.get(position).getPrecio());
+        holder.descripcion.setText(lista_menu.get(position).getDescripcion());
+        PedidoView it=lista_menu.get(position);
+        Glide.with(context).load(it.getFotoproducto()).centerCrop().into(holder.fotopruct);
+        //holder.setOnclickCardview();
+
+    }
+
+    @Override
+    public int getItemCount() {
+        return lista_menu.size();
+    }
+
+    class Holdermenu extends RecyclerView.ViewHolder implements View.OnClickListener, PopupMenu.OnMenuItemClickListener {
         private TextView titleprduc, precio, descripcion;
         private ImageView fotopruct;
         private CardView pedido;
-
-        public ViewHolder(View itemView){
+        public Holdermenu(@NonNull View itemView) {
             super(itemView);
-            //acceder a activity
-            context=itemView.getContext();
             titleprduc =(TextView)itemView.findViewById(R.id.Produc_titulo);
             precio =(TextView)itemView.findViewById(R.id.produc_precio);
             descripcion =(TextView)itemView.findViewById(R.id.produc_descripcion);
@@ -60,31 +90,5 @@ public class GestionarMenu_adapter extends RecyclerView.Adapter<GestionarMenu_ad
             return false;
         }
     }
-    public List<PedidoView> listaProduc;
 
-    public GestionarMenu_adapter(List<PedidoView>listaPedido){
-        this.listaProduc =listaPedido;
-    }
-
-    @NonNull
-    @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.listview_pedido,parent,false);
-        ViewHolder viewHolder=new ViewHolder(view);
-        return viewHolder;
-    }
-
-    @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.titleprduc.setText(listaProduc.get(position).getTitleproducto());
-        holder.precio.setText(listaProduc.get(position).getPrecio());
-        holder.descripcion.setText(listaProduc.get(position).getDescripcion());
-        holder.fotopruct.setImageResource(listaProduc.get(position).getFotoproducto());
-        //eventos
-
-    }
-    @Override
-    public int getItemCount() {
-        return listaProduc.size();
-    }
 }

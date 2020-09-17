@@ -1,10 +1,9 @@
 package com.example.comeya;
 
 public class PedidoView {
-    private String titleproducto, descripcion, precio;
-    private  int fotoproducto;
+    private String titleproducto, descripcion, precio,fotoproducto;;
 
-    public PedidoView(String titleproducto, String descripcion, String precio, int fotoproducto) {
+    public PedidoView(String titleproducto, String descripcion, String precio, String fotoproducto) {
         this.titleproducto = titleproducto;
         this.descripcion = descripcion;
         this.precio = precio;
@@ -35,11 +34,11 @@ public class PedidoView {
         this.precio = precio;
     }
 
-    public int getFotoproducto() {
+    public String getFotoproducto() {
         return fotoproducto;
     }
 
-    public void setFotoproducto(int fotoproducto) {
+    public void setFotoproducto(String fotoproducto) {
         this.fotoproducto = fotoproducto;
     }
 }

@@ -8,28 +8,27 @@
 
 
     <TextView
-        android:id="@+id/telefonoMyrest"
+        android:id="@+id/GestionarRest_telefono"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="TextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.127"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nitMyrest" />
+        app:layout_constraintTop_toBottomOf="@+id/GestionarRest_nit" />
 
     <ImageView
-        android:id="@+id/imgMyrest"
+        android:id="@+id/GestionarRest_img"
         android:layout_width="344dp"
         android:layout_height="176dp"
         android:layout_marginTop="12dp"
         android:src="@drawable/image_defect"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tituloMyrest" />
+        app:layout_constraintTop_toBottomOf="@+id/GestionarRest_nombre" />
 
     <com.google.android.gms.maps.MapView
-        android:id="@+id/hubiMyrest"
+        android:id="@+id/GestionarRest_mapa"
         android:layout_width="343dp"
         android:layout_height="160dp"
         android:layout_marginTop="40dp"
@@ -38,53 +37,49 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.514"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/direccionMyrest"
+        app:layout_constraintTop_toBottomOf="@+id/GestionarRest_direccion"
         app:layout_constraintVertical_bias="1.0" />
 
     <TextView
-        android:id="@+id/nitMyrest"
+        android:id="@+id/GestionarRest_nit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="TextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.127"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/propietarioMyrest" />
+        app:layout_constraintTop_toBottomOf="@+id/GestionarRest_propietario" />
 
     <TextView
-        android:id="@+id/propietarioMyrest"
+        android:id="@+id/GestionarRest_propietario"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
-        android:text="TextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.127"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgMyrest" />
+        app:layout_constraintTop_toBottomOf="@+id/GestionarRest_img" />
 
 
     <TextView
-        android:id="@+id/tituloMyrest"
+        android:id="@+id/GestionarRest_nombre"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="TextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/direccionMyrest"
+        android:id="@+id/GestionarRest_direccion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
-        android:text="TextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.127"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/telefonoMyrest" />
+        app:layout_constraintTop_toBottomOf="@+id/GestionarRest_telefono" />
 
     <com.getbase.floatingactionbutton.FloatingActionsMenu
         android:id="@+id/groupbotones_editrest"

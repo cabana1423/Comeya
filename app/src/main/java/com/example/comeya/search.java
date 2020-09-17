@@ -100,7 +100,7 @@ public class search extends Fragment {
                 for (int i=0;i<response.length();i++){
                     try {
                         JSONObject obj =response.getJSONObject(i);
-                        adaptadorrest.add(new restView(obj.getString("nombre_rest"),obj.getString("calle"),obj.getString("telefono"),obj.getString("foto_lugar")));
+                        adaptadorrest.add(new restView(obj.getString("nombre_rest"),obj.getString("calle"),obj.getString("telefono"),obj.getString("foto_lugar"),obj.getString("lat"),obj.getString("lon"),obj.getString("_id")));
 
                     } catch (JSONException e) {
                         e.printStackTrace();

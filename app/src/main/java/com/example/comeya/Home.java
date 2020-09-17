@@ -85,7 +85,6 @@ public class Home extends Fragment {
         View root =inflater.inflate(R.layout.fragment_home, container, false);
         recyclerViewmenu=root.findViewById(R.id.listaViewMenu);
         lnmenu=new GridLayoutManager(context,1);
-        //recyclerViewmenu.setLayoutManager(new LinearLayoutManager(getContext()));
         adaptadormenu=new Menu_adapter(context);
         recyclerViewmenu.setLayoutManager(lnmenu);
         recyclerViewmenu.setAdapter(adaptadormenu);

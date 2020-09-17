@@ -44,6 +44,8 @@ public class Rest_adaptor extends RecyclerView.Adapter<Rest_adaptor.Holderrest>{
         holder.direccion.setText(lista_rest.get(position).getDireccion());
         holder.telefono.setText(lista_rest.get(position).getTelefono());
         restView it=lista_rest.get(position);
+        holder.lat=it.getLat();
+        holder.lon=it.getLon();
         Glide.with(context).load(it.getFotorest()).centerCrop().into(holder.fotorest);
         holder.setOnclickCardview();
     }
@@ -57,6 +59,7 @@ public class Rest_adaptor extends RecyclerView.Adapter<Rest_adaptor.Holderrest>{
         TextView titleRest, direccion, telefono;
         CardView viewrest;
         ImageView fotorest;
+        String lat, lon;
         public Holderrest(@NonNull View itemView) {
             super(itemView);
             titleRest=itemView.findViewById(R.id.Restviewtitulo);

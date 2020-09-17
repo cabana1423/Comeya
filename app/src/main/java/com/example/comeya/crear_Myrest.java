@@ -20,6 +20,7 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.example.comeya.utils.EndPoints;
+import com.example.comeya.utils.RestData;
 import com.example.comeya.utils.UserDataServer;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
@@ -43,7 +44,7 @@ public class crear_Myrest extends AppCompatActivity /*implements OnMapReadyCallb
     ImageButton loadimage, imagemap;
     Button cargarimg, crearrest;
     EditText nombre, nit, propietario, calle, telefono;
-    private MapView mapaMyrest;
+    //private MapView mapaMyrest;
     public static String path, id_imgrest = "";
 
     static final int CODE_PERMISSION = 200;
@@ -131,7 +132,6 @@ public class crear_Myrest extends AppCompatActivity /*implements OnMapReadyCallb
                     Toast.makeText(getApplicationContext(), "" + e, Toast.LENGTH_SHORT).show();
                 }
             }
-
             @Override
             public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
                 super.onFailure(statusCode, headers, throwable, errorResponse);
@@ -149,18 +149,18 @@ public class crear_Myrest extends AppCompatActivity /*implements OnMapReadyCallb
             params.add("propietario", propietario.getText().toString());
             params.add("calle", calle.getText().toString());
             params.add("telefono", telefono.getText().toString());
+            params.add("lat", RestData.LAT_MAPMYREST);
+            params.add("lon", RestData.LON_MAPMYREST);
             clientrest.post(EndPoints.SERV_REG_REST + UserDataServer.ID + "&idi=" + UserDataServer.IDI, params, new JsonHttpResponseHandler() {
                 @Override
                 public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                     super.onSuccess(statusCode, headers, response);
                 }
-
                 @Override
                 public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
                     super.onFailure(statusCode, headers, throwable, errorResponse);
                 }
             });
-            //startActivity(new Intent(crear_Myrest.this, add.class ));
         } else {
             Toast.makeText(getApplicationContext(), "agrega una imagen", Toast.LENGTH_SHORT).show();
         }
@@ -211,15 +211,15 @@ public class crear_Myrest extends AppCompatActivity /*implements OnMapReadyCallb
         return false;
     }
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (CODE_PERMISSION == requestCode) {
-            if (permissions.length == 3) {
-                cargarimg.setVisibility(View.VISIBLE);
+        @Override
+        public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+            super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+            if (CODE_PERMISSION == requestCode) {
+                if (permissions.length == 3) {
+                    cargarimg.setVisibility(View.VISIBLE);
+                }
             }
         }
-    }
 /*
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {

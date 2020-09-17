@@ -1,13 +1,15 @@
 package com.example.comeya;
 
 public class restView {
-    private String titleRest, direccion, telefono, fotorest , id_rest;
+    private String titleRest, direccion, telefono, fotorest ,lat,lon, id_rest;
 
-    public restView(String titleRest, String direccion, String telefono, String fotorest, String id_rest) {
+    public restView(String titleRest, String direccion, String telefono, String fotorest, String lat, String lon, String id_rest) {
         this.titleRest = titleRest;
         this.direccion = direccion;
         this.telefono = telefono;
         this.fotorest = fotorest;
+        this.lat = lat;
+        this.lon = lon;
         this.id_rest = id_rest;
     }
 
@@ -41,6 +43,22 @@ public class restView {
 
     public void setFotorest(String fotorest) {
         this.fotorest = fotorest;
+    }
+
+    public String getLat() {
+        return lat;
+    }
+
+    public void setLat(String lat) {
+        this.lat = lat;
+    }
+
+    public String getLon() {
+        return lon;
+    }
+
+    public void setLon(String lon) {
+        this.lon = lon;
     }
 
     public String getId_rest() {

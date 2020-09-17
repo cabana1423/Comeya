@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
@@ -15,13 +16,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 
 import com.bumptech.glide.Glide;
+import com.example.comeya.utils.RestData;
 
 import java.util.ArrayList;
 
 public class MyRest_Adapter extends RecyclerView.Adapter<MyRest_Adapter.HolderMyrest> {
     Context context;
     ArrayList<restView> lista_myrest;
-    public String id_rest="";
     MyRest_Adapter(Context context){
         this.context=context;
         lista_myrest =new ArrayList<>();
@@ -45,8 +46,13 @@ public class MyRest_Adapter extends RecyclerView.Adapter<MyRest_Adapter.HolderMy
         holder.direccion.setText(lista_myrest.get(position).getDireccion());
         holder.telefono.setText(lista_myrest.get(position).getTelefono());
         restView it=lista_myrest.get(position);
-        id_rest=it.getId_rest();
+        holder.idrest=it.getId_rest();
+        holder.lat=it.getLat();holder.lon=it.getLon();
+        holder.nombre_rest=it.getTitleRest();holder.telefono_rest=it.getTelefono();
+        holder.calle=it.getDireccion();
         Glide.with(context).load(it.getFotorest()).centerCrop().into(holder.fotorest);
+
+        //set events
         holder.setOnclickCardview();
     }
 
@@ -59,6 +65,7 @@ public class MyRest_Adapter extends RecyclerView.Adapter<MyRest_Adapter.HolderMy
         TextView titleRest, direccion, telefono;
         CardView viewrest;
         ImageView fotorest;
+        String idrest,lat,lon, nombre_rest,telefono_rest,nit,calle,propietario;
         public HolderMyrest(@NonNull View itemView) {
             super(itemView);
             titleRest=itemView.findViewById(R.id.Restviewtitulo);
@@ -77,6 +84,9 @@ public class MyRest_Adapter extends RecyclerView.Adapter<MyRest_Adapter.HolderMy
             switch (view.getId()){
                 case R.id.Restgroupview:
                     Intent intent=new Intent(context,administrar_rest.class);
+                    intent.putExtra("headerCode",idrest);
+                    RestData.ID_AUX_REST=idrest;
+                    Toast.makeText(context, RestData.ID_AUX_REST, Toast.LENGTH_SHORT).show();
                     context.startActivity(intent);
                     break;
             }

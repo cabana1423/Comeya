@@ -16,6 +16,8 @@ import android.nfc.Tag;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.example.comeya.utils.RestData;
+import com.example.comeya.utils.UserDataServer;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -147,7 +149,8 @@ public class MapsRest extends FragmentActivity implements OnMapReadyCallback, Go
         } catch (IOException e) {
             e.printStackTrace();
         }
-
+        RestData.LAT_MAPMYREST= String.valueOf(latLng.latitude);
+        RestData.LON_MAPMYREST= String.valueOf(latLng.longitude);
     }
 }
 
