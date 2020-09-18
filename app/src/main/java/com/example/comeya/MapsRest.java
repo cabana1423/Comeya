@@ -15,6 +15,7 @@ import android.location.LocationManager;
 import android.nfc.Tag;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.example.comeya.utils.RestData;
 import com.example.comeya.utils.UserDataServer;
@@ -151,6 +152,8 @@ public class MapsRest extends FragmentActivity implements OnMapReadyCallback, Go
         }
         RestData.LAT_MAPMYREST= String.valueOf(latLng.latitude);
         RestData.LON_MAPMYREST= String.valueOf(latLng.longitude);
+        Toast.makeText(getApplicationContext(), RestData.LAT_MAPMYREST, Toast.LENGTH_SHORT).show();
+
     }
 }
 

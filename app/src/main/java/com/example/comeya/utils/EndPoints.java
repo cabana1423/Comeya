@@ -7,14 +7,19 @@ public class EndPoints {
     public static String SERVICE_LISTREST= URL+"api_v1.0/rest";
     //register user
     public static String SERVICE_REGISTER_USER= URL+"api_v1.0/user";
-    //register rest
+    //register img rest
     public static String SERVICE_UPIMGREST= URL+"api_v1.0/restimg?id=";
-    public static String SERV_REG_REST= URL+"api_v1.0/rest?id=";
+    public static String SERVICE_PUT_IMGREST= URL+"api_v1.0/restimg?id=";
+    public static String SERVICE_GET_IMGREST= URL+"api_v1.0/restimg?id=";
+    //register rest
+    public static String SERV_REST = URL+"api_v1.0/rest?id=";
     public static String SERV_GETMYREST= URL+"api_v1.0/myrest?id_rest=";
+    public static String SERV_PUTMYREST= URL+"api_v1.0/rest?id=";
     //MENU
     public static String SERV_VIEWMENU= URL+"api_v1.0/menu";
     public static String SERV_CARG_IMGMENU= URL+"api_v1.0/imgmenu?id=";
     public static String SERV_POSTMENU= URL+"api_v1.0/menu?id=";
+    public static String SERV_DELETEMENU= URL+"api_v1.0/menu?id=";
 
 
 

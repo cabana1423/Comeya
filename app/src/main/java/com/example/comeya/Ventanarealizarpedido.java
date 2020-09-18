@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.SeekBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -14,7 +16,9 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDialogFragment;
 
 public class Ventanarealizarpedido extends AppCompatDialogFragment {
-    private EditText nombre,precio,descripcion;
+    private TextView cantidad;
+    private SeekBar seekBar;
+    private String resultado;
 
     @NonNull
     @Override
@@ -27,12 +31,27 @@ public class Ventanarealizarpedido extends AppCompatDialogFragment {
                 .setPositiveButton("pedido", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        Toast.makeText(getContext(), "realizaste un pedido", Toast.LENGTH_LONG).show();
+                        //Toast.makeText(getContext(), "realizaste un pedido", Toast.LENGTH_LONG).show();
+                        Bundle bundle=new Bundle();
+                        bundle.putString("cantidad",resultado.trim());
+                        getParentFragmentManager().setFragmentResult("key",bundle);
                     }
                 });
-        nombre =view.findViewById(R.id.ventanamenu_nombre);
-        precio =view.findViewById(R.id.ventanamenu_precio);
-        descripcion =view.findViewById(R.id.ventanamenu_decrip);
+        cantidad =view.findViewById(R.id.ventanapedido_title);
+        seekBar =view.findViewById(R.id.ventanapedido_seekbar);
+        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+                cantidad.setText(i+"/20");
+                resultado= String.valueOf(i);
+            }
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+            }
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+            }
+        });
         return builder.create();
     }
 }

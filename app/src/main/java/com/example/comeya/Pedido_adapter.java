@@ -2,19 +2,19 @@ package com.example.comeya;
 
 
 import android.content.Context;
-import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.PopupMenu;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.fragment.app.FragmentResultListener;
+import androidx.lifecycle.Lifecycle;
+import androidx.lifecycle.LifecycleOwner;
 import androidx.recyclerview.widget.RecyclerView;
 
 
@@ -57,10 +57,10 @@ public class Pedido_adapter extends RecyclerView.Adapter<Pedido_adapter.Holderme
         return lista_menu.size();
     }
 
-    class Holdermenu extends RecyclerView.ViewHolder implements View.OnClickListener {
+    class Holdermenu extends RecyclerView.ViewHolder implements View.OnClickListener, LifecycleOwner {
         Context context;
         Context context_om;
-        private TextView titleprduc, precio, descripcion;
+        private TextView titleprduc, precio, descripcion,CANTIDAD;
         private ImageView fotopruct;
         private CardView pedido;
         public Holdermenu(@NonNull View itemView) {
@@ -68,9 +68,11 @@ public class Pedido_adapter extends RecyclerView.Adapter<Pedido_adapter.Holderme
             context_om=itemView.getContext();
             titleprduc =(TextView)itemView.findViewById(R.id.Produc_titulo);
             precio =(TextView)itemView.findViewById(R.id.produc_precio);
-            descripcion =(TextView)itemView.findViewById(R.id.produc_descripcion);
+            descripcion =(TextView)itemView.findViewById(R.id.produc_numimg);
+            CANTIDAD=(TextView)itemView.findViewById(R.id.groupviewpedido);
             fotopruct =(ImageView) itemView.findViewById(R.id.produc_img);
             pedido =(CardView) itemView.findViewById(R.id.groupviewpedidoproducto);
+
         }
         void setOnclickCardview(){
             pedido.setOnClickListener(this);
@@ -81,12 +83,26 @@ public class Pedido_adapter extends RecyclerView.Adapter<Pedido_adapter.Holderme
             switch (view.getId()){
                 case R.id.groupviewpedidoproducto:
                     openVentana();
+
                     break;
             }
         }
         private void openVentana() {
             Ventanarealizarpedido ventanarealizarpedido=new Ventanarealizarpedido();
             ventanarealizarpedido.show(((AppCompatActivity)context_om).getSupportFragmentManager(),"example dialogo");
+            ventanarealizarpedido.getParentFragmentManager().setFragmentResultListener("key",this,new  FragmentResultListener(){
+                @Override
+                public void onFragmentResult(@NonNull String requestKey, @NonNull Bundle bundle) {
+                    String Cantidad=bundle.getString("cantidad");
+                    CANTIDAD.setText(Cantidad);
+                }
+            });
+        }
+
+        @NonNull
+        @Override
+        public Lifecycle getLifecycle() {
+            return null;
         }
     }
 

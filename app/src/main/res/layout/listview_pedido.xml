@@ -1,25 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/groupviewpedidoproducto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/produc_img"
-            android:layout_width="197dp"
-            android:layout_height="188dp"
-            app:srcCompat="@drawable/image_defect" />
+            android:layout_width="189dp"
+            android:layout_height="171dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/groupviewpedido"
+            android:layout_width="48dp"
+            android:text=""
+            app:autoSizeTextType="uniform"
+            app:layout_constraintBottom_toBottomOf="@+id/produc_img"
+            app:layout_constraintEnd_toEndOf="@+id/produc_img"
+            app:layout_constraintHorizontal_bias="0.44"
+            app:layout_constraintStart_toStartOf="@+id/produc_img"
+            app:layout_constraintTop_toTopOf="@+id/produc_img"
+            app:layout_constraintVertical_bias="0.492"
+            android:layout_height="100dp" />
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:id="@+id/linearLayout"
+            android:layout_width="224dp"
+            android:layout_height="171dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/produc_img"
+            app:layout_constraintTop_toTopOf="parent">
 
             <RatingBar
                 android:id="@+id/ratingBar"
@@ -33,7 +53,7 @@
                 android:text="TextView" />
 
             <TextView
-                android:id="@+id/produc_descripcion"
+                android:id="@+id/produc_numimg"
                 android:layout_width="match_parent"
                 android:layout_height="75dp"
                 android:text="TextView" />
@@ -46,6 +66,6 @@
 
         </LinearLayout>
 
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.cardview.widget.CardView>

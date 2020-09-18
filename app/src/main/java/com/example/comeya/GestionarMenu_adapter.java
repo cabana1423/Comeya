@@ -2,7 +2,6 @@ package com.example.comeya;
 
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -10,17 +9,23 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 
 import com.bumptech.glide.Glide;
+import com.example.comeya.utils.EndPoints;
+import com.example.comeya.utils.UserDataServer;
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.JsonHttpResponseHandler;
+
+import org.json.JSONObject;
 
 import java.util.ArrayList;
+
+import cz.msebera.android.httpclient.Header;
 
 public class GestionarMenu_adapter extends RecyclerView.Adapter<GestionarMenu_adapter.Holdermenu>{
     Context context;
@@ -47,8 +52,9 @@ public class GestionarMenu_adapter extends RecyclerView.Adapter<GestionarMenu_ad
         holder.precio.setText(lista_menu.get(position).getPrecio());
         holder.descripcion.setText(lista_menu.get(position).getDescripcion());
         PedidoView it=lista_menu.get(position);
+        holder.id_menu=it.getId_menu();
         Glide.with(context).load(it.getFotoproducto()).centerCrop().into(holder.fotopruct);
-        //holder.setOnclickCardview();
+        holder.setOnclickCardview();
 
     }
 
@@ -61,18 +67,23 @@ public class GestionarMenu_adapter extends RecyclerView.Adapter<GestionarMenu_ad
         private TextView titleprduc, precio, descripcion;
         private ImageView fotopruct;
         private CardView pedido;
+        private String id_menu;
         public Holdermenu(@NonNull View itemView) {
             super(itemView);
             titleprduc =(TextView)itemView.findViewById(R.id.Produc_titulo);
             precio =(TextView)itemView.findViewById(R.id.produc_precio);
-            descripcion =(TextView)itemView.findViewById(R.id.produc_descripcion);
+            descripcion =(TextView)itemView.findViewById(R.id.produc_numimg);
             fotopruct =(ImageView) itemView.findViewById(R.id.produc_img);
             pedido =(CardView) itemView.findViewById(R.id.groupviewpedidoproducto);
+
+        }
+        public void setOnclickCardview() {
             pedido.setOnClickListener(this);
         }
         public void onClick(View v){
             showPopMenu(v);
         }
+
         private void showPopMenu(View view){
             PopupMenu popupMenu=new PopupMenu(view.getContext(), view);
             popupMenu.inflate(R.menu.option_gestionarmenu);
@@ -84,11 +95,21 @@ public class GestionarMenu_adapter extends RecyclerView.Adapter<GestionarMenu_ad
         public boolean onMenuItemClick(MenuItem item) {
             switch (item.getItemId()){
                 case R.id.delete_menu:
-                    Toast.makeText(context, "eliminaste este menu :(", Toast.LENGTH_LONG).show();
+                    elimar();
                     return true;
             }
             return false;
         }
-    }
+        private void elimar() {
+            AsyncHttpClient client=new AsyncHttpClient();
+            client.addHeader("Authorization", UserDataServer.TOKEN);
+            client.delete(EndPoints.SERV_DELETEMENU+ id_menu,null,new JsonHttpResponseHandler(){
+                @Override
+                public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                    super.onSuccess(statusCode, headers, response);
+                }
+            });
+        }
 
+    }
 }

@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.comeya.utils.EndPoints;
+import com.example.comeya.utils.MenuData;
 import com.example.comeya.utils.RestData;
 import com.example.comeya.utils.UserDataServer;
 import com.getbase.floatingactionbutton.FloatingActionButton;
@@ -103,7 +104,7 @@ public class Gestionar_rest extends Fragment implements OnMapReadyCallback {
         eliminar_rest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(context, ":( eliminaste este rest", Toast.LENGTH_LONG).show();
+                elimar();
             }
         });
         mapaMyrest= root.findViewById(R.id.GestionarRest_mapa);
@@ -111,6 +112,18 @@ public class Gestionar_rest extends Fragment implements OnMapReadyCallback {
         initGoogleMap(savedInstanceState);
         return root;
     }
+
+    private void elimar() {
+        AsyncHttpClient client=new AsyncHttpClient();
+        client.addHeader("Authorization", UserDataServer.TOKEN);
+        client.delete(EndPoints.SERV_REST+RestData.ID_AUX_REST,null,new JsonHttpResponseHandler(){
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                super.onSuccess(statusCode, headers, response);
+            }
+        });
+    }
+
     private void initGoogleMap(Bundle savedInstanceState) {
         Bundle mapViewBundle = null;
         if (savedInstanceState != null) {
@@ -138,6 +151,7 @@ public class Gestionar_rest extends Fragment implements OnMapReadyCallback {
                         lat=obj.getString("lat");
                         //Toast.makeText(context,lat,Toast.LENGTH_SHORT).show();
                         lon=obj.getString("lon");
+                        MenuData.ID_AUX_IMGMENU =obj.getString("foto_id");
                     } catch (JSONException e) {
                         e.printStackTrace();
                         Toast.makeText(context,""+e,Toast.LENGTH_SHORT).show();

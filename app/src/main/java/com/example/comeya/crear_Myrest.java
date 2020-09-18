@@ -3,7 +3,6 @@ package com.example.comeya;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
 import android.content.Intent;
@@ -22,11 +21,6 @@ import android.widget.Toast;
 import com.example.comeya.utils.EndPoints;
 import com.example.comeya.utils.RestData;
 import com.example.comeya.utils.UserDataServer;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.MapView;
-import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
@@ -37,8 +31,6 @@ import org.json.JSONObject;
 import java.io.File;
 
 import cz.msebera.android.httpclient.Header;
-
-import static com.example.comeya.utils.EndPoints.MAPVIEW_BUNDLE_KEY;
 
 public class crear_Myrest extends AppCompatActivity /*implements OnMapReadyCallback */{
     ImageButton loadimage, imagemap;
@@ -151,7 +143,7 @@ public class crear_Myrest extends AppCompatActivity /*implements OnMapReadyCallb
             params.add("telefono", telefono.getText().toString());
             params.add("lat", RestData.LAT_MAPMYREST);
             params.add("lon", RestData.LON_MAPMYREST);
-            clientrest.post(EndPoints.SERV_REG_REST + UserDataServer.ID + "&idi=" + UserDataServer.IDI, params, new JsonHttpResponseHandler() {
+            clientrest.post(EndPoints.SERV_REST + UserDataServer.ID + "&idi=" + UserDataServer.IDI, params, new JsonHttpResponseHandler() {
                 @Override
                 public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                     super.onSuccess(statusCode, headers, response);
@@ -159,6 +151,7 @@ public class crear_Myrest extends AppCompatActivity /*implements OnMapReadyCallb
                 @Override
                 public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
                     super.onFailure(statusCode, headers, throwable, errorResponse);
+                    Toast.makeText(getApplicationContext(), errorResponse+"", Toast.LENGTH_SHORT).show();
                 }
             });
         } else {
