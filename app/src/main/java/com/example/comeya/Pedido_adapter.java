@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 
 import com.bumptech.glide.Glide;
+import com.example.comeya.utils.MenuData;
 
 import java.util.ArrayList;
 
@@ -47,6 +48,7 @@ public class Pedido_adapter extends RecyclerView.Adapter<Pedido_adapter.Holderme
         holder.precio.setText(lista_menu.get(position).getPrecio());
         holder.descripcion.setText(lista_menu.get(position).getDescripcion());
         PedidoView it=lista_menu.get(position);
+        holder.id_menu=it.getId_menu();
         Glide.with(context).load(it.getFotoproducto()).centerCrop().into(holder.fotopruct);
         holder.setOnclickCardview();
 
@@ -63,6 +65,7 @@ public class Pedido_adapter extends RecyclerView.Adapter<Pedido_adapter.Holderme
         private TextView titleprduc, precio, descripcion,CANTIDAD;
         private ImageView fotopruct;
         private CardView pedido;
+        String id_menu;
         public Holdermenu(@NonNull View itemView) {
             super(itemView);
             context_om=itemView.getContext();
@@ -82,21 +85,15 @@ public class Pedido_adapter extends RecyclerView.Adapter<Pedido_adapter.Holderme
         public void onClick(View view) {
             switch (view.getId()){
                 case R.id.groupviewpedidoproducto:
+                    MenuData.ID_AUX_IDMENU=id_menu;
                     openVentana();
-
                     break;
             }
         }
+
         private void openVentana() {
             Ventanarealizarpedido ventanarealizarpedido=new Ventanarealizarpedido();
             ventanarealizarpedido.show(((AppCompatActivity)context_om).getSupportFragmentManager(),"example dialogo");
-            ventanarealizarpedido.getParentFragmentManager().setFragmentResultListener("key",this,new  FragmentResultListener(){
-                @Override
-                public void onFragmentResult(@NonNull String requestKey, @NonNull Bundle bundle) {
-                    String Cantidad=bundle.getString("cantidad");
-                    CANTIDAD.setText(Cantidad);
-                }
-            });
         }
 
         @NonNull

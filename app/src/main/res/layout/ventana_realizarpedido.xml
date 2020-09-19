@@ -10,10 +10,12 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_gravity="end"
         android:layout_marginStart="292dp"
         android:layout_marginTop="20dp"
-        android:layout_gravity="end"
-        android:text="0/100" />
+        android:layout_marginEnd="89dp"
+        android:text="0/20" />
 
     <SeekBar
         android:id="@+id/ventanapedido_seekbar"

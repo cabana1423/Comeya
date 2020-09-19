@@ -20,6 +20,9 @@ public class EndPoints {
     public static String SERV_CARG_IMGMENU= URL+"api_v1.0/imgmenu?id=";
     public static String SERV_POSTMENU= URL+"api_v1.0/menu?id=";
     public static String SERV_DELETEMENU= URL+"api_v1.0/menu?id=";
+    //Pedidos
+    public static String SERV_POST_ORDER= URL+"api_v1.0/order?id=";
+    public static String SERV_GET_ORDER= URL+"api_v1.0/order?idUser_ped=";
 
 
 

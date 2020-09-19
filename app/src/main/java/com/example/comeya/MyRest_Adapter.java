@@ -47,9 +47,6 @@ public class MyRest_Adapter extends RecyclerView.Adapter<MyRest_Adapter.HolderMy
         holder.telefono.setText(lista_myrest.get(position).getTelefono());
         restView it=lista_myrest.get(position);
         holder.idrest=it.getId_rest();
-        holder.lat=it.getLat();holder.lon=it.getLon();
-        holder.nombre_rest=it.getTitleRest();holder.telefono_rest=it.getTelefono();
-        holder.calle=it.getDireccion();
         Glide.with(context).load(it.getFotorest()).centerCrop().into(holder.fotorest);
 
         //set events
@@ -65,7 +62,7 @@ public class MyRest_Adapter extends RecyclerView.Adapter<MyRest_Adapter.HolderMy
         TextView titleRest, direccion, telefono;
         CardView viewrest;
         ImageView fotorest;
-        String idrest,lat,lon, nombre_rest,telefono_rest,nit,calle,propietario;
+        String idrest;
         public HolderMyrest(@NonNull View itemView) {
             super(itemView);
             titleRest=itemView.findViewById(R.id.Restviewtitulo);

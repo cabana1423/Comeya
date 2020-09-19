@@ -1,18 +1,31 @@
 package com.example.comeya;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.Toast;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.example.comeya.utils.EndPoints;
+import com.example.comeya.utils.UserDataServer;
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.JsonHttpResponseHandler;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import cz.msebera.android.httpclient.Header;
 
 public class Confirmar_pedido extends AppCompatActivity {
-    private RecyclerView recyclerViewproduct;
-    private confirmarpedido_adapter adaptadorProduct;
+    Context context;
+    RecyclerView recyclerViewmenu;
+    LinearLayoutManager lnlist;
+    confirmarpedido_adapter adaptadorlist;
     private Button pedido;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,19 +33,36 @@ public class Confirmar_pedido extends AppCompatActivity {
         setContentView(R.layout.activity_confirmar_pedido);
         pedido=(Button)findViewById(R.id.confirmarP_pedir);
 
-        recyclerViewproduct = (RecyclerView)findViewById(R.id.listConfirmar);
-        recyclerViewproduct.setLayoutManager(new LinearLayoutManager(this));
-
-        adaptadorProduct = new confirmarpedido_adapter(obtenerproduc());
-        recyclerViewproduct.setAdapter(adaptadorProduct);
+        recyclerViewmenu=findViewById(R.id.listConfirmar);
+        lnlist =new GridLayoutManager(context,1);
+        adaptadorlist =new confirmarpedido_adapter(context);
+        recyclerViewmenu.setLayoutManager(lnlist);
+        recyclerViewmenu.setAdapter(adaptadorlist);
+        obtenerlist();
 
     }
-    private List<confirmarpedidoView> obtenerproduc() {
-        List<confirmarpedidoView> confirmar = new ArrayList<>();
-        confirmar.add(new confirmarpedidoView("aji de fideo 15 bs", "2", "2*15bs= 30bs"));
-        confirmar.add(new confirmarpedidoView("aji de fideo 15 bs", "2", "2*15bs= 30bs"));
-        confirmar.add(new confirmarpedidoView("aji de fideo 15 bs", "2", "2*15bs= 30bs"));
-        confirmar.add(new confirmarpedidoView("aji de fideo 15 bs", "2", "2*15bs= 30bs"));
-        return confirmar;
+    private void obtenerlist() {
+        AsyncHttpClient client=new AsyncHttpClient();
+        client.addHeader("Authorization", UserDataServer.TOKEN);
+        client.get(EndPoints.SERV_GET_ORDER+UserDataServer.ID,null,new JsonHttpResponseHandler(){
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
+                super.onSuccess(statusCode, headers, response);
+                for (int i=0;i<response.length();i++){
+                    try {
+                        JSONObject obj =response.getJSONObject(i);
+                        adaptadorlist.add(new confirmarpedidoView(obj.getString("_id"),obj.getString("cantidad"),
+                                obj.getString("pago_total")));
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                        Toast.makeText(context,""+e,Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+        });
+
     }
+
+
 }

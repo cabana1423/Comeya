@@ -27,7 +27,7 @@ public class realizar_pedido extends AppCompatActivity {
     RecyclerView recyclerViewpedido;
     LinearLayoutManager lnmypedido;
     Pedido_adapter adaptadorproducto;
-    private FloatingActionButton siguiente;
+    private FloatingActionButton siguiente, cancel;
     private CardView ver_rest;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +38,15 @@ public class realizar_pedido extends AppCompatActivity {
         adaptadorproducto =new Pedido_adapter(this);
         recyclerViewpedido.setLayoutManager(lnmypedido);
         recyclerViewpedido.setAdapter(adaptadorproducto);
+
         siguiente=(FloatingActionButton)findViewById(R.id.Pedido_buton_siguiente);
+        cancel=(FloatingActionButton)findViewById(R.id.pedido_buton_cancelar);
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getApplicationContext(),"cancelaste vato :(",Toast.LENGTH_SHORT).show();
+            }
+        });
         siguiente.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
