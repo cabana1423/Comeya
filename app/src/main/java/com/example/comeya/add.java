@@ -110,7 +110,7 @@ public class add extends Fragment {
                 super.onSuccess(statusCode, headers, response);
                 for (int i=0;i<response.length();i++){
                     try {
-                        JSONObject obj =response.getJSONObject(i);
+                            JSONObject obj =response.getJSONObject(i);
                         adaptadormyrest.add(new restView(obj.getString("nombre_rest"),obj.getString("calle")
                                 ,obj.getString("telefono"),obj.getString("foto_lugar"),obj.getString("lat"),obj.getString("lon"),obj.getString("_id")));
 

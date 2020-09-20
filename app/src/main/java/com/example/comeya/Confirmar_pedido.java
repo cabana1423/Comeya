@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.comeya.utils.EndPoints;
+import com.example.comeya.utils.MenuData;
 import com.example.comeya.utils.UserDataServer;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
@@ -44,14 +45,14 @@ public class Confirmar_pedido extends AppCompatActivity {
     private void obtenerlist() {
         AsyncHttpClient client=new AsyncHttpClient();
         client.addHeader("Authorization", UserDataServer.TOKEN);
-        client.get(EndPoints.SERV_GET_ORDER+UserDataServer.ID,null,new JsonHttpResponseHandler(){
+        client.get(EndPoints.SERV_GET_ORDER+ MenuData.TOKER_ORDER,null,new JsonHttpResponseHandler(){
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
                 super.onSuccess(statusCode, headers, response);
                 for (int i=0;i<response.length();i++){
                     try {
                         JSONObject obj =response.getJSONObject(i);
-                        adaptadorlist.add(new confirmarpedidoView(obj.getString("_id"),obj.getString("cantidad"),
+                        adaptadorlist.add(new confirmarpedidoView(obj.getString("nombre_menu"),obj.getString("cantidad"),
                                 obj.getString("pago_total")));
 
                     } catch (JSONException e) {

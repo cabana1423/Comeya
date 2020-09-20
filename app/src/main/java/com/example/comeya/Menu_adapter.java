@@ -3,6 +3,8 @@ package com.example.comeya;
 
 import android.content.Context;
 import android.content.Intent;
+import android.icu.text.SimpleDateFormat;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,14 +12,17 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 
 import com.bumptech.glide.Glide;
+import com.example.comeya.utils.MenuData;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class Menu_adapter extends RecyclerView.Adapter<Menu_adapter.Holdermenu>{
     Context context;
@@ -57,6 +62,7 @@ public class Menu_adapter extends RecyclerView.Adapter<Menu_adapter.Holdermenu>{
         TextView nombre_menu,precio,descripcion;
         ImageView fotomenu;
         CardView viewrest,viewmenu;
+        String sDate;
         public Holdermenu(@NonNull View itemView) {
             super(itemView);
             nombre_menu=itemView.findViewById(R.id.Menuview_titleRest);
@@ -72,6 +78,7 @@ public class Menu_adapter extends RecyclerView.Adapter<Menu_adapter.Holdermenu>{
             viewmenu.setOnClickListener(this);
         }
 
+        @RequiresApi(api = Build.VERSION_CODES.N)
         @Override
         public void onClick(View view) {
             switch (view.getId()){
@@ -79,6 +86,11 @@ public class Menu_adapter extends RecyclerView.Adapter<Menu_adapter.Holdermenu>{
                     openVentana();
                     break;
                 case R.id.principalview_menu:
+                    Calendar c = Calendar.getInstance();
+                    sDate = c.get(Calendar.YEAR) + "-"
+                            + c.get(Calendar.MONTH) + "-" + c.get(Calendar.DAY_OF_MONTH)
+                            + " at " + c.get(Calendar.HOUR_OF_DAY) + ":" + c.get(Calendar.MINUTE)+ ":" + c.get(Calendar.SECOND);
+                    MenuData.TOKER_ORDER=sDate;
                     Intent intent2=new Intent(context,realizar_pedido.class);
                     context.startActivity(intent2);
                     break;
