@@ -53,7 +53,7 @@ public class Confirmar_pedido extends AppCompatActivity {
                     try {
                         JSONObject obj =response.getJSONObject(i);
                         adaptadorlist.add(new confirmarpedidoView(obj.getString("nombre_menu"),obj.getString("cantidad"),
-                                obj.getString("pago_total")));
+                                obj.getString("pago_total"),obj.getString("_id")));
 
                     } catch (JSONException e) {
                         e.printStackTrace();

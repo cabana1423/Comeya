@@ -1,17 +1,21 @@
 package com.example.comeya;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Toast;
 
 import com.example.comeya.utils.EndPoints;
+import com.example.comeya.utils.MenuData;
 import com.example.comeya.utils.UserDataServer;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.loopj.android.http.AsyncHttpClient;
@@ -90,7 +94,34 @@ public class realizar_pedido extends AppCompatActivity {
         ventana_vista_rest.show(getSupportFragmentManager(),"example dialogo");
     }
 
-
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if(keyCode==event.KEYCODE_BACK){
+            AlertDialog.Builder builder=new AlertDialog.Builder(this);
+            builder.setMessage("usted esta aunto de cancelar una operacion, desea salir?")
+                    .setPositiveButton("si", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            AsyncHttpClient client=new AsyncHttpClient();
+                            client.addHeader("Authorization", UserDataServer.TOKEN);
+                            client.delete(EndPoints.SERV_DELETE_ORDER+ MenuData.TOKER_ORDER,null,new JsonHttpResponseHandler(){
+                                @Override
+                                public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
+                                    super.onSuccess(statusCode, headers, response);
+                                }
+                            });
+                        }
+                    })
+                    .setNegativeButton("cancelar", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            dialogInterface.dismiss();
+                        }
+                    });
+                    builder.show();
+        }
+        return super.onKeyDown(keyCode, event);
+    }
 
     /*private List<PedidoView> obtenerproduc() {
         List<PedidoView> produc = new ArrayList<>();

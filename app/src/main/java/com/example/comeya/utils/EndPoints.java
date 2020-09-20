@@ -25,6 +25,8 @@ public class EndPoints {
     public static String SERV_GET_ORDER= URL+"api_v1.0/order?toker=";
     public static String SERV_GET_TOKER_USER= URL+"api_v1.0/order?toker=";
     public static String SERV_PUT_ORDER= URL+"api_v1.0/order?id=";
+    public static String SERV_DELETE_ORDER= URL+"api_v1.0/order?toker=";
+    public static String SERV_DELETE_UNORDER= URL+"api_v1.0/unOrder?id=";
 
 
 

@@ -6,23 +6,25 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
-import androidx.lifecycle.Lifecycle;
-import androidx.lifecycle.LifecycleOwner;
 import androidx.recyclerview.widget.RecyclerView;
 
 
-import com.bumptech.glide.Glide;
+import com.example.comeya.utils.EndPoints;
 import com.example.comeya.utils.MenuData;
+import com.example.comeya.utils.UserDataServer;
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.JsonHttpResponseHandler;
+
+import org.json.JSONArray;
 
 import java.util.ArrayList;
+
+import cz.msebera.android.httpclient.Header;
 
 public class confirmarpedido_adapter extends RecyclerView.Adapter<confirmarpedido_adapter.Holderlistafinal>{
     Context context;
@@ -48,6 +50,8 @@ public class confirmarpedido_adapter extends RecyclerView.Adapter<confirmarpedid
         holder.titulo.setText(lista_final.get(position).getTitulo());
         holder.cantidad.setText(lista_final.get(position).getCantidad());
         holder.total.setText(lista_final.get(position).getTotal());
+        confirmarpedidoView it=lista_final.get(position);
+        holder.id_order=it.getId_order();
         holder.setOnclickCardview();
 
     }
@@ -61,7 +65,7 @@ public class confirmarpedido_adapter extends RecyclerView.Adapter<confirmarpedid
         Context context;
         private TextView titulo, cantidad, total;
         private CardView confirmar_pedido;
-        String id_menu;
+        String id_order;
         public Holderlistafinal(@NonNull View itemView) {
             super(itemView);
             titulo =(TextView)itemView.findViewById(R.id.confirmar_titulo);
@@ -88,7 +92,14 @@ public class confirmarpedido_adapter extends RecyclerView.Adapter<confirmarpedid
         public boolean onMenuItemClick(MenuItem item) {
             switch (item.getItemId()){
                 case R.id.delete_menu:
-                    Toast.makeText(context, "eliminaste este menu :( ", Toast.LENGTH_LONG).show();
+                    AsyncHttpClient client=new AsyncHttpClient();
+                    client.addHeader("Authorization", UserDataServer.TOKEN);
+                    client.delete(EndPoints.SERV_DELETE_UNORDER+id_order+"&toker="+MenuData.TOKER_ORDER,null,new JsonHttpResponseHandler(){
+                        @Override
+                        public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
+                            super.onSuccess(statusCode, headers, response);
+                        }
+                    });
                     return true;
             }
             return false;

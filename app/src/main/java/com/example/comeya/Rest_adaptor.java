@@ -15,8 +15,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 
 import com.bumptech.glide.Glide;
+import com.example.comeya.utils.MenuData;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class Rest_adaptor extends RecyclerView.Adapter<Rest_adaptor.Holderrest>{
     Context context;
@@ -59,7 +61,7 @@ public class Rest_adaptor extends RecyclerView.Adapter<Rest_adaptor.Holderrest>{
         TextView titleRest, direccion, telefono;
         CardView viewrest;
         ImageView fotorest;
-        String lat, lon;
+        String lat, lon,sDate="";
         public Holderrest(@NonNull View itemView) {
             super(itemView);
             titleRest=itemView.findViewById(R.id.Restviewtitulo);
@@ -77,6 +79,11 @@ public class Rest_adaptor extends RecyclerView.Adapter<Rest_adaptor.Holderrest>{
         public void onClick(View view) {
             switch (view.getId()){
                 case R.id.Restgroupview:
+                    Calendar c = Calendar.getInstance();
+                    sDate = c.get(Calendar.YEAR) + "-"
+                            + c.get(Calendar.MONTH) + "-" + c.get(Calendar.DAY_OF_MONTH)
+                            + " at " + c.get(Calendar.HOUR_OF_DAY) + ":" + c.get(Calendar.MINUTE)+ ":" + c.get(Calendar.SECOND);
+                    MenuData.TOKER_ORDER=sDate;
                     Intent intent=new Intent(context,realizar_pedido.class);
                     context.startActivity(intent);
                     break;
