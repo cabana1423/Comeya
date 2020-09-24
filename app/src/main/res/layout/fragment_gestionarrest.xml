@@ -27,8 +27,9 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/GestionarRest_nombre" />
 
-    <com.google.android.gms.maps.MapView
+    <fragment
         android:id="@+id/GestionarRest_mapa"
+        android:name="com.example.comeya.MapsMyRest"
         android:layout_width="343dp"
         android:layout_height="160dp"
         android:layout_marginTop="40dp"
@@ -85,30 +86,44 @@
         android:id="@+id/groupbotones_editrest"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        app:fab_addButtonColorNormal="@color/colorAccent"
+        app:fab_addButtonColorPressed="@color/colorAccent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.932"
-        app:fab_addButtonColorNormal="@color/colorAccent"
-        app:fab_addButtonColorPressed="@color/colorAccent">
+        app:layout_constraintVertical_bias="0.932">
+
         <com.getbase.floatingactionbutton.FloatingActionButton
-            app:fab_title="actualizar"
             android:id="@+id/groupbotonactualizar_rest"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:fab_colorNormal="@color/colorPrimaryDark"
             app:fab_icon="@drawable/edit"
-            app:fab_size="mini"/>
+            app:fab_size="mini"
+            app:fab_title="actualizar" />
+
         <com.getbase.floatingactionbutton.FloatingActionButton
-            app:fab_title="eliminar"
             android:id="@+id/groupbotoneliminar_rest"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:fab_colorNormal="@color/colorPrimaryDark"
             app:fab_icon="@drawable/delete"
-            app:fab_size="mini"/>
+            app:fab_size="mini"
+            app:fab_title="eliminar" />
 
     </com.getbase.floatingactionbutton.FloatingActionsMenu>
+
+    <Button
+        android:id="@+id/button1234"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Button"
+        app:layout_constraintBottom_toTopOf="@+id/GestionarRest_mapa"
+        app:layout_constraintEnd_toStartOf="@+id/groupbotones_editrest"
+        app:layout_constraintHorizontal_bias="0.963"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/GestionarRest_img"
+        app:layout_constraintVertical_bias="0.904" />
 </androidx.constraintlayout.widget.ConstraintLayout>

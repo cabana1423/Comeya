@@ -1,11 +1,13 @@
 package com.example.comeya;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
@@ -15,8 +17,11 @@ import android.location.LocationManager;
 import android.nfc.Tag;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.widget.Toast;
 
+import com.example.comeya.utils.EndPoints;
+import com.example.comeya.utils.MenuData;
 import com.example.comeya.utils.RestData;
 import com.example.comeya.utils.UserDataServer;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -27,9 +32,15 @@ import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.JsonHttpResponseHandler;
+
+import org.json.JSONArray;
 
 import java.io.IOException;
 import java.util.List;
+
+import cz.msebera.android.httpclient.Header;
 
 public class MapsRest extends FragmentActivity implements OnMapReadyCallback, GoogleMap.OnMapLongClickListener, GoogleMap.OnMarkerDragListener {
 
@@ -38,6 +49,7 @@ public class MapsRest extends FragmentActivity implements OnMapReadyCallback, Go
     private Geocoder geocoder;
     private  Location CurrentLocation;
     private static boolean solo_uno= true;
+    String streetAddress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,7 +88,6 @@ public class MapsRest extends FragmentActivity implements OnMapReadyCallback, Go
             return;
         }
         mMap.setMyLocationEnabled(true);
-
         mMap.getUiSettings().setMyLocationButtonEnabled(false);
         LocationManager locationManager = (LocationManager) MapsRest.this.getSystemService(Context.LOCATION_SERVICE);
         LocationListener locationListener = new LocationListener() {
@@ -105,7 +116,7 @@ public class MapsRest extends FragmentActivity implements OnMapReadyCallback, Go
 
     @Override
     public void onMapLongClick(LatLng latLng) {
-        if(solo_uno==true){
+        if(solo_uno){
             Log.d(TAG,"onMapLongClick"+latLng.toString());
             try {
                 List<Address> addresses= geocoder.getFromLocation(latLng.latitude,latLng.longitude,1);
@@ -143,7 +154,7 @@ public class MapsRest extends FragmentActivity implements OnMapReadyCallback, Go
             List<Address> addresses= geocoder.getFromLocation(latLng.latitude,latLng.longitude,1);
             if(addresses.size()>0){
                 Address address=addresses.get(0);
-                String streetAddress=address.getAddressLine(0);
+                streetAddress=address.getAddressLine(0);
                 marker.setTitle(streetAddress);
 
             }
@@ -152,8 +163,14 @@ public class MapsRest extends FragmentActivity implements OnMapReadyCallback, Go
         }
         RestData.LAT_MAPMYREST= String.valueOf(latLng.latitude);
         RestData.LON_MAPMYREST= String.valueOf(latLng.longitude);
-        Toast.makeText(getApplicationContext(), RestData.LAT_MAPMYREST, Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), streetAddress, Toast.LENGTH_SHORT).show();
 
+    }
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if(keyCode==event.KEYCODE_BACK){
+            solo_uno=true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }
 

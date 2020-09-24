@@ -3,19 +3,26 @@ package com.example.comeya;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.comeya.utils.EndPoints;
 import com.example.comeya.utils.MenuData;
+import com.example.comeya.utils.RestData;
 import com.example.comeya.utils.UserDataServer;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.loopj.android.http.AsyncHttpClient;
@@ -31,6 +38,9 @@ public class realizar_pedido extends AppCompatActivity {
     RecyclerView recyclerViewpedido;
     LinearLayoutManager lnmypedido;
     Pedido_adapter adaptadorproducto;
+    TextView phone_rest;
+    ImageView img_rest;
+    private realizar_pedido root=this;
     private FloatingActionButton siguiente, cancel;
     private CardView ver_rest;
     @Override
@@ -42,6 +52,8 @@ public class realizar_pedido extends AppCompatActivity {
         adaptadorproducto =new Pedido_adapter(this);
         recyclerViewpedido.setLayoutManager(lnmypedido);
         recyclerViewpedido.setAdapter(adaptadorproducto);
+        phone_rest=findViewById(R.id.Pedido_phone_rest);
+        img_rest=findViewById(R.id.Pedido_imagerest);
 
         siguiente=(FloatingActionButton)findViewById(R.id.Pedido_buton_siguiente);
         cancel=(FloatingActionButton)findViewById(R.id.pedido_buton_cancelar);
@@ -64,7 +76,27 @@ public class realizar_pedido extends AppCompatActivity {
                 openVentana();
             }
         });
+        vista_rest();
         obtener_pedido();
+    }
+
+    private void vista_rest() {
+        AsyncHttpClient client = new AsyncHttpClient();
+        client.addHeader("Authorization", UserDataServer.TOKEN);
+        client.get(EndPoints.SERV_GETMYREST + MenuData.ID_AUX_rest, null, new JsonHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
+                super.onSuccess(statusCode, headers, response);
+                try {
+                    JSONObject obj = response.getJSONObject(0);
+                    phone_rest.setText(obj.getString("telefono"));
+                    Glide.with(root).load(obj.getString("foto_lugar")).centerCrop().into(img_rest);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    Toast.makeText(getApplicationContext(), "" + e, Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 
     private void obtener_pedido() {
@@ -110,6 +142,7 @@ public class realizar_pedido extends AppCompatActivity {
                                     super.onSuccess(statusCode, headers, response);
                                 }
                             });
+                            onBackPressed();
                         }
                     })
                     .setNegativeButton("cancelar", new DialogInterface.OnClickListener() {

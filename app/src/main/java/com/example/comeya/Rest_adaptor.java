@@ -48,6 +48,7 @@ public class Rest_adaptor extends RecyclerView.Adapter<Rest_adaptor.Holderrest>{
         restView it=lista_rest.get(position);
         holder.lat=it.getLat();
         holder.lon=it.getLon();
+        holder.id_rest=it.getId_rest();
         Glide.with(context).load(it.getFotorest()).centerCrop().into(holder.fotorest);
         holder.setOnclickCardview();
     }
@@ -61,7 +62,7 @@ public class Rest_adaptor extends RecyclerView.Adapter<Rest_adaptor.Holderrest>{
         TextView titleRest, direccion, telefono;
         CardView viewrest;
         ImageView fotorest;
-        String lat, lon,sDate="";
+        String lat, lon,sDate="",id_rest;
         public Holderrest(@NonNull View itemView) {
             super(itemView);
             titleRest=itemView.findViewById(R.id.Restviewtitulo);
@@ -79,11 +80,13 @@ public class Rest_adaptor extends RecyclerView.Adapter<Rest_adaptor.Holderrest>{
         public void onClick(View view) {
             switch (view.getId()){
                 case R.id.Restgroupview:
+                    MenuData.ID_AUX_rest=id_rest;
                     Calendar c = Calendar.getInstance();
                     sDate = c.get(Calendar.YEAR) + "-"
                             + c.get(Calendar.MONTH) + "-" + c.get(Calendar.DAY_OF_MONTH)
                             + " at " + c.get(Calendar.HOUR_OF_DAY) + ":" + c.get(Calendar.MINUTE)+ ":" + c.get(Calendar.SECOND);
-                    MenuData.TOKER_ORDER=sDate;
+                    String sDate2 = sDate.replaceAll("\\s","");
+                    MenuData.TOKER_ORDER=sDate2;
                     Intent intent=new Intent(context,realizar_pedido.class);
                     context.startActivity(intent);
                     break;

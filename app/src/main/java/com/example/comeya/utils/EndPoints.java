@@ -27,6 +27,8 @@ public class EndPoints {
     public static String SERV_PUT_ORDER= URL+"api_v1.0/order?id=";
     public static String SERV_DELETE_ORDER= URL+"api_v1.0/order?toker=";
     public static String SERV_DELETE_UNORDER= URL+"api_v1.0/unOrder?id=";
+    //Factura
+    public static String SERV_POST_FAC= URL+"api_v1.0/fac?toker=";
 
 
 
