@@ -85,6 +85,10 @@ public class add extends Fragment {
         // Inflate the layout for this fragment
         View root = inflater.inflate(R.layout.fragment_add, container, false);
         recyclerViewrest =root.findViewById(R.id.Myrestview_list);
+        lnmyrest =new GridLayoutManager(context,1);
+        adaptadormyrest =new MyRest_Adapter(context);
+        recyclerViewrest.setLayoutManager(lnmyrest);
+        recyclerViewrest.setAdapter(adaptadormyrest);
         crear_rest=(FloatingActionButton)root.findViewById(R.id.addrest_floatingButton);
         crear_rest.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,10 +97,6 @@ public class add extends Fragment {
                 context.startActivity(intent);
             }
         });
-        lnmyrest =new GridLayoutManager(context,1);
-        adaptadormyrest =new MyRest_Adapter(context);
-        recyclerViewrest.setLayoutManager(lnmyrest);
-        recyclerViewrest.setAdapter(adaptadormyrest);
         obtener_rest();
         return root;
     }

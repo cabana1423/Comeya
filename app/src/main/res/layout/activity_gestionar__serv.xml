@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".notificaciones.Gestionar_Serv">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/Gestiona_serv_lista"
+        android:layout_width="410dp"
+        android:layout_height="353dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/Gestiona_serv_total"
+        android:layout_width="270dp"
+        android:layout_height="37dp"
+        android:layout_marginTop="24dp"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.269"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Gestiona_serv_lista" />
+
+    <RadioGroup
+        android:id="@+id/radioGroup2"
+        android:layout_width="257dp"
+        android:layout_height="147dp"
+        android:layout_marginTop="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.246"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Gestiona_serv_total">
+
+        <RadioButton
+            android:id="@+id/Gestiona_serv_espera"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Espera" />
+
+        <RadioButton
+            android:id="@+id/Gestiona_serv_proceso"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Proceso" />
+
+        <RadioButton
+            android:id="@+id/Gestiona_serv_enviado"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Enviado" />
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/Gestiona_serv_buton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="guardar estado"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup2"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="1dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -105,13 +105,13 @@ public class Gestionar_rest extends Fragment /*implements OnMapReadyCallback */{
                 elimar();
             }
         });
-        map=root.findViewById(R.id.button1234);
+        /*map=root.findViewById(R.id.button1234);
         map.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getActivity(), MapsMyRestActivity.class ));
             }
-        });
+        });*/
         vistarest();
         //mapaMyrest = root.findViewById(R.id.GestionarRest_mapa);
         //initGoogleMap(savedInstanceState);

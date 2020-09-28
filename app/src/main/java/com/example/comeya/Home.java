@@ -1,6 +1,7 @@
 package com.example.comeya;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -11,8 +12,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.example.comeya.notificaciones.Notificaciones;
 import com.example.comeya.utils.EndPoints;
 import com.example.comeya.utils.UserDataServer;
 import com.loopj.android.http.AsyncHttpClient;
@@ -77,6 +80,7 @@ public class Home extends Fragment {
     RecyclerView recyclerViewmenu;
     LinearLayoutManager lnmenu;
     Menu_adapter adaptadormenu;
+    ImageButton noti;
     //String Id_Rest,nombre_menu, precio,descripcion,fotomenu,title_rest,img_rest;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -88,6 +92,13 @@ public class Home extends Fragment {
         adaptadormenu=new Menu_adapter(context);
         recyclerViewmenu.setLayoutManager(lnmenu);
         recyclerViewmenu.setAdapter(adaptadormenu);
+        noti=root.findViewById(R.id.notificaciones);
+        noti.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), Notificaciones.class ));
+            }
+        });
         obtenermenu();
         return root;
     }

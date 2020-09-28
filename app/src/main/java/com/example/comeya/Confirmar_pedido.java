@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
@@ -49,6 +50,7 @@ public class Confirmar_pedido extends AppCompatActivity implements OnMapReadyCal
     confirmarpedido_adapter adaptadorlist;
     MapView mi_hubi;
     private Button pedido;
+    //private String tokenRest;
     private static final String TAG = "MapsAtivity";
 
     @Override
@@ -66,6 +68,8 @@ public class Confirmar_pedido extends AppCompatActivity implements OnMapReadyCal
             @Override
             public void onClick(View view) {
                     crear_fac();
+                    obtenertoken();
+                    startActivity(new Intent(Confirmar_pedido.this, entrada.class ));
             }
         });
         obtenerlist();
@@ -73,13 +77,56 @@ public class Confirmar_pedido extends AppCompatActivity implements OnMapReadyCal
 
     }
 
+    private void obtenertoken() {
+        AsyncHttpClient client=new AsyncHttpClient();
+        client.addHeader("Authorization", UserDataServer.TOKEN);
+        client.get(EndPoints.SERVICE_GETtoken_USER+PedidoData.PEDIDO_ID_ADMI_REST,null,new JsonHttpResponseHandler(){
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
+                super.onSuccess(statusCode, headers, response);
+                try {
+                    JSONObject obj =response.getJSONObject(0);
+                    enviarNotificacion(obj.getString("tokenFB"));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+            @Override
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONArray errorResponse) {
+                super.onFailure(statusCode, headers, throwable, errorResponse);
+                Log.d("obtener token",""+errorResponse);
+            }
+        });
+    }
+
+    private void enviarNotificacion(String token) {
+        AsyncHttpClient client=new AsyncHttpClient();
+        client.addHeader("Authorization", UserDataServer.TOKEN);
+        RequestParams params=new RequestParams();
+        params.add("token", token);
+        params.add("title", "tiene una nuevo pedido");
+        params.add("body", "un usuario requiere sus servicios observa cual es su pedido");
+        client.post(EndPoints.SERV_POST_TOKENFB,params,new JsonHttpResponseHandler(){
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
+                super.onSuccess(statusCode, headers, response);
+            }
+            @Override
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                super.onFailure(statusCode, headers, throwable, errorResponse);
+                Log.d("enviar notificacion",""+errorResponse);
+            }
+        });
+    }
+
     private void crear_fac() {
         AsyncHttpClient client=new AsyncHttpClient();
         client.addHeader("Authorization", UserDataServer.TOKEN);
         RequestParams params=new RequestParams();
+        params.add("idUserRest_fac", PedidoData.PEDIDO_ID_ADMI_REST);
         params.add("lati", PedidoData.PEDIDO_LAT);
         params.add("longi",PedidoData.PEDIDO_LONG);
-        Log.d(TAG,"onMapLongClick"+EndPoints.SERV_POST_FAC+UserDataServer.ID+"&toker="+MenuData.TOKER_ORDER);
+        //Log.d(TAG,"onMapLongClick"+EndPoints.SERV_POST_FAC+UserDataServer.ID+"&toker="+MenuData.TOKER_ORDER);
         client.post(EndPoints.SERV_POST_FAC+MenuData.TOKER_ORDER+"&id="+UserDataServer.ID,params,new JsonHttpResponseHandler(){
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {

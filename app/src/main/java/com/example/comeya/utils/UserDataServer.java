@@ -5,7 +5,9 @@ public class UserDataServer {
     public static String MSN="";
     public static String TOKEN="";
     public static String ID="";
-
+    public static String TOKEN_FB="";
+    public static String NOMBRE_U="";
+    public static String GAMIL_U="";
 
 
 

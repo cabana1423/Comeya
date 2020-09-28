@@ -22,6 +22,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.example.comeya.utils.EndPoints;
 import com.example.comeya.utils.MenuData;
+import com.example.comeya.utils.PedidoData;
 import com.example.comeya.utils.RestData;
 import com.example.comeya.utils.UserDataServer;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -91,6 +92,7 @@ public class realizar_pedido extends AppCompatActivity {
                     JSONObject obj = response.getJSONObject(0);
                     phone_rest.setText(obj.getString("telefono"));
                     Glide.with(root).load(obj.getString("foto_lugar")).centerCrop().into(img_rest);
+                    PedidoData.PEDIDO_ID_ADMI_REST=obj.getString("id_user_rest");
                 } catch (JSONException e) {
                     e.printStackTrace();
                     Toast.makeText(getApplicationContext(), "" + e, Toast.LENGTH_SHORT).show();

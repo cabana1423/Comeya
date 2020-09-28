@@ -6,7 +6,6 @@ public class MenuData {
     public static String ID_AUX_gestionarMenu="";
     public static String ID_AUX_IDMENU="";
     public static String TOKER_ORDER="";
-    public static boolean primera_vez= true;
     public static String ID_AUX_rest="";
     //public static String ID_AUX_rest_pedido="";
 }

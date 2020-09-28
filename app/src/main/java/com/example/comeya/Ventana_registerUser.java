@@ -4,7 +4,6 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,7 +15,6 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDialogFragment;
 
 import com.example.comeya.utils.EndPoints;
-import com.example.comeya.utils.UserDataServer;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
@@ -54,7 +52,7 @@ public class Ventana_registerUser extends AppCompatDialogFragment {
                         params.add("nombre", nombre.getText().toString());
                         params.add("email", email.getText().toString());
                         params.add("password", password.getText().toString());
-                        clien.post(EndPoints.SERVICE_REGISTER_USER,params,new JsonHttpResponseHandler(){
+                        clien.post(EndPoints.SERVICE_POST_USER,params,new JsonHttpResponseHandler(){
                             @Override
                             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                                 try {

@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "77026230665",
+    "firebase_url": "https://come-ya-38a5c.firebaseio.com",
+    "project_id": "come-ya-38a5c",
+    "storage_bucket": "come-ya-38a5c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:77026230665:android:06cc445208a979d724e158",
+        "android_client_info": {
+          "package_name": "com.example.comeya"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "77026230665-fa47hno3hph8gj02lddlgg92jjl4dqan.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDLLzrO0jMTR0b5VrLennY4gD9oUIHD3mo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "77026230665-fa47hno3hph8gj02lddlgg92jjl4dqan.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
