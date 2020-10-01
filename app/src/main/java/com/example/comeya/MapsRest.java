@@ -92,7 +92,7 @@ public class MapsRest extends FragmentActivity implements OnMapReadyCallback, Go
         LocationManager locationManager = (LocationManager) MapsRest.this.getSystemService(Context.LOCATION_SERVICE);
         LocationListener locationListener = new LocationListener() {
             @Override
-            public void onLocationChanged(Location location) {
+            public void onLocationChanged(Location location){
                 LatLng miUbicacion = new LatLng(location.getLatitude(), location.getLongitude());
                 MarkerOptions markerOptions=new MarkerOptions()
                         .position(miUbicacion)

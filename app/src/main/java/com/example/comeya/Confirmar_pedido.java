@@ -73,7 +73,7 @@ public class Confirmar_pedido extends AppCompatActivity implements OnMapReadyCal
             }
         });
         obtenerlist();
-        initGoogleMap(savedInstanceState);
+            initGoogleMap(savedInstanceState);
 
     }
 

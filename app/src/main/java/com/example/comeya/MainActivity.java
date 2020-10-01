@@ -4,7 +4,9 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -12,6 +14,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.comeya.utils.EndPoints;
+import com.example.comeya.utils.FacData;
 import com.example.comeya.utils.UserDataServer;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -24,6 +27,8 @@ import com.loopj.android.http.RequestParams;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.io.File;
 
 import cz.msebera.android.httpclient.Header;
 
@@ -83,7 +88,20 @@ public class MainActivity extends AppCompatActivity {
                 openVentana();
             }
         });
+        crearcarpetaPDFs();
 
+    }
+
+    private void crearcarpetaPDFs() {
+        File folder=new File(Environment.getExternalStorageDirectory().toString(),"PDF");
+        if(!folder.exists()){
+            folder.mkdir();
+        }
+        //Uri uri2=Uri.fromFile(folder);
+        FacData.PathPdfs=folder;
+        FacData.PathPdfs_Uri=Uri.fromFile(folder);
+        log.d("CARPETA CREADA",""+folder);
+        //log.d("copia CREADA",""+FacData.PathPdfs);
     }
 
     private void obtenerTopic() {
