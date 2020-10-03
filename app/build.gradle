@@ -49,5 +49,10 @@ dependencies {
     implementation 'com.itextpdf:itextg:5.5.10'
     implementation 'androidmads.library.qrgenearator:QRGenearator:1.0.3'
 
+
+    implementation files('libs/activation.jar')
+    implementation files('libs/additionnal.jar')
+    implementation files('libs/mail.jar')
+
 }
 apply plugin: 'com.google.gms.google-services'

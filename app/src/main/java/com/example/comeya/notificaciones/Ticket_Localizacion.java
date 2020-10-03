@@ -2,49 +2,47 @@ package com.example.comeya.notificaciones;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
-import android.Manifest;
-import android.content.Context;
-import android.content.pm.PackageManager;
+import android.content.ActivityNotFoundException;
+import android.content.ContentValues;
+import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.graphics.Point;
-import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
+import android.util.Log;
 import android.view.Display;
+import android.view.View;
 import android.view.WindowManager;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.comeya.Confirmar_pedido;
 import com.example.comeya.R;
-import com.example.comeya.utils.EndPoints;
 import com.example.comeya.utils.FacData;
-import com.example.comeya.utils.PedidoData;
-import com.example.comeya.utils.RestData;
-import com.example.comeya.utils.UserDataServer;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.zxing.WriterException;
-import com.loopj.android.http.AsyncHttpClient;
-import com.loopj.android.http.JsonHttpResponseHandler;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.util.Date;
 
 import androidmads.library.qrgenearator.QRGContents;
 import androidmads.library.qrgenearator.QRGEncoder;
-import cz.msebera.android.httpclient.Header;
 
 import static com.example.comeya.utils.EndPoints.MAPVIEW_BUNDLE_KEY;
 import static com.loopj.android.http.AsyncHttpClient.log;
@@ -57,6 +55,10 @@ public class Ticket_Localizacion extends AppCompatActivity implements OnMapReady
     Bitmap bitmap;
     QRGEncoder qrgEncoder;
     String enlaceQR="";
+    ImageButton print;
+    ConstraintLayout constraintLayout;
+    ImageView imageView;
+    GoogleMap nMap;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,8 +66,60 @@ public class Ticket_Localizacion extends AppCompatActivity implements OnMapReady
         calle=findViewById(R.id.Ticket_Text_Calle);
         mapa=findViewById(R.id.Ticket_mapView);
         QR=findViewById(R.id.Ticket_imgQR);
+        print=findViewById(R.id.Ticket_imageButton);
+        constraintLayout=findViewById(R.id.Ticketlayout);
+        imageView=findViewById(R.id.imageView0616);
+        print.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                captura();
+                //CaptureMapScreen();
+            }
+        });
         initGoogleMap(savedInstanceState);
         generarQR();
+    }
+
+    private void captura() {
+        /*Bitmap bitmap =Bitmap.createBitmap(mapa.getWidth(),mapa.getHeight(),
+                Bitmap.Config.ARGB_8888);
+        Canvas canvas=new Canvas(bitmap);
+        mapa.draw(canvas);
+        imageView.setImageBitmap(bitmap);*/
+        Date date =new Date();
+        CharSequence now=android.text.format.DateFormat.format("yyyy-MM-dd_hh:mm:ss",date);
+        String filename = Environment.getExternalStorageDirectory()+"/ScreenShooter/"+now+".jpg";
+
+        View root =getWindow().getDecorView();
+        root.setDrawingCacheEnabled(true);
+        Bitmap bitmap =Bitmap.createBitmap(root.getDrawingCache());
+        root.setDrawingCacheEnabled(false);
+
+        File file=new File(filename);
+        file.getParentFile().mkdirs();
+        try {
+            FileOutputStream fileOutputStream=new FileOutputStream(file);
+            bitmap.compress(Bitmap.CompressFormat.JPEG,100,fileOutputStream);
+            fileOutputStream.flush();
+            fileOutputStream.close();
+            Uri uri=Uri.fromFile(file);
+            Intent intent=new Intent(Intent.ACTION_VIEW);
+            intent.setDataAndType(uri, "image/*");
+            try {
+                startActivityForResult(intent.createChooser(intent, "Selecione la aplicacion"), 10);
+                //activity.startActivity(intent);
+            }catch (ActivityNotFoundException e) {
+                e.printStackTrace();
+            }
+
+            //intent.setDataAndType(uri, "image/*");
+            //startActivity(intent);
+        }catch (FileNotFoundException e){
+            e.printStackTrace();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void generarQR() {
@@ -130,15 +184,16 @@ public class Ticket_Localizacion extends AppCompatActivity implements OnMapReady
 
     @Override
     public void onMapReady(final GoogleMap googleMap) {
+        nMap=googleMap;
         try {
             lat= Double.parseDouble(FacData.latitud);
             lon= Double.parseDouble(FacData.longitud);
             LatLng direccion=new LatLng(lat,lon);
-            Marker mimarker = googleMap.addMarker(new MarkerOptions()
+            Marker mimarker = nMap.addMarker(new MarkerOptions()
                     .title("Este es el Lugar")
                     .position(direccion)
             );
-            googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(direccion,16));
+            nMap.moveCamera(CameraUpdateFactory.newLatLngZoom(direccion,16));
 
         }catch (Exception e){
             Toast.makeText(getApplicationContext(),""+e,Toast.LENGTH_LONG).show();

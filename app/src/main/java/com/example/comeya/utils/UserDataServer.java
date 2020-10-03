@@ -7,7 +7,10 @@ public class UserDataServer {
     public static String ID="";
     public static String TOKEN_FB="";
     public static String NOMBRE_U="";
-    public static String GAMIL_U="";
+
+    public static String GMAIL_U ="cabana28pp@gmail.com";
+    public static String PASS_U="Mundo14231423";
+
 
 
 

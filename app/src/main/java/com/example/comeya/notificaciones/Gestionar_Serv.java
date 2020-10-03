@@ -19,6 +19,7 @@ import android.widget.Toast;
 import com.example.comeya.CreatePdf.TemplatePDF;
 import com.example.comeya.MainActivity;
 import com.example.comeya.R;
+import com.example.comeya.SendEmail.JavaMailAPI;
 import com.example.comeya.confirmarpedidoView;
 import com.example.comeya.entrada;
 import com.example.comeya.utils.EndPoints;
@@ -203,15 +204,13 @@ public class Gestionar_Serv extends AppCompatActivity {
     }
 
     private void enviarCorreo() {
-        Intent itSend = new Intent(android.content.Intent.ACTION_SEND);
-        itSend.setType("plain/text");
-        itSend.putExtra(android.content.Intent.EXTRA_EMAIL, new String[]{ "cabanaxsiempre@gmail.com"});
-        itSend.putExtra(android.content.Intent.EXTRA_SUBJECT, "su pedido se a realizado con exito");
-        itSend.putExtra(android.content.Intent.EXTRA_TEXT, "Su pedido se a realizado con exito nuestro producto ya va encamino, seguidamente le presentamos la factura" );
-        itSend.putExtra(Intent.EXTRA_STREAM, Uri.parse(FacData.PathPdfs+"/"+FacData.ID_FAC+"-Ticket.pdf"));
-        log.d("esta es la uri del archivo",FacData.PathPdfs+"/"+FacData.ID_FAC+"-Ticket.pdf");
-        itSend.setType("application/pdf");
-        startActivity(itSend);
+        String mail ="cabanaxsiempre@gmail.com";
+        String message ="vamos a darle";
+        String subject ="ho no wuaaaaaa >:|";
+
+        JavaMailAPI javaMailAPI=new JavaMailAPI(this,mail,message,subject);
+        javaMailAPI.execute();
+
     }
 
     private void crearFacPdf() {
