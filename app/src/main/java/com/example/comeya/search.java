@@ -3,14 +3,19 @@ package com.example.comeya;
 import android.content.Context;
 import android.os.Bundle;
 
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.comeya.utils.EndPoints;
@@ -22,8 +27,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+
 import cz.msebera.android.httpclient.Header;
-public class search extends Fragment {
+public class search extends Fragment implements SearchView.OnQueryTextListener {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
@@ -56,6 +63,7 @@ public class search extends Fragment {
     RecyclerView recyclerViewrest;
     LinearLayoutManager lnrest;
     Rest_adaptor adaptadorrest;
+    SearchView searchView;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -66,6 +74,8 @@ public class search extends Fragment {
         adaptadorrest =new Rest_adaptor(context);
         recyclerViewrest.setLayoutManager(lnrest);
         recyclerViewrest.setAdapter(adaptadorrest);
+        searchView=root.findViewById(R.id.SearchView);
+        searchView.setOnQueryTextListener(this);
         obtener_rest();
         return root;
     }
@@ -92,5 +102,14 @@ public class search extends Fragment {
             }
         });
     }
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+        return false;
+    }
 
+    @Override
+    public boolean onQueryTextChange(String newText) {
+        adaptadorrest.filter(newText);
+        return false;
+    }
 }

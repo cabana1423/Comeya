@@ -12,7 +12,7 @@ public class EndPoints {
     public static String SERVICE_PUT_IMGREST= URL+"api_v1.0/restimg?id=";
     public static String SERVICE_GET_IMGREST= URL+"api_v1.0/restimg?id=";
     //register rest
-    public static String SERVICE_LISTREST= URL+"api_v1.0/rest";
+    public static String SERVICE_LISTREST= URL+"api_v1.0/rest?nombre_rest=";
     public static String SERV_REST = URL+"api_v1.0/rest?id=";
     public static String SERV_GETMYREST= URL+"api_v1.0/myrest?id_rest=";
     public static String SERV_PUTMYREST= URL+"api_v1.0/rest?id=";

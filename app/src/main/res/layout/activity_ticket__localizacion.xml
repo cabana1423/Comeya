@@ -30,9 +30,9 @@
 
     <ImageView
         android:id="@+id/Ticket_imgQR"
-        android:layout_width="217dp"
-        android:layout_height="117dp"
-        android:layout_marginTop="20dp"
+        android:layout_width="249dp"
+        android:layout_height="244dp"
+        android:layout_marginTop="48dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Ticket_mapView"
@@ -51,14 +51,4 @@
         app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/print" />
 
-    <ImageView
-        android:id="@+id/imageView0616"
-        android:layout_width="360dp"
-        android:layout_height="257dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Ticket_imgQR"
-        app:srcCompat="@drawable/image_defect" />
 </androidx.constraintlayout.widget.ConstraintLayout>

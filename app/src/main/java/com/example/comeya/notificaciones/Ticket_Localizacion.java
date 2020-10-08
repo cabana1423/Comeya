@@ -57,7 +57,7 @@ public class Ticket_Localizacion extends AppCompatActivity implements OnMapReady
     String enlaceQR="";
     ImageButton print;
     ConstraintLayout constraintLayout;
-    ImageView imageView;
+    //ImageView imageView;
     GoogleMap nMap;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,7 +68,7 @@ public class Ticket_Localizacion extends AppCompatActivity implements OnMapReady
         QR=findViewById(R.id.Ticket_imgQR);
         print=findViewById(R.id.Ticket_imageButton);
         constraintLayout=findViewById(R.id.Ticketlayout);
-        imageView=findViewById(R.id.imageView0616);
+        //imageView=findViewById(R.id.imageView0616);
         print.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

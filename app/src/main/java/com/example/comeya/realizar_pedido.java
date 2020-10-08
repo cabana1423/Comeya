@@ -91,7 +91,7 @@ public class realizar_pedido extends AppCompatActivity {
                 try {
                     JSONObject obj = response.getJSONObject(0);
                     phone_rest.setText(obj.getString("telefono"));
-                    Glide.with(root).load(obj.getString("foto_lugar")).centerCrop().into(img_rest);
+                    Glide.with(getApplicationContext()).load(obj.getString("foto_lugar")).centerCrop().into(img_rest);
                     PedidoData.PEDIDO_ID_ADMI_REST=obj.getString("id_user_rest");
                 } catch (JSONException e) {
                     e.printStackTrace();

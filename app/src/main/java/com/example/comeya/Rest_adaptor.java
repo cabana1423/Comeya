@@ -3,6 +3,7 @@ package com.example.comeya;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,17 +20,22 @@ import com.example.comeya.utils.MenuData;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class Rest_adaptor extends RecyclerView.Adapter<Rest_adaptor.Holderrest>{
     Context context;
-    ArrayList<restView> lista_rest;
+    private ArrayList<restView> lista_rest;
+    private ArrayList<restView> originaList;
     Rest_adaptor(Context context){
         this.context=context;
         lista_rest =new ArrayList<>();
+        originaList =new ArrayList<>();
     }
     void add(restView rest){
         lista_rest.add(rest);
         notifyItemInserted(lista_rest.indexOf(rest));
+        originaList.addAll(lista_rest);
     }
 
     @NonNull
@@ -56,6 +62,31 @@ public class Rest_adaptor extends RecyclerView.Adapter<Rest_adaptor.Holderrest>{
     @Override
     public int getItemCount() {
         return lista_rest.size();
+    }
+
+    public void filter(final String strSearch) {
+        if(strSearch.length()==0){
+            lista_rest.clear();
+            lista_rest.addAll(originaList);
+        }
+        else{
+            if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.N){
+                lista_rest.clear();
+                List<restView> collect=originaList.stream()
+                        .filter(i->i.getTitleRest().toLowerCase().contains(strSearch))
+                        .collect(Collectors.toList());
+                lista_rest.addAll(collect);
+            }
+            else{
+                lista_rest.clear();
+                for(restView i : originaList){
+                    if(i.getTitleRest().toLowerCase().contains(strSearch)){
+                        lista_rest.add(i);
+                    }
+                }
+            }
+        }
+        notifyDataSetChanged();
     }
 
     public class Holderrest extends RecyclerView.ViewHolder implements View.OnClickListener {
