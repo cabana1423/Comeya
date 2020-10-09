@@ -42,7 +42,7 @@ public class realizar_pedido extends AppCompatActivity {
     TextView phone_rest;
     ImageView img_rest;
     private realizar_pedido root=this;
-    private FloatingActionButton siguiente, cancel;
+    private FloatingActionButton siguiente;
     private CardView ver_rest;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,13 +57,6 @@ public class realizar_pedido extends AppCompatActivity {
         img_rest=findViewById(R.id.Pedido_imagerest);
 
         siguiente=(FloatingActionButton)findViewById(R.id.Pedido_buton_siguiente);
-        cancel=(FloatingActionButton)findViewById(R.id.pedido_buton_cancelar);
-        cancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(getApplicationContext(),"cancelaste vato :(",Toast.LENGTH_SHORT).show();
-            }
-        });
         siguiente.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -90,7 +83,7 @@ public class realizar_pedido extends AppCompatActivity {
                 super.onSuccess(statusCode, headers, response);
                 try {
                     JSONObject obj = response.getJSONObject(0);
-                    phone_rest.setText(obj.getString("telefono"));
+                    phone_rest.setText(obj.getString("nombre_rest"));
                     Glide.with(getApplicationContext()).load(obj.getString("foto_lugar")).centerCrop().into(img_rest);
                     PedidoData.PEDIDO_ID_ADMI_REST=obj.getString("id_user_rest");
                 } catch (JSONException e) {
@@ -104,7 +97,7 @@ public class realizar_pedido extends AppCompatActivity {
     private void obtener_pedido() {
         AsyncHttpClient client=new AsyncHttpClient();
         client.addHeader("Authorization", UserDataServer.TOKEN);
-        client.get(EndPoints.SERV_VIEWMENU,null,new JsonHttpResponseHandler(){
+        client.get(EndPoints.SERV_VIEWMENU+MenuData.ID_AUX_rest+"&order=fecha_reg,-1",null,new JsonHttpResponseHandler(){
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
                 super.onSuccess(statusCode, headers, response);

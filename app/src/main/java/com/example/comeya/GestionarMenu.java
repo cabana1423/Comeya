@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.comeya.utils.EndPoints;
+import com.example.comeya.utils.RestData;
 import com.example.comeya.utils.UserDataServer;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.loopj.android.http.AsyncHttpClient;
@@ -102,7 +103,7 @@ public class GestionarMenu extends Fragment {
     private void obtener_menu() {
         AsyncHttpClient client=new AsyncHttpClient();
         client.addHeader("Authorization", UserDataServer.TOKEN);
-        client.get(EndPoints.SERV_VIEWMENU,null,new JsonHttpResponseHandler(){
+        client.get(EndPoints.SERV_VIEWMYMENU + RestData.ID_AUX_REST+"&id_us="+UserDataServer.ID+"&order=fecha_reg,-1",null,new JsonHttpResponseHandler(){
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
                 super.onSuccess(statusCode, headers, response);

@@ -62,7 +62,7 @@ public class Pedido_adapter extends RecyclerView.Adapter<Pedido_adapter.Holderme
     class Holdermenu extends RecyclerView.ViewHolder implements View.OnClickListener, LifecycleOwner {
         Context context;
         Context context_om;
-        private TextView titleprduc, precio, descripcion,CANTIDAD;
+        private TextView titleprduc, precio, descripcion;
         private ImageView fotopruct;
         private CardView pedido;
         String id_menu;
@@ -72,7 +72,6 @@ public class Pedido_adapter extends RecyclerView.Adapter<Pedido_adapter.Holderme
             titleprduc =(TextView)itemView.findViewById(R.id.Produc_titulo);
             precio =(TextView)itemView.findViewById(R.id.produc_precio);
             descripcion =(TextView)itemView.findViewById(R.id.produc_numimg);
-            CANTIDAD=(TextView)itemView.findViewById(R.id.groupviewpedido);
             fotopruct =(ImageView) itemView.findViewById(R.id.produc_img);
             pedido =(CardView) itemView.findViewById(R.id.groupviewpedidoproducto);
 

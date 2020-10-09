@@ -83,7 +83,7 @@ public class MyRest_Adapter extends RecyclerView.Adapter<MyRest_Adapter.HolderMy
                     Intent intent=new Intent(context,administrar_rest.class);
                     intent.putExtra("headerCode",idrest);
                     RestData.ID_AUX_REST=idrest;
-                    Toast.makeText(context, RestData.ID_AUX_REST, Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(context, RestData.ID_AUX_REST, Toast.LENGTH_SHORT).show();
                     context.startActivity(intent);
                     break;
             }

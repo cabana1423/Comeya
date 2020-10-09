@@ -12,7 +12,7 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/principalview_rest"
         android:layout_width="match_parent"
-        android:layout_height="64dp">
+        android:layout_height="70dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -20,21 +20,26 @@
 
             <ImageView
                 android:id="@+id/Home_imgRest"
-                android:layout_width="116dp"
-                android:layout_height="69dp"
-                android:layout_marginStart="4dp"
-                android:layout_marginEnd="14dp"
+                android:layout_width="113dp"
+                android:layout_height="67dp"
+                android:layout_marginStart="2dp"
+                android:layout_marginTop="2dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/Menuview_titleMenu"
+                app:layout_constraintEnd_toStartOf="@+id/Home_titleRest"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0" />
+                app:layout_constraintVertical_bias="0.0"
+                android:contentDescription="TODO" />
 
             <TextView
+                android:autoSizeTextType="uniform"
                 android:id="@+id/Home_titleRest"
-                android:layout_width="265dp"
-                android:layout_height="50dp"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="2dp"
+                android:fontFamily="sans-serif-condensed-light"
+                android:textColor="@color/common_google_signin_btn_text_dark_focused"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/Home_imgRest"
@@ -56,18 +61,20 @@
 
             <ImageView
                 android:id="@+id/imageViewMenu"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
+                android:layout_width="410dp"
+                android:layout_height="266dp"
                 android:layout_marginTop="4dp"
                 app:layout_constraintBottom_toTopOf="@+id/Menuview_descrip"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
+                android:autoSizeTextType="uniform"
                 android:id="@+id/Menuview_descrip"
-                android:layout_width="386dp"
-                android:layout_height="52dp"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.48"
@@ -76,10 +83,13 @@
                 app:layout_constraintVertical_bias="0.0" />
 
             <TextView
+                android:autoSizeTextType="uniform"
                 android:id="@+id/Menuview_precio"
                 android:layout_width="149dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginBottom="16dp"
+                android:textColor="@color/common_google_signin_btn_text_dark_default"
                 app:layout_constraintBottom_toBottomOf="@+id/imageViewMenu"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.133"
@@ -88,16 +98,18 @@
                 app:layout_constraintVertical_bias="0.958" />
 
             <TextView
+                android:autoSizeTextType="uniform"
                 android:id="@+id/Menuview_titleMenu"
                 android:layout_width="242dp"
                 android:layout_height="47dp"
-                android:layout_marginStart="10dp"
+                android:layout_marginStart="15dp"
+                android:textColor="@color/common_google_signin_btn_text_dark_default"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.201"
+                app:layout_constraintHorizontal_bias="0.181"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.108" />
+                app:layout_constraintVertical_bias="0.101" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

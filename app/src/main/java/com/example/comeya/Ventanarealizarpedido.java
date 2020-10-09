@@ -30,7 +30,7 @@ import org.json.JSONObject;
 import cz.msebera.android.httpclient.Header;
 
 public class Ventanarealizarpedido extends AppCompatDialogFragment {
-    private TextView cantidad, GetCantidad;
+    private TextView cantidad;
     private SeekBar seekBar;
     String cantidad_text,id_pedido;
 
@@ -100,7 +100,6 @@ public class Ventanarealizarpedido extends AppCompatDialogFragment {
                         });
                     }
                 });
-        GetCantidad=view.findViewById(R.id.groupviewpedido);
         cantidad =view.findViewById(R.id.ventanapedido_title);
         seekBar =view.findViewById(R.id.ventanapedido_seekbar);
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {

@@ -8,33 +8,34 @@
     <EditText
         android:id="@+id/ventanamenu_nombre"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="50dp"
         android:ems="10"
+        android:hint="Nombre"
         android:inputType="textPersonName"
-        android:text="nombre"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/ventanamenu_precio"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:ems="10"
+        android:hint="precio"
         android:inputType="textPersonName"
-        android:text="precio"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ventanamenu_nombre" />
 
     <EditText
         android:id="@+id/ventanamenu_decrip"
         android:layout_width="match_parent"
-        android:layout_height="87dp"
+        android:layout_height="90dp"
         android:ems="10"
+        android:hint="Descripcion"
         android:inputType="textPersonName"
-        android:text="Descripcion"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -44,20 +45,26 @@
         android:id="@+id/ventanamenu_img"
         android:layout_width="164dp"
         android:layout_height="104dp"
-        android:layout_marginStart="120dp"
         android:layout_marginTop="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/ventanamenu_cargarimg"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ventanamenu_decrip" />
+        app:layout_constraintTop_toBottomOf="@+id/ventanamenu_decrip"
+        app:layout_constraintVertical_bias="0.028" />
 
     <Button
         android:id="@+id/ventanamenu_cargarimg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="24dp"
         android:text="subir"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ventanamenu_img" />
+        app:layout_constraintHorizontal_bias="0.345"
+        app:layout_constraintStart_toEndOf="@+id/ventanamenu_img"
+        app:layout_constraintTop_toBottomOf="@+id/ventanamenu_decrip"
+        app:layout_constraintVertical_bias="0.053" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

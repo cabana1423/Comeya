@@ -141,7 +141,7 @@ public class Gestionar_rest extends Fragment /*implements OnMapReadyCallback */{
                     nombre_rest.setText(obj.getString("nombre_rest"));
                     propietario.setText(obj.getString("propietario"));
                     nit.setText(obj.getString("nit"));
-                    telefono.setText(obj.getString("lat"));
+                    telefono.setText(obj.getString("telefono"));
                     direccion.setText(obj.getString("calle"));
                     Glide.with(getActivity()).load(obj.getString("foto_lugar")).centerCrop().into(fotoMyrest);
                     MenuData.ID_AUX_IMGMENU = obj.getString("foto_id");

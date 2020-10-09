@@ -12,58 +12,46 @@
 
         <ImageView
             android:id="@+id/produc_img"
-            android:layout_width="171dp"
-            android:layout_height="171dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginEnd="2dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/linearLayout"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/groupviewpedido"
-            android:layout_width="48dp"
-            android:text=""
-            app:autoSizeTextType="uniform"
-            app:layout_constraintBottom_toBottomOf="@+id/produc_img"
-            app:layout_constraintEnd_toEndOf="@+id/produc_img"
-            app:layout_constraintHorizontal_bias="0.44"
-            app:layout_constraintStart_toStartOf="@+id/produc_img"
-            app:layout_constraintTop_toTopOf="@+id/produc_img"
-            app:layout_constraintVertical_bias="0.492"
-            android:textColor="@color/design_default_color_primary"
-            android:layout_height="100dp" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
 
         <LinearLayout
             android:id="@+id/linearLayout"
             android:layout_width="224dp"
             android:layout_height="171dp"
+            android:layout_marginStart="2dp"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/produc_img"
             app:layout_constraintTop_toTopOf="parent">
 
             <RatingBar
                 android:id="@+id/ratingBar"
                 android:layout_width="match_parent"
-                android:layout_height="28dp" />
+                android:layout_height="40dp" />
 
             <TextView
                 android:id="@+id/Produc_titulo"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="TextView" />
+                android:layout_height="40dp" />
 
             <TextView
                 android:id="@+id/produc_numimg"
                 android:layout_width="match_parent"
-                android:layout_height="75dp"
-                android:text="TextView" />
+                android:layout_height="50dp" />
 
             <TextView
                 android:id="@+id/produc_precio"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="TextView" />
+                android:layout_width="match_parent"
+                android:layout_height="40dp" />
 
         </LinearLayout>
 

@@ -8,8 +8,13 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/listConfirmar"
-        android:layout_width="412dp"
-        android:layout_height="322dp"
+        android:layout_width="0dp"
+        android:layout_height="350dp"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="2dp"
+        android:layout_marginBottom="5dp"
+        app:layout_constraintBottom_toTopOf="@+id/confirmarP_direccion"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -19,8 +24,8 @@
         android:id="@+id/confirmarP_direccion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="TextView"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.045"
         app:layout_constraintStart_toStartOf="parent"
@@ -28,9 +33,11 @@
 
     <com.google.android.gms.maps.MapView
         android:id="@+id/confirmarP_mapa"
-        android:layout_width="348dp"
+        android:layout_width="0dp"
         android:layout_height="153dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="2dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/confirmarP_direccion" />
@@ -39,10 +46,13 @@
         android:id="@+id/confirmarP_pedir"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="10dp"
         android:text="confirmar"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/confirmarP_mapa" />
+        app:layout_constraintTop_toBottomOf="@+id/confirmarP_mapa"
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

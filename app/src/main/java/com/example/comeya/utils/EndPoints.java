@@ -13,12 +13,14 @@ public class EndPoints {
     public static String SERVICE_GET_IMGREST= URL+"api_v1.0/restimg?id=";
     //register rest
     public static String SERVICE_LISTREST= URL+"api_v1.0/rest?nombre_rest=";
+    public static String SERVICE_LISTMYREST= URL+"api_v1.0/rest?id_us=";
     public static String SERV_REST = URL+"api_v1.0/rest?id=";
     public static String SERV_GETMYREST= URL+"api_v1.0/myrest?id_rest=";
     public static String SERV_PUTMYREST= URL+"api_v1.0/rest?id=";
     //MENU
     public static String SERVICE_LISTMENU= URL+"api_v1.0/menu";
-    public static String SERV_VIEWMENU= URL+"api_v1.0/menu";
+    public static String SERV_VIEWMENU= URL+"api_v1.0/menu?id_res=";
+    public static String SERV_VIEWMYMENU= URL+"api_v1.0/menu?id_res=";
     public static String SERV_CARG_IMGMENU= URL+"api_v1.0/imgmenu?id=";
     public static String SERV_POSTMENU= URL+"api_v1.0/menu?id=";
     public static String SERV_DELETEMENU= URL+"api_v1.0/menu?id=";

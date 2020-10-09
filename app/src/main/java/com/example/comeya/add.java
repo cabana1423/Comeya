@@ -26,11 +26,6 @@ import org.json.JSONObject;
 
 import cz.msebera.android.httpclient.Header;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link add#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class add extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
@@ -45,16 +40,6 @@ public class add extends Fragment {
     public add() {
         // Required empty public constructor
     }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment menu.
-     */
-    // TODO: Rename and change types and number of parameters
     public static add newInstance(String param1, String param2) {
         add fragment = new add();
         Bundle args = new Bundle();
@@ -104,7 +89,7 @@ public class add extends Fragment {
     private void obtener_rest() {
         AsyncHttpClient client=new AsyncHttpClient();
         client.addHeader("Authorization", UserDataServer.TOKEN);
-        client.get(EndPoints.SERVICE_LISTREST,null,new JsonHttpResponseHandler(){
+        client.get(EndPoints.SERVICE_LISTMYREST+UserDataServer.ID+"&order=fecha_reg,-1",null,new JsonHttpResponseHandler(){
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
                 super.onSuccess(statusCode, headers, response);
