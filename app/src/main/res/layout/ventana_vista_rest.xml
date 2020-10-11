@@ -61,14 +61,15 @@
             android:layout_height="25dp" />
     </LinearLayout>
 
-    <com.google.android.gms.maps.MapView
+    <fragment
         android:id="@+id/VistaRest_mapa"
+        android:name="com.example.comeya.MapsVistaRestMenu"
         android:layout_width="0dp"
         android:layout_height="200dp"
         android:layout_marginTop="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout3"
         app:layout_constraintVertical_bias="0.0" />

@@ -36,7 +36,7 @@ import cz.msebera.android.httpclient.Header;
 public class Ventana_vista_rest extends AppCompatDialogFragment {
     private TextView nombre,propietario,nit,telefono,direccion;
     private ImageView foto_rest;
-    private MapView mapa;
+    //private MapView mapa;
 
     @NonNull
     @Override
@@ -58,7 +58,7 @@ public class Ventana_vista_rest extends AppCompatDialogFragment {
         telefono =view.findViewById(R.id.VistaRest_telefono);
         direccion =view.findViewById(R.id.VistaRest_direccion);
         foto_rest =view.findViewById(R.id.Vistarest_img);
-        mapa =view.findViewById(R.id.VistaRest_mapa);
+        //mapa =view.findViewById(R.id.VistaRest_mapa);
         llenarVista();
         return builder.create();
     }

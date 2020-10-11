@@ -3,6 +3,7 @@ package com.example.comeya;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -43,12 +44,12 @@ import cz.msebera.android.httpclient.Header;
 
 import static com.example.comeya.utils.EndPoints.MAPVIEW_BUNDLE_KEY;
 
-public class Confirmar_pedido extends AppCompatActivity implements OnMapReadyCallback {
+public class Confirmar_pedido extends AppCompatActivity /*implements OnMapReadyCallback*/ {
     Context context;
     RecyclerView recyclerViewmenu;
     LinearLayoutManager lnlist;
     confirmarpedido_adapter adaptadorlist;
-    MapView mi_hubi;
+    //MapView mi_hubi;
     private Button pedido;
     //private String tokenRest;
     private static final String TAG = "MapsAtivity";
@@ -62,7 +63,7 @@ public class Confirmar_pedido extends AppCompatActivity implements OnMapReadyCal
         adaptadorlist = new confirmarpedido_adapter(context);
         recyclerViewmenu.setLayoutManager(lnlist);
         recyclerViewmenu.setAdapter(adaptadorlist);
-        mi_hubi = findViewById(R.id.confirmarP_mapa);
+        //mi_hubi = findViewById(R.id.confirmarP_mapa);
         pedido = (Button) findViewById(R.id.confirmarP_pedir);
         pedido.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,8 +74,19 @@ public class Confirmar_pedido extends AppCompatActivity implements OnMapReadyCal
             }
         });
         obtenerlist();
-            initGoogleMap(savedInstanceState);
+        getLocalizacion();
+        //initGoogleMap(savedInstanceState);
 
+    }
+
+    private void getLocalizacion() {
+        int permiso1 = ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION);
+        if(permiso1==PackageManager.PERMISSION_DENIED){
+            if(ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_FINE_LOCATION)){
+            }else{
+                ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.ACCESS_FINE_LOCATION},1);
+            }
+        }
     }
 
     private void obtenertoken() {
@@ -142,14 +154,14 @@ public class Confirmar_pedido extends AppCompatActivity implements OnMapReadyCal
         });
     }
 
-    private void initGoogleMap(Bundle savedInstanceState) {
+    /*private void initGoogleMap(Bundle savedInstanceState) {
         Bundle mapViewBundle = null;
         if (savedInstanceState != null) {
             mapViewBundle = savedInstanceState.getBundle(MAPVIEW_BUNDLE_KEY);
         }
         mi_hubi.onCreate(mapViewBundle);
         mi_hubi.getMapAsync(this);
-    }
+    }*/
 
     private void obtenerlist() {
         AsyncHttpClient client = new AsyncHttpClient();
@@ -174,7 +186,7 @@ public class Confirmar_pedido extends AppCompatActivity implements OnMapReadyCal
 
     }
 
-    @Override
+    /*@Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
         Bundle mapViewBundle = outState.getBundle(MAPVIEW_BUNDLE_KEY);
@@ -213,7 +225,7 @@ public class Confirmar_pedido extends AppCompatActivity implements OnMapReadyCal
             return;
         }
         googleMap.setMyLocationEnabled(true);
-        googleMap.getUiSettings().setMyLocationButtonEnabled(false);
+        googleMap.getUiSettings().setMyLocationButtonEnabled(true);
         LocationManager locationManager = (LocationManager) Confirmar_pedido.this.getSystemService(Context.LOCATION_SERVICE);
         LocationListener locationListener = new LocationListener() {
             @Override
@@ -254,6 +266,6 @@ public class Confirmar_pedido extends AppCompatActivity implements OnMapReadyCal
     public void onLowMemory(){
         super.onLowMemory();
         mi_hubi.onLowMemory();
-    }
+    }*/
 
 }

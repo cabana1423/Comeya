@@ -4,30 +4,20 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import android.content.Context;
-import android.graphics.drawable.Drawable;
-import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
 import com.example.comeya.utils.EndPoints;
 import com.example.comeya.utils.MenuData;
 import com.example.comeya.utils.RestData;
 import com.example.comeya.utils.UserDataServer;
-import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.BitmapDescriptor;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -40,23 +30,25 @@ import org.json.JSONObject;
 
 import cz.msebera.android.httpclient.Header;
 
-public class MapsMyRest extends Fragment {
+public class MapsVistaRestMenu extends Fragment {
     double lat;
     double lon;
     GoogleMap nMap;
     private OnMapReadyCallback callback = new OnMapReadyCallback() {
+
         @Override
-        public void onMapReady(final GoogleMap googleMap) {
+        public void onMapReady(GoogleMap googleMap) {
+            LatLng sydney = new LatLng(-34, 151);
+            googleMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
+            googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
             nMap=googleMap;
             cordenadas();
-
         }
     };
-
     private void cordenadas() {
         AsyncHttpClient client = new AsyncHttpClient();
         client.addHeader("Authorization", UserDataServer.TOKEN);
-        client.get(EndPoints.SERV_GETMYREST + RestData.ID_AUX_REST, null, new JsonHttpResponseHandler() {
+        client.get(EndPoints.SERV_GETMYREST + MenuData.ID_AUX_rest, null, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
                 super.onSuccess(statusCode, headers, response);
@@ -92,9 +84,8 @@ public class MapsMyRest extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_maps_my_rest, container, false);
+        return inflater.inflate(R.layout.fragment_maps_vista_rest_menu, container, false);
     }
-
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {

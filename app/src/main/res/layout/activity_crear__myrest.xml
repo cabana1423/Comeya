@@ -6,14 +6,30 @@
     android:layout_height="match_parent"
     tools:context=".crear_Myrest">
 
+    <LinearLayout
+        android:id="@+id/linearLayout6"
+        android:layout_width="145dp"
+        android:layout_height="81dp"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Myrest_text1">
+
+        <ImageButton
+            android:id="@+id/MyRest_imagenLoad"
+            android:layout_width="141dp"
+            android:layout_height="80dp"
+            android:src="@drawable/image_defect" />
+
+    </LinearLayout>
+
     <TextView
         android:id="@+id/Myrest_text1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:layout_marginBottom="13dp"
         android:text="crear Restaurant"
-        app:layout_constraintBottom_toTopOf="@+id/MyRest_imagenLoad"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
@@ -24,15 +40,13 @@
         android:layout_width="340dp"
         android:layout_height="45dp"
         android:layout_marginStart="3dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="20dp"
         android:ems="10"
         android:hint="Nombre"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/Myrest_nit"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.47"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/MyRest_imagenLoad" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout6" />
 
     <EditText
         android:id="@+id/Myrest_nit"
@@ -42,7 +56,6 @@
         android:ems="10"
         android:hint="NIT"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/Myrest_propietario"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.47"
         app:layout_constraintStart_toStartOf="parent"
@@ -53,12 +66,12 @@
         android:layout_width="345dp"
         android:layout_height="45dp"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:ems="10"
         android:hint="Direccion"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.088"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Myrest_imgmapView" />
 
@@ -85,34 +98,10 @@
         android:ems="10"
         android:hint="Propietario"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/Myrest_telefono"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.47"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Myrest_nit" />
-
-    <ImageButton
-        android:id="@+id/MyRest_imagenLoad"
-        android:layout_width="141dp"
-        android:layout_height="80dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="12dp"
-        android:src="@drawable/image_defect"
-        app:layout_constraintEnd_toStartOf="@+id/Myrest_Bcargar"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Myrest_text1" />
-
-    <Button
-        android:id="@+id/Myrest_Bcargar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="cargar"
-        app:layout_constraintBottom_toTopOf="@+id/Myrest_name"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/MyRest_imagenLoad"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.687" />
 
     <Button
         android:id="@+id/Myrest_Bcrear"
@@ -132,10 +121,8 @@
         android:layout_width="104dp"
         android:layout_height="59dp"
         android:layout_marginTop="10dp"
-        android:layout_marginBottom="8dp"
         android:background="@color/common_google_signin_btn_text_dark_disabled"
         android:src="@drawable/add"
-        app:layout_constraintBottom_toTopOf="@+id/Myrestcalle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"

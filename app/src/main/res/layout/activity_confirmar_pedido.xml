@@ -8,13 +8,11 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/listConfirmar"
-        android:layout_width="0dp"
-        android:layout_height="350dp"
+        android:layout_width="match_parent"
+        android:layout_height="280dp"
         android:layout_marginStart="2dp"
         android:layout_marginTop="4dp"
-        android:layout_marginEnd="2dp"
-        android:layout_marginBottom="5dp"
-        app:layout_constraintBottom_toTopOf="@+id/confirmarP_direccion"
+        android:layout_marginEnd="3dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -31,10 +29,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/listConfirmar" />
 
-    <com.google.android.gms.maps.MapView
+    <fragment
         android:id="@+id/confirmarP_mapa"
+        android:name="com.example.comeya.MapsmiHubi"
         android:layout_width="0dp"
-        android:layout_height="153dp"
+        android:layout_height="160dp"
         android:layout_marginStart="2dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="2dp"
@@ -47,6 +46,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
+        android:layout_marginBottom="5dp"
         android:text="confirmar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

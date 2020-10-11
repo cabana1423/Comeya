@@ -88,7 +88,7 @@ public class MapsRest extends FragmentActivity implements OnMapReadyCallback, Go
             return;
         }
         mMap.setMyLocationEnabled(true);
-        mMap.getUiSettings().setMyLocationButtonEnabled(false);
+        mMap.getUiSettings().setMyLocationButtonEnabled(true);
         LocationManager locationManager = (LocationManager) MapsRest.this.getSystemService(Context.LOCATION_SERVICE);
         LocationListener locationListener = new LocationListener() {
             @Override

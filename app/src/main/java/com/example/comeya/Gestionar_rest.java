@@ -41,7 +41,7 @@ import cz.msebera.android.httpclient.Header;
 
 import static com.example.comeya.utils.EndPoints.MAPVIEW_BUNDLE_KEY;
 
-public class Gestionar_rest extends Fragment /*implements OnMapReadyCallback */{
+public class Gestionar_rest extends Fragment{
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     private String mParam1;
@@ -73,11 +73,6 @@ public class Gestionar_rest extends Fragment /*implements OnMapReadyCallback */{
     FloatingActionButton editar_rest, eliminar_rest;
     TextView nombre_rest, propietario, nit, telefono, direccion;
     ImageView fotoMyrest;
-    Button map;
-    //Fragment mapaMyrest;
-    private static final String TAG = "MapsAtivity";
-    // String lati,longi;
-
     Context context;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -105,16 +100,7 @@ public class Gestionar_rest extends Fragment /*implements OnMapReadyCallback */{
                 elimar();
             }
         });
-        /*map=root.findViewById(R.id.button1234);
-        map.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getActivity(), MapsMyRestActivity.class ));
-            }
-        });*/
         vistarest();
-        //mapaMyrest = root.findViewById(R.id.GestionarRest_mapa);
-        //initGoogleMap(savedInstanceState);
         return root;
     }
 
