@@ -48,8 +48,8 @@ public class confirmarpedido_adapter extends RecyclerView.Adapter<confirmarpedid
     @Override
     public void onBindViewHolder(@NonNull Holderlistafinal holder, int position) {
         holder.titulo.setText(lista_final.get(position).getTitulo());
-        holder.cantidad.setText(lista_final.get(position).getCantidad());
-        holder.total.setText(lista_final.get(position).getTotal());
+        holder.cantidad.setText("unidades: "+lista_final.get(position).getCantidad());
+        holder.total.setText("total a cancelar"+lista_final.get(position).getTotal());
         confirmarpedidoView it=lista_final.get(position);
         holder.id_order=it.getId_order();
         holder.setOnclickCardview();

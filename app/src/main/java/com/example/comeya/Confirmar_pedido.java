@@ -43,6 +43,7 @@ import org.json.JSONObject;
 import cz.msebera.android.httpclient.Header;
 
 import static com.example.comeya.utils.EndPoints.MAPVIEW_BUNDLE_KEY;
+import static com.loopj.android.http.AsyncHttpClient.log;
 
 public class Confirmar_pedido extends AppCompatActivity /*implements OnMapReadyCallback*/ {
     Context context;
@@ -69,8 +70,6 @@ public class Confirmar_pedido extends AppCompatActivity /*implements OnMapReadyC
             @Override
             public void onClick(View view) {
                     crear_fac();
-                    obtenertoken();
-                    startActivity(new Intent(Confirmar_pedido.this, entrada.class ));
             }
         });
         obtenerlist();
@@ -136,6 +135,7 @@ public class Confirmar_pedido extends AppCompatActivity /*implements OnMapReadyC
         client.addHeader("Authorization", UserDataServer.TOKEN);
         RequestParams params=new RequestParams();
         params.add("idUserRest_fac", PedidoData.PEDIDO_ID_ADMI_REST);
+        log.e("aqui esta el error desde la fac",""+PedidoData.PEDIDO_LAT );
         params.add("lati", PedidoData.PEDIDO_LAT);
         params.add("longi",PedidoData.PEDIDO_LONG);
         //Log.d(TAG,"onMapLongClick"+EndPoints.SERV_POST_FAC+UserDataServer.ID+"&toker="+MenuData.TOKER_ORDER);
@@ -143,6 +143,9 @@ public class Confirmar_pedido extends AppCompatActivity /*implements OnMapReadyC
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 super.onSuccess(statusCode, headers, response);
+                obtenertoken();
+                startActivity(new Intent(Confirmar_pedido.this, entrada.class ).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP));
+                finish();
             }
 
             @Override

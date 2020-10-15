@@ -36,34 +36,19 @@
         android:id="@+id/imageButton2"
         android:layout_width="38dp"
         android:layout_height="38dp"
-        android:layout_marginEnd="2dp"
-        android:background="@android:drawable/divider_horizontal_bright"
-        app:layout_constraintBottom_toBottomOf="@+id/toolbar2"
-        app:layout_constraintEnd_toStartOf="@+id/imageButton3"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.388"
-        app:srcCompat="@drawable/ic_baseline_notifications_active_24" />
-
-    <ImageButton
-        android:id="@+id/imageButton3"
-        android:layout_width="39dp"
-        android:layout_height="38dp"
-        android:layout_marginTop="7dp"
-        android:layout_marginEnd="12dp"
-        android:layout_marginBottom="11dp"
         android:background="@android:drawable/divider_horizontal_bright"
         app:layout_constraintBottom_toBottomOf="@+id/toolbar2"
         app:layout_constraintEnd_toEndOf="@+id/toolbar2"
-        app:layout_constraintTop_toTopOf="@+id/toolbar2"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/ic_baseline_assignment_24" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.388"
+        app:srcCompat="@drawable/ic_baseline_notifications_active_24" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/Lista_SolicitudPedido"
         android:layout_width="409dp"
         android:layout_height="673dp"
         android:layout_marginStart="2dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="2dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

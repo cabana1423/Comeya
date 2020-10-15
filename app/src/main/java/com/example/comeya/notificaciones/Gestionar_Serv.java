@@ -121,7 +121,7 @@ public class Gestionar_Serv extends AppCompatActivity {
                         JSONObject obj =response.getJSONObject(0);
                         log.d("para el id","    el id      "+obj.getString("idUser_fac")+"     el toker    "+obj.getString("toker"));
                         MostrarLista(obj.getString("toker"),obj.getString("idUser_fac"));
-                        total.setText(obj.getString("total_cancelo"));
+                        total.setText("Total a cancelar: "+obj.getString("total_cancelo"));
                         TotalPaga=obj.getString("total_cancelo");
                         id_cliente=obj.getString("idUser_fac");
                         FacData.latitud=obj.getString("lati");
@@ -147,8 +147,8 @@ public class Gestionar_Serv extends AppCompatActivity {
                 for (int i = 0; i < response.length(); i++) {
                     try {
                         JSONObject obj = response.getJSONObject(i);
-                        adaptadormyfacFinal.add(new confirmarpedidoView(obj.getString("nombre_menu"), obj.getString("cantidad"),
-                                obj.getString("pago_total"), obj.getString("_id")));
+                        adaptadormyfacFinal.add(new confirmarpedidoView(obj.getString("nombre_menu"), "Unidades: "+obj.getString("cantidad"),
+                                "total producto: "+obj.getString("pago_total"), obj.getString("_id")));
                         longText=longText+obj.getString("nombre_menu")+"           "
                                 +obj.getString("cantidad")+"            "
                                 +obj.getString("pago_total")+"\n";
