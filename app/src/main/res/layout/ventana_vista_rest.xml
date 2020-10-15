@@ -10,6 +10,7 @@
         android:layout_width="388dp"
         android:layout_height="35dp"
         android:layout_marginBottom="15dp"
+        android:textColor="@color/common_google_signin_btn_text_dark_default"
         app:layout_constraintBottom_toBottomOf="@+id/Vistarest_img"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.478"
@@ -20,7 +21,7 @@
     <ImageView
         android:id="@+id/Vistarest_img"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="150dp"
         android:layout_marginTop="15dp"
         android:src="@drawable/image_defect"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout3"
@@ -31,7 +32,7 @@
 
     <LinearLayout
         android:id="@+id/linearLayout3"
-        android:layout_width="363dp"
+        android:layout_width="0dp"
         android:layout_height="91dp"
         android:layout_marginTop="10dp"
         android:orientation="vertical"
@@ -65,7 +66,7 @@
         android:id="@+id/VistaRest_mapa"
         android:name="com.example.comeya.MapsVistaRestMenu"
         android:layout_width="0dp"
-        android:layout_height="200dp"
+        android:layout_height="220dp"
         android:layout_marginTop="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
