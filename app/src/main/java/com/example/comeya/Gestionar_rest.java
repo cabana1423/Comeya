@@ -129,7 +129,9 @@ public class Gestionar_rest extends Fragment{
                     nit.setText(obj.getString("nit"));
                     telefono.setText(obj.getString("telefono"));
                     direccion.setText(obj.getString("calle"));
-                    Glide.with(getActivity()).load(obj.getString("foto_lugar")).centerCrop().into(fotoMyrest);
+                    if(isAdded()) {
+                        Glide.with(getActivity()).load(obj.getString("foto_lugar")).centerCrop().into(fotoMyrest);
+                    }
                     MenuData.ID_AUX_IMGMENU = obj.getString("foto_id");
                 } catch (JSONException e) {
                     e.printStackTrace();

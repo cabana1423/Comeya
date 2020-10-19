@@ -10,45 +10,88 @@
 
     <com.google.android.gms.maps.MapView
         android:id="@+id/Ticket_mapView"
-        android:layout_width="350dp"
-        android:layout_height="239dp"
-        android:layout_marginTop="32dp"
+        android:layout_width="324dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Ticket_Text_Calle" />
-
-    <TextView
-        android:id="@+id/Ticket_Text_Calle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.214"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/tableLayout" />
 
     <ImageView
         android:id="@+id/Ticket_imgQR"
-        android:layout_width="249dp"
-        android:layout_height="244dp"
-        android:layout_marginTop="48dp"
+        android:layout_width="154dp"
+        android:layout_height="124dp"
+        android:layout_marginTop="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Ticket_mapView"
         app:srcCompat="@drawable/image_defect" />
 
     <ImageButton
-        android:id="@+id/Ticket_imageButton"
-        android:layout_width="48dp"
-        android:layout_height="44dp"
+        android:id="@+id/Ticket_imageButton_share"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:background="?attr/actionBarItemBackground"
         app:layout_constraintBottom_toTopOf="@+id/Ticket_mapView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/view" />
+
+    <ImageButton
+        android:id="@+id/img_print"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@android:color/transparent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/Ticket_imageButton_share"
+        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/print" />
+
+    <TableLayout
+        android:stretchColumns="1"
+        android:id="@+id/tableLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/img_print">
+
+
+
+        <TableRow>
+
+            <TextView
+                android:gravity=""
+                android:padding="3dp"
+                android:text="Nombre" />
+
+            <TextView
+                android:id="@+id/ticket_nombre"
+                android:layout_gravity="center_horizontal"
+                android:padding="3dp" />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+
+                android:gravity="center"
+                android:padding="3dp"
+                android:text="pedidos" />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:id="@+id/ticket_pedidos"
+                android:layout_gravity="center_horizontal"
+                android:padding="3dp" />
+        </TableRow>
+
+    </TableLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

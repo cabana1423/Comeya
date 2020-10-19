@@ -121,11 +121,13 @@ public class Gestionar_Serv extends AppCompatActivity {
                         JSONObject obj =response.getJSONObject(0);
                         log.d("para el id","    el id      "+obj.getString("idUser_fac")+"     el toker    "+obj.getString("toker"));
                         MostrarLista(obj.getString("toker"),obj.getString("idUser_fac"));
-                        total.setText("Total a cancelar: "+obj.getString("total_cancelo"));
+                        total.setText("Total a cancelar:    "+obj.getString("total_cancelo"));
                         TotalPaga=obj.getString("total_cancelo");
                         id_cliente=obj.getString("idUser_fac");
                         FacData.latitud=obj.getString("lati");
                         FacData.longitud=obj.getString("longi");
+                        FacData.idFac=obj.getString("_id");
+                        FacData.id_user=obj.getString("idUser_fac");
                         log.d("AQUI ESTAL LAS COORDENADAS PARA TICKET",FacData.latitud+""+FacData.longitud);
 
                     } catch (JSONException e) {
@@ -152,6 +154,7 @@ public class Gestionar_Serv extends AppCompatActivity {
                         longText=longText+obj.getString("nombre_menu")+"           "
                                 +obj.getString("cantidad")+"            "
                                 +obj.getString("pago_total")+"\n";
+                        FacData.pedidosFac=longText;
 
                     } catch (JSONException e) {
                         e.printStackTrace();

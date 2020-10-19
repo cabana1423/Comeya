@@ -44,7 +44,6 @@ import static com.example.comeya.crear_Myrest.CODE_PERMISSION;
 public class Ventana extends AppCompatDialogFragment implements View.OnClickListener {
     private EditText nombre,precio,descripcion;
     private ImageButton imgmenu;
-    private Button cargarimg;
     public static String path;
     Context context;
 
@@ -66,20 +65,18 @@ public class Ventana extends AppCompatDialogFragment implements View.OnClickList
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         //Toast.makeText(getContext(), "realizaste un pedido", Toast.LENGTH_LONG).show();
-                        crear_menu();
+                        enviar_img();
                     }
                 });
         nombre =view.findViewById(R.id.ventanamenu_nombre);
         precio =view.findViewById(R.id.ventanamenu_precio);
         descripcion =view.findViewById(R.id.ventanamenu_decrip);
         imgmenu=view.findViewById(R.id.ventanamenu_img);
-        cargarimg=view.findViewById(R.id.ventanamenu_cargarimg);
-        cargarimg.setOnClickListener(this);
-        cargarimg.setVisibility(View.INVISIBLE);
-        if (permission()) {
-            cargarimg.setVisibility(View.VISIBLE);
-        }
         imgmenu.setOnClickListener(this);
+        imgmenu.setVisibility(View.INVISIBLE);
+        if (permission()) {
+            imgmenu.setVisibility(View.VISIBLE);
+        }
 
         return builder.create();
     }
@@ -113,9 +110,6 @@ public class Ventana extends AppCompatDialogFragment implements View.OnClickList
             case R.id.ventanamenu_img:
                 cargarimg();
                 break;
-            case R.id.ventanamenu_cargarimg:
-                enviar_img();
-                break;
         }
     }
 
@@ -132,7 +126,7 @@ public class Ventana extends AppCompatDialogFragment implements View.OnClickList
                 Toast.makeText(getContext(), "error al enviar la imagen al sevidor la imagen", Toast.LENGTH_SHORT).show();
             }
         } else {
-            Toast.makeText(getActivity(), "ingrese una imagen", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "imagen no existe error al registrar menu", Toast.LENGTH_SHORT).show();
         }
         client.post(EndPoints.SERV_CARG_IMGMENU+ RestData.ID_AUX_REST, req, new JsonHttpResponseHandler() {
             @Override
@@ -141,6 +135,8 @@ public class Ventana extends AppCompatDialogFragment implements View.OnClickList
                 try {
                     if (response.has("_id"))
                         MenuData.IDIM = response.getString("_id");
+                    crear_menu();
+                    path=null;
                 } catch (JSONException e) {
                     e.printStackTrace();
                     Toast.makeText(context, "" + e, Toast.LENGTH_SHORT).show();
@@ -197,7 +193,7 @@ public class Ventana extends AppCompatDialogFragment implements View.OnClickList
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (CODE_PERMISSION == requestCode) {
             if (permissions.length == 3) {
-                cargarimg.setVisibility(View.VISIBLE);
+                imgmenu.setVisibility(View.VISIBLE);
             }
         }
     }

@@ -10,11 +10,13 @@ import android.provider.MediaStore;
 import android.widget.Toast;
 
 import com.example.comeya.utils.FacData;
+import com.itextpdf.text.BadElementException;
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
+import com.itextpdf.text.Image;
 import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.Phrase;
@@ -24,10 +26,12 @@ import com.itextpdf.text.pdf.PdfWriter;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.lang.annotation.Documented;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import static com.loopj.android.http.AsyncHttpClient.getUrlWithQueryString;
 import static com.loopj.android.http.AsyncHttpClient.log;
 
 public class TemplatePDF {
@@ -48,7 +52,7 @@ public class TemplatePDF {
         CreateFile();
         try {
             document =new Document(PageSize.A4);
-            pdfWriter=PdfWriter.getInstance(document,new FileOutputStream(pdfFile));
+                pdfWriter=PdfWriter.getInstance(document,new FileOutputStream(pdfFile));
             document.open();
         }
         catch (Exception e){
@@ -142,5 +146,25 @@ public class TemplatePDF {
         }else{
             Toast.makeText(activity.getApplicationContext(),"no se encontro el archivo",Toast.LENGTH_LONG).show();
         }
+    }
+    public void copiarIMG(Uri path){
+        log.d("este es la direccion..",""+path);
+        Image image= null;
+        try {
+            image = Image.getInstance(path+"");
+        } catch (BadElementException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        float scaler =((document.getPageSize().getWidth() - document.leftMargin()-document.rightMargin()-0)/image.getWidth())*100;
+        image.scalePercent(scaler);
+        image.setAlignment(Image.ALIGN_CENTER | image.ALIGN_TOP);
+        try {
+            document.add(image);
+        } catch (DocumentException e) {
+            e.printStackTrace();
+        }
+
     }
 }

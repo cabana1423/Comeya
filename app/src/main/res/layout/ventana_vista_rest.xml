@@ -5,19 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/VistaRest_nombre"
-        android:layout_width="388dp"
-        android:layout_height="35dp"
-        android:layout_marginBottom="15dp"
-        android:textColor="@color/common_google_signin_btn_text_dark_default"
-        app:layout_constraintBottom_toBottomOf="@+id/Vistarest_img"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.478"
-        app:layout_constraintStart_toStartOf="@+id/Vistarest_img"
-        app:layout_constraintTop_toTopOf="@+id/Vistarest_img"
-        app:layout_constraintVertical_bias="1.0" />
-
     <ImageView
         android:id="@+id/Vistarest_img"
         android:layout_width="match_parent"
@@ -29,6 +16,19 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/VistaRest_nombre"
+        android:layout_width="320dp"
+        android:layout_height="35dp"
+        android:layout_marginBottom="15dp"
+        android:textColor="@color/common_google_signin_btn_text_dark_default"
+        app:layout_constraintBottom_toBottomOf="@+id/Vistarest_img"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.478"
+        app:layout_constraintStart_toStartOf="@+id/Vistarest_img"
+        app:layout_constraintTop_toTopOf="@+id/Vistarest_img"
+        app:layout_constraintVertical_bias="0.97" />
 
     <LinearLayout
         android:id="@+id/linearLayout3"
@@ -62,11 +62,10 @@
             android:layout_height="25dp" />
     </LinearLayout>
 
-    <fragment
+    <com.google.android.gms.maps.MapView
         android:id="@+id/VistaRest_mapa"
-        android:name="com.example.comeya.MapsVistaRestMenu"
         android:layout_width="0dp"
-        android:layout_height="220dp"
+        android:layout_height="210dp"
         android:layout_marginTop="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -74,5 +73,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout3"
         app:layout_constraintVertical_bias="0.0" />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/barrier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="top" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -10,4 +10,8 @@ public class FacData {
     public static Uri PathPdfs_Uri ;
     public static String latitud="";
     public static String longitud="";
+    public static String idFac="";
+    public static String pedidosFac="";
+    public static String id_user="";
+
 }

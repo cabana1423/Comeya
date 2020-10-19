@@ -32,6 +32,8 @@ import java.io.File;
 
 import cz.msebera.android.httpclient.Header;
 
+import static com.loopj.android.http.AsyncHttpClient.log;
+
 public class crear_Myrest extends AppCompatActivity /*implements OnMapReadyCallback */{
     ImageButton loadimage, imagemap;
     Button cargarimg, crearrest;
@@ -61,25 +63,22 @@ public class crear_Myrest extends AppCompatActivity /*implements OnMapReadyCallb
         crearrest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                creaRest();
+                enviar();
             }
         });
         loadimage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openVentana();
-                if(RestData.PATH_IMG!=null){loadimage.setImageURI(RestData.PATH_IMG);}
+                cargarimg();
             }
         });
+        loadimage.setVisibility(View.INVISIBLE);
+        if (permission()) {
+            loadimage.setVisibility(View.VISIBLE);
+        }
     }
-    private void openVentana() {
-        VentanaSelecImg ventanaSelecImg=new VentanaSelecImg();
-        ventanaSelecImg.show(this.getSupportFragmentManager(),"example dialogo");
-    }
-
-
     private void creaRest() {
-        if (RestData.PATH_IMG != null) {
+        if (path != null) {
             AsyncHttpClient clientrest = new AsyncHttpClient();
             clientrest.addHeader("Authorization", UserDataServer.TOKEN);
             RequestParams params = new RequestParams();
@@ -94,13 +93,14 @@ public class crear_Myrest extends AppCompatActivity /*implements OnMapReadyCallb
                 @Override
                 public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                     super.onSuccess(statusCode, headers, response);
-                    RestData.PATH_IMG=null;
                     onBackPressed();
+                    path=null;
                 }
                 @Override
                 public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
                     super.onFailure(statusCode, headers, throwable, errorResponse);
                     Toast.makeText(getApplicationContext(), errorResponse+"", Toast.LENGTH_SHORT).show();
+                    log.e("este error raro",""+errorResponse);
                 }
             });
         } else {
@@ -109,6 +109,93 @@ public class crear_Myrest extends AppCompatActivity /*implements OnMapReadyCallb
 
 
     }
+    private void cargarimg() {
+        Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        intent.setType("image/");
+        startActivityForResult(intent.createChooser(intent, "Selecione la imagen"), 10);
+    }
+
+    private void enviar() {
+        AsyncHttpClient client = new AsyncHttpClient();
+        client.addHeader("Authorization", UserDataServer.TOKEN);
+        RequestParams req = new RequestParams();
+        if (path != null) {
+            Toast.makeText(getApplicationContext(), "imagen subida con Exito", Toast.LENGTH_SHORT).show();
+            File file = new File(path);
+            try {
+                req.put("img", file);
+            } catch (Exception e) {
+                Toast.makeText(getApplicationContext(), "error al enviar la imagen al sevidor", Toast.LENGTH_SHORT).show();
+            }
+        } else {
+            Toast.makeText(getApplicationContext(), "ingrese una imagen", Toast.LENGTH_SHORT).show();
+        }
+        client.post(EndPoints.SERVICE_UPIMGREST + UserDataServer.ID, req, new JsonHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                super.onSuccess(statusCode, headers, response);
+                try {
+                    if (response.has("_id"))
+                        UserDataServer.IDI = response.getString("_id");
+                    creaRest();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    Toast.makeText(getApplicationContext(), "" + e, Toast.LENGTH_SHORT).show();
+                }
+            }
+            @Override
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                super.onFailure(statusCode, headers, throwable, errorResponse);
+            }
+        });
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK) {
+            Uri path1 = data.getData();
+            path = getRealPath(path1);
+            loadimage.setImageURI(path1);
+        }
+    }
+
+    String getRealPath(Uri uri) {
+        String path = null;
+        Cursor cursor = getContentResolver().query(uri, null, null, null, null);
+        if (cursor != null) {
+            cursor.moveToFirst();
+            int i = cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATA);
+            path = cursor.getString(i);
+            cursor.close();
+        }
+        return path;
+    }
+
+    private boolean permission() {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+            return true;
+        }
+        if (this.checkSelfPermission(Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED &&
+                checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED &&
+                checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+            return true;
+        }
+        requestPermissions(new String[]{Manifest.permission.CAMERA,
+                Manifest.permission.READ_EXTERNAL_STORAGE,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE}, CODE_PERMISSION);
+        return false;
+    }
+
+   /*@Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (CODE_PERMISSION == requestCode) {
+            if (permissions.length == 3) {
+                builder.set.setVisibility(View.VISIBLE);
+            }
+        }
+    }*/
 
 
 }

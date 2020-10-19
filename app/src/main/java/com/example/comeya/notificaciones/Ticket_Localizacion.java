@@ -5,16 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.ActivityNotFoundException;
-import android.content.ContentValues;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.Canvas;
 import android.graphics.Point;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
-import android.provider.MediaStore;
-import android.util.Log;
 import android.view.Display;
 import android.view.View;
 import android.view.WindowManager;
@@ -23,8 +19,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.comeya.CreatePdf.TemplatePDF;
+import com.example.comeya.MainActivity;
 import com.example.comeya.R;
+import com.example.comeya.utils.EndPoints;
 import com.example.comeya.utils.FacData;
+import com.example.comeya.utils.UserDataServer;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
@@ -33,51 +33,98 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.zxing.WriterException;
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.JsonHttpResponseHandler;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.OutputStream;
 import java.util.Date;
 
 import androidmads.library.qrgenearator.QRGContents;
 import androidmads.library.qrgenearator.QRGEncoder;
+import cz.msebera.android.httpclient.Header;
 
 import static com.example.comeya.utils.EndPoints.MAPVIEW_BUNDLE_KEY;
 import static com.loopj.android.http.AsyncHttpClient.log;
 
 public class Ticket_Localizacion extends AppCompatActivity implements OnMapReadyCallback {
-    TextView calle;
+    TextView Nombre,pedidos;
     MapView mapa;
     ImageView QR;
     double lat,lon;
     Bitmap bitmap;
     QRGEncoder qrgEncoder;
     String enlaceQR="";
-    ImageButton print;
+    ImageButton share,print;
     ConstraintLayout constraintLayout;
+    private TemplatePDF templatePDF;
+    private Uri path;
     //ImageView imageView;
     GoogleMap nMap;
+    private Ticket_Localizacion root=this;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ticket__localizacion);
-        calle=findViewById(R.id.Ticket_Text_Calle);
         mapa=findViewById(R.id.Ticket_mapView);
         QR=findViewById(R.id.Ticket_imgQR);
-        print=findViewById(R.id.Ticket_imageButton);
+        share =findViewById(R.id.Ticket_imageButton_share);
+        print =findViewById(R.id.img_print);
         constraintLayout=findViewById(R.id.Ticketlayout);
-        //imageView=findViewById(R.id.imageView0616);
+        pedidos=findViewById(R.id.ticket_pedidos);
+        pedidos.setText(FacData.pedidosFac);
+        Nombre=findViewById(R.id.ticket_nombre);
+        share.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                captura();
+                ver();
+            }
+        });
         print.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 captura();
-                //CaptureMapScreen();
+                imprimir();
+                templatePDF.viewAppPDF(root);
             }
         });
+        nombre_user();
         initGoogleMap(savedInstanceState);
         generarQR();
+    }
+
+    private void nombre_user() {
+        AsyncHttpClient client=new AsyncHttpClient();
+        client.addHeader("Authorization", UserDataServer.TOKEN);
+        client.get(EndPoints.SERVICE_GET_USER+ FacData.id_user,null,new JsonHttpResponseHandler(){
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
+                super.onSuccess(statusCode, headers, response);
+                    try {
+                        JSONObject obj =response.getJSONObject(0);
+                        Nombre.setText(obj.getString("nombre"));
+                        log.d("","");
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                        Toast.makeText(getApplicationContext(),""+e,Toast.LENGTH_SHORT).show();
+                    }
+                }
+        });
+    }
+
+    private void imprimir() {
+        templatePDF = new TemplatePDF(getApplicationContext());
+        templatePDF.OpenDocument();
+        templatePDF.copiarIMG(path);
+        templatePDF.closeDocument();
     }
 
     private void captura() {
@@ -88,7 +135,7 @@ public class Ticket_Localizacion extends AppCompatActivity implements OnMapReady
         imageView.setImageBitmap(bitmap);*/
         Date date =new Date();
         CharSequence now=android.text.format.DateFormat.format("yyyy-MM-dd_hh:mm:ss",date);
-        String filename = Environment.getExternalStorageDirectory()+"/ScreenShooter/"+now+".jpg";
+        String filename = Environment.getExternalStorageDirectory()+"/ScreenShooter/"+FacData.idFac+".jpg";
 
         View root =getWindow().getDecorView();
         root.setDrawingCacheEnabled(true);
@@ -96,28 +143,30 @@ public class Ticket_Localizacion extends AppCompatActivity implements OnMapReady
         root.setDrawingCacheEnabled(false);
 
         File file=new File(filename);
-        file.getParentFile().mkdirs();
+        if(!file.exists()){
+            file.getParentFile().mkdirs();
+        }
         try {
             FileOutputStream fileOutputStream=new FileOutputStream(file);
             bitmap.compress(Bitmap.CompressFormat.JPEG,100,fileOutputStream);
             fileOutputStream.flush();
             fileOutputStream.close();
             Uri uri=Uri.fromFile(file);
-            Intent intent=new Intent(Intent.ACTION_VIEW);
-            intent.setDataAndType(uri, "image/*");
-            try {
-                startActivityForResult(intent.createChooser(intent, "Selecione la aplicacion"), 10);
-                //activity.startActivity(intent);
-            }catch (ActivityNotFoundException e) {
-                e.printStackTrace();
-            }
-
-            //intent.setDataAndType(uri, "image/*");
-            //startActivity(intent);
+            path=uri;
         }catch (FileNotFoundException e){
             e.printStackTrace();
 
         } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    private void ver(){
+        Intent intent=new Intent(Intent.ACTION_VIEW);
+        intent.setDataAndType(path, "image/*");
+        try {
+            startActivityForResult(intent.createChooser(intent, "Selecione la aplicacion"), 10);
+            //activity.startActivity(intent);
+        }catch (ActivityNotFoundException e) {
             e.printStackTrace();
         }
     }

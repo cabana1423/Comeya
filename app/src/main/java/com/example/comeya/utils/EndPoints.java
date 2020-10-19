@@ -7,6 +7,7 @@ public class EndPoints {
     public static String SERVICE_POST_USER = URL+"api_v1.0/user";
     public static String SERVICE_PUT_USER = URL+"api_v1.0/user?id=";
     public static String SERVICE_GETtoken_USER = URL+"api_v1.0/u_token?id=";
+    public static String SERVICE_GET_USER = URL+"api_v1.0/user?nombre_rest=";
     //register img rest
     public static String SERVICE_UPIMGREST= URL+"api_v1.0/restimg?id=";
     public static String SERVICE_PUT_IMGREST= URL+"api_v1.0/restimg?id=";
