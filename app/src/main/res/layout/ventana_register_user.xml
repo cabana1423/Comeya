@@ -1,56 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/fondo3">
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#B7000000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
     <EditText
-        android:id="@+id/ventanaregister_nombre"
+        android:id="@+id/ventanaregister_password"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginEnd="0dp"
+        android:layout_height="55dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/textview"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Nombre" />
+        android:hint="password"
+        android:inputType="textPassword"
+        android:paddingLeft="20dp"
+        android:textColor="#fff"
+        android:textColorHint="#b9fffc"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.473"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ventanaregister_email"
+        app:layout_constraintVertical_bias="0.0" />
 
     <EditText
         android:id="@+id/ventanaregister_email"
         android:layout_width="match_parent"
-        android:layout_height="57dp"
-        android:layout_below="@+id/ventanaregister_nombre"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="2dp"
-        android:layout_marginEnd="0dp"
+        android:layout_height="55dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/textview"
         android:ems="10"
+        android:hint="Email"
         android:inputType="textPersonName"
-        android:text="email" />
-
-    <TextView
-        android:id="@+id/ventana_register_Tpass"
-        android:layout_width="126dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/ventanaregister_email"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="3dp"
-        android:layout_marginTop="4dp"
-        android:text="Password" />
+        android:paddingLeft="20dp"
+        android:textColor="#fff"
+        android:textColorHint="#b9fffc"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ventanaregister_nombre" />
 
     <EditText
-        android:id="@+id/ventanaregister_password"
-        android:layout_width="410dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/ventana_register_Tpass"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="2dp"
-        android:layout_marginTop="6dp"
-        android:layout_marginEnd="0dp"
+        android:id="@+id/ventanaregister_nombre"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/textview"
         android:ems="10"
-        android:inputType="textPassword" />
+        android:hint="Nombre"
+        android:inputType="textPersonName"
+        android:paddingLeft="20dp"
+        android:textColor="#fff"
+        android:textColorHint="#b9fffc"
+        app:layout_constraintEnd_toEndOf="parent"
 
-</RelativeLayout>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

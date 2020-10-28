@@ -1,10 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/fondo3"
     tools:context=".MainActivity">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#B7000000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/ventana_register_Tpass2"
+        android:layout_width="126dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ventanaregister_email"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="4dp"
+        android:text="Password"
+        android:textColor="#b9fffc"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.235"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/email" />
 
     <EditText
         android:id="@+id/email"
@@ -13,6 +41,10 @@
         android:layout_marginTop="180dp"
         android:autofillHints=""
         android:ems="10"
+        android:textColor="#fff"
+        android:textColorHint="#b9fffc"
+        android:background="@drawable/textview"
+        android:paddingLeft="20dp"
         android:text="Mario@gmail.com"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.52"
@@ -24,19 +56,29 @@
         android:id="@+id/pass"
         android:layout_width="318dp"
         android:layout_height="52dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="3dp"
         android:autofillHints=""
+        android:background="@drawable/textview"
         android:ems="10"
         android:inputType="textPassword"
+        android:paddingLeft="20dp"
         android:text="Hola1234#"
+        android:textColor="#fff"
+        android:textColorHint="#b9fffc"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.537"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/email" />
+        app:layout_constraintTop_toBottomOf="@+id/ventana_register_Tpass2" />
 
     <Button
+
         android:id="@+id/login"
-        android:layout_width="140dp"
-        android:layout_height="46dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginBottom="30dp"
+        android:textSize="19dp"
         android:layout_marginTop="20dp"
         android:text="LOGIN"
         app:layout_constraintEnd_toEndOf="parent"
@@ -46,13 +88,15 @@
 
     <Button
         android:id="@+id/singin"
-        android:layout_width="137dp"
-        android:layout_height="46dp"
-        android:layout_marginBottom="224dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
         android:text="SINGIN"
+        android:textSize="19dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.507"
+        app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
         app:layout_constraintVertical_bias="0.0" />
@@ -63,6 +107,8 @@
         android:layout_height="21dp"
         android:layout_marginTop="16dp"
         android:text="No tienes una cuenta! Registrate ¡ya!"
+        android:textColor="#b9fffc"
+        android:textSize="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/login" />
