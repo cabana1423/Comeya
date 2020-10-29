@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/liquid_cheese"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -9,9 +10,14 @@
         android:id="@+id/ventanamenu_nombre"
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="15dp"
+        android:background="@drawable/text2"
         android:ems="10"
         android:hint="Nombre"
         android:inputType="textPersonName"
+        android:paddingLeft="15dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -21,36 +27,49 @@
         android:id="@+id/ventanamenu_precio"
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:background="@drawable/text2"
         android:ems="10"
         android:hint="precio"
         android:inputType="textPersonName"
+        android:paddingLeft="15dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ventanamenu_nombre" />
 
-    <EditText
-        android:id="@+id/ventanamenu_decrip"
-        android:layout_width="match_parent"
-        android:layout_height="90dp"
-        android:ems="10"
-        android:hint="Descripcion"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ventanamenu_precio" />
-
     <ImageButton
         android:id="@+id/ventanamenu_img"
-        android:layout_width="208dp"
-        android:layout_height="142dp"
-        android:layout_marginTop="5dp"
+        android:layout_width="177dp"
+        android:layout_height="139dp"
+        android:layout_marginTop="10dp"
+        android:scaleType="centerInside"
+        android:src="@drawable/descarga"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.507"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ventanamenu_decrip"
         app:layout_constraintVertical_bias="0.0" />
+
+    <EditText
+        android:id="@+id/ventanamenu_decrip"
+        android:layout_width="match_parent"
+        android:layout_height="115dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="15dp"
+        android:background="@drawable/text2"
+        android:ems="10"
+        android:gravity="start|top"
+        android:hint="descripcion"
+        android:inputType="textMultiLine"
+        android:paddingLeft="25dp"
+        android:paddingRight="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ventanamenu_precio" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

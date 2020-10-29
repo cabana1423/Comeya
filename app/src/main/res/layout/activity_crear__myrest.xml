@@ -2,25 +2,32 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/liquid_cheese"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".crear_Myrest">
 
     <ImageButton
         android:id="@+id/MyRest_imagenLoad"
-        android:layout_width="212dp"
-        android:layout_height="98dp"
-        android:layout_marginTop="5dp"
-        android:src="@drawable/image_defect"
+        android:layout_width="130dp"
+        android:layout_height="107dp"
+        android:layout_marginTop="8dp"
+        android:adjustViewBounds="true"
+        android:backgroundTint="#fff"
+        android:scaleType="centerInside"
+        android:src="@drawable/descarga"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Myrest_text1" />
 
     <TextView
+        android:textStyle="bold"
+        android:autoSizeTextType="uniform"
+        android:gravity="center"
         android:id="@+id/Myrest_text1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="186dp"
+        android:layout_height="22dp"
         android:layout_marginTop="8dp"
         android:text="crear Restaurant"
         app:layout_constraintEnd_toEndOf="parent"
@@ -29,10 +36,14 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
+        android:backgroundTint="#BCD7FAF8"
+        android:paddingLeft="15dp"
+        android:layout_marginEnd="15dp"
+        android:background="@drawable/textview"
         android:id="@+id/Myrest_name"
-        android:layout_width="340dp"
+        android:layout_width="0dp"
         android:layout_height="45dp"
-        android:layout_marginStart="3dp"
+        android:layout_marginStart="15dp"
         android:layout_marginTop="10dp"
         android:ems="10"
         android:hint="Nombre"
@@ -43,23 +54,32 @@
 
     <EditText
         android:id="@+id/Myrest_nit"
-        android:layout_width="340dp"
+        android:layout_width="match_parent"
         android:layout_height="45dp"
-        android:layout_marginStart="3dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="15dp"
+        android:background="@drawable/textview"
+        android:backgroundTint="#BCD7FAF8"
         android:ems="10"
         android:hint="NIT"
         android:inputType="textPersonName"
+        android:paddingLeft="15dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.47"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Myrest_name" />
 
     <EditText
+        android:backgroundTint="#BCD7FAF8"
+        android:paddingLeft="15dp"
         android:id="@+id/Myrestcalle"
-        android:layout_width="345dp"
+        android:layout_width="match_parent"
         android:layout_height="45dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/textview"
         android:ems="10"
         android:hint="Direccion"
         android:inputType="textPersonName"
@@ -69,12 +89,16 @@
         app:layout_constraintTop_toBottomOf="@+id/Myrest_imgmapView" />
 
     <EditText
+        android:backgroundTint="#BCD7FAF8"
+        android:paddingLeft="15dp"
+        android:layout_marginEnd="15dp"
         android:id="@+id/Myrest_telefono"
-        android:layout_width="340dp"
+        android:layout_width="match_parent"
         android:layout_height="45dp"
-        android:layout_marginStart="3dp"
+        android:layout_marginStart="15dp"
         android:layout_marginBottom="12dp"
         android:ems="10"
+        android:background="@drawable/textview"
         android:hint="Telefono"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toTopOf="@+id/Myrest_imgmapView"
@@ -84,10 +108,15 @@
         app:layout_constraintTop_toBottomOf="@+id/Myrest_propietario" />
 
     <EditText
+
+        android:backgroundTint="#BCD7FAF8"
+        android:paddingLeft="15dp"
+        android:layout_marginEnd="15dp"
+        android:background="@drawable/textview"
         android:id="@+id/Myrest_propietario"
-        android:layout_width="340dp"
+        android:layout_width="match_parent"
         android:layout_height="45dp"
-        android:layout_marginStart="3dp"
+        android:layout_marginStart="15dp"
         android:ems="10"
         android:hint="Propietario"
         android:inputType="textPersonName"
@@ -97,6 +126,7 @@
         app:layout_constraintTop_toBottomOf="@+id/Myrest_nit" />
 
     <Button
+
         android:id="@+id/Myrest_Bcrear"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -110,12 +140,13 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <ImageButton
+        android:background="#fff"
         android:id="@+id/Myrest_imgmapView"
-        android:layout_width="104dp"
-        android:layout_height="59dp"
-        android:layout_marginTop="10dp"
-        android:background="@color/common_google_signin_btn_text_dark_disabled"
-        android:src="@drawable/add"
+        android:layout_width="60dp"
+        android:layout_height="54dp"
+        android:layout_marginTop="12dp"
+        android:scaleType="centerInside"
+        android:src="@drawable/addmap2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"

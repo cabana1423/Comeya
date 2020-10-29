@@ -3,11 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@drawable/liquid_cheese"
     android:layout_height="match_parent">
 
     <ImageView
-        android:layout_marginEnd="5dp"
-        android:layout_marginStart="5dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
         android:id="@+id/Vistarest_img"
         android:layout_width="match_parent"
         android:layout_height="150dp"
@@ -50,44 +51,44 @@
         app:layout_constraintTop_toBottomOf="@+id/Vistarest_img">
 
         <TextView
-            android:layout_margin="2dp"
-            android:autoSizeTextType="uniform"
-            android:paddingLeft="12dp"
-            android:textStyle="bold"
-            android:background="#F1F1F1"
             android:id="@+id/VistaRest_direccion"
             android:layout_width="match_parent"
-            android:layout_height="28dp" />
-
-        <TextView
+            android:layout_height="28dp"
             android:layout_margin="2dp"
             android:autoSizeTextType="uniform"
+            android:background="#F5C8ECFF"
             android:paddingLeft="12dp"
-            android:textStyle="bold"
-            android:background="#F1F1F1"
+            android:textStyle="bold" />
+
+        <TextView
             android:id="@+id/VistaRest_telefono"
             android:layout_width="match_parent"
-            android:layout_height="28dp" />
-
-        <TextView
+            android:layout_height="28dp"
             android:layout_margin="2dp"
             android:autoSizeTextType="uniform"
+            android:background="#F5C8ECFF"
             android:paddingLeft="12dp"
-            android:textStyle="bold"
-            android:background="#F1F1F1"
+            android:textStyle="bold" />
+
+        <TextView
             android:id="@+id/VistaRest_propietario"
             android:layout_width="match_parent"
-            android:layout_height="28dp" />
-
-        <TextView
+            android:layout_height="28dp"
             android:layout_margin="2dp"
             android:autoSizeTextType="uniform"
+            android:background="#F5C8ECFF"
             android:paddingLeft="12dp"
-            android:textStyle="bold"
-            android:background="#F1F1F1"
+            android:textStyle="bold" />
+
+        <TextView
             android:id="@+id/VistaRest_nit"
             android:layout_width="match_parent"
-            android:layout_height="28dp" />
+            android:layout_height="28dp"
+            android:layout_margin="2dp"
+            android:autoSizeTextType="uniform"
+            android:background="#F5C8ECFF"
+            android:paddingLeft="12dp"
+            android:textStyle="bold" />
     </LinearLayout>
 
     <com.google.android.gms.maps.MapView

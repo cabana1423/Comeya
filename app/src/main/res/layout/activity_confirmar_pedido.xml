@@ -4,9 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#f5f5f5"
     tools:context=".Confirmar_pedido">
 
     <androidx.recyclerview.widget.RecyclerView
+        android:background="#fff
+"
         android:id="@+id/listConfirmar"
         android:layout_width="match_parent"
         android:layout_height="280dp"
@@ -34,9 +37,9 @@
         android:name="com.example.comeya.MapsmiHubi"
         android:layout_width="0dp"
         android:layout_height="160dp"
-        android:layout_marginStart="2dp"
+        android:layout_marginStart="3dp"
         android:layout_marginTop="10dp"
-        android:layout_marginEnd="2dp"
+        android:layout_marginEnd="3dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/confirmarP_direccion" />

@@ -5,7 +5,9 @@
     android:id="@+id/groupviewmenu"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="#F8F8F8"
     android:orientation="vertical"
+    android:layout_marginBottom="4dp"
     app:layout_constraintLeft_toRightOf="parent"
     app:layout_constraintRight_toRightOf="parent">
 
@@ -16,7 +18,8 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="#F8F8F8">
 
             <ImageView
                 android:id="@+id/Home_imgRest"
@@ -24,26 +27,26 @@
                 android:layout_height="67dp"
                 android:layout_marginStart="2dp"
                 android:layout_marginTop="2dp"
+                android:contentDescription="TODO"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/Home_titleRest"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0"
-                android:contentDescription="TODO" />
+                app:layout_constraintVertical_bias="0.0" />
 
             <TextView
-                android:background="#F1F1F1"
-                android:textStyle="bold"
-                android:gravity="center"
-                android:layout_margin="5dp"
-                android:autoSizeTextType="uniform"
                 android:id="@+id/Home_titleRest"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
+                android:layout_margin="5dp"
                 android:layout_marginStart="2dp"
+                android:autoSizeTextType="uniform"
+                android:background="#fff"
                 android:fontFamily="sans-serif-condensed-light"
+                android:gravity="center"
                 android:textColor="@color/common_google_signin_btn_text_dark_focused"
+                android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/Home_imgRest"
@@ -63,7 +66,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="2dp"
-            >
+            android:background="#F8F8F8">
 
             <ImageView
                 android:id="@+id/imageViewMenu"
@@ -76,12 +79,12 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:background="#F1F1F1"
-                android:layout_margin="6dp"
-                android:autoSizeTextType="uniform"
                 android:id="@+id/Menuview_descrip"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
+                android:layout_margin="6dp"
+                android:autoSizeTextType="uniform"
+                android:background="#fff"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.48"
@@ -90,16 +93,16 @@
                 app:layout_constraintVertical_bias="0.0" />
 
             <TextView
-                android:shadowColor="#9ab3f5"
-                android:shadowRadius="4"
-                android:textStyle="bold"
-                android:autoSizeTextType="uniform"
                 android:id="@+id/Menuview_precio"
                 android:layout_width="149dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
                 android:layout_marginBottom="16dp"
+                android:autoSizeTextType="uniform"
+                android:shadowColor="#9ab3f5"
+                android:shadowRadius="4"
                 android:textColor="@color/common_google_signin_btn_text_dark_default"
+                android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/imageViewMenu"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.133"
@@ -108,15 +111,15 @@
                 app:layout_constraintVertical_bias="0.958" />
 
             <TextView
-                android:shadowColor="#9ab3f5"
-                android:shadowRadius="4"
-                android:textStyle="bold"
-                android:autoSizeTextType="uniform"
                 android:id="@+id/Menuview_titleMenu"
                 android:layout_width="242dp"
                 android:layout_height="47dp"
                 android:layout_marginStart="15dp"
+                android:autoSizeTextType="uniform"
+                android:shadowColor="#9ab3f5"
+                android:shadowRadius="4"
                 android:textColor="@color/design_default_color_surface"
+                android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.181"

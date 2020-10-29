@@ -8,24 +8,14 @@
     android:background="@drawable/ic_alternating_arrowhead"
     tools:context=".notificaciones.Ticket_Localizacion">
 
-    <com.google.android.gms.maps.MapView
-        android:id="@+id/Ticket_mapView"
-        android:layout_width="324dp"
-        android:layout_height="120dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tableLayout" />
-
     <ImageView
         android:id="@+id/Ticket_imgQR"
-        android:layout_width="154dp"
-        android:layout_height="124dp"
-        android:layout_marginTop="10dp"
+        android:layout_width="201dp"
+        android:layout_height="178dp"
+        android:layout_marginTop="30dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Ticket_mapView"
+        app:layout_constraintTop_toBottomOf="@+id/tableLayout"
         app:srcCompat="@drawable/image_defect" />
 
     <ImageButton
@@ -33,10 +23,8 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:background="?attr/actionBarItemBackground"
-        app:layout_constraintBottom_toTopOf="@+id/Ticket_mapView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/view" />
 
     <ImageButton

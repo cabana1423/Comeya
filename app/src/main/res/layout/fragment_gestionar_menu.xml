@@ -4,9 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/radiant_gradient"
     tools:context=".GestionarMenu">
 
     <androidx.recyclerview.widget.RecyclerView
+        android:background="#fff
+"
         android:id="@+id/ListMymenus"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -24,8 +27,9 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="2dp"
         android:layout_marginBottom="2dp"
+        android:backgroundTint="@color/colorPrimary"
         android:clickable="false"
-        android:src="@drawable/add_rest"
+        android:src="@drawable/add"
         app:layout_constraintBottom_toTopOf="@+id/ListMymenus"
         app:layout_constraintEnd_toStartOf="@+id/ListMymenus"
         app:layout_constraintHorizontal_bias="0.172"
@@ -34,9 +38,15 @@
         app:layout_constraintVertical_bias="0.128" />
 
     <TextView
+        android:gravity="center"
+        android:autoSizeTextType="uniform"
+        android:textColor="@color/colorPrimary"
+        android:shadowColor="@color/browser_actions_text_color"
+        android:shadowRadius="3"
+        android:textStyle="bold"
         android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="152dp"
+        android:layout_height="21dp"
         android:layout_marginTop="4dp"
         android:text="Productos"
         app:layout_constraintBottom_toTopOf="@+id/ListMymenus"

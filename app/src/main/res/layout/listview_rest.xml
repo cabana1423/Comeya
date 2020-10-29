@@ -3,11 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/Restgroupview"
+    android:layout_marginBottom="4dp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+
     android:orientation="vertical">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:background="#F8F8F8"
+        android:layout_marginBottom="4dp"
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -28,6 +33,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
+            android:background="#F8F8F8"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -35,34 +41,34 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
-                android:textStyle="bold"
-                android:background="#F3F3F3"
-                android:layout_margin="3dp"
-                android:paddingLeft="12dp"
-                android:autoSizeTextType="uniform"
                 android:id="@+id/Restviewtitulo"
                 android:layout_width="match_parent"
-                android:layout_height="40dp" />
+                android:layout_height="40dp"
+                android:layout_margin="1dp"
+                android:autoSizeTextType="uniform"
+                android:background="#fff"
+                android:paddingLeft="12dp"
+                android:textStyle="italic" />
 
             <TextView
-                android:textStyle="bold"
-                android:background="#F3F3F3"
-                android:layout_margin="3dp"
-                android:paddingLeft="12dp"
-                android:autoSizeTextType="uniform"
                 android:id="@+id/Resyviewdireccion"
                 android:layout_width="match_parent"
-                android:layout_height="40dp" />
+                android:layout_height="40dp"
+                android:layout_margin="1dp"
+                android:autoSizeTextType="uniform"
+                android:background="#fff"
+                android:paddingLeft="12dp"
+                android:textStyle="italic" />
 
             <TextView
-                android:textStyle="bold"
-                android:background="#F3F3F3"
-                android:layout_margin="3dp"
-                android:paddingLeft="12dp"
-                android:autoSizeTextType="uniform"
                 android:id="@+id/Restviewphone"
                 android:layout_width="match_parent"
-                android:layout_height="40dp" />
+                android:layout_height="40dp"
+                android:layout_margin="1dp"
+                android:autoSizeTextType="uniform"
+                android:background="#fff"
+                android:paddingLeft="12dp"
+                android:textStyle="italic" />
 
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

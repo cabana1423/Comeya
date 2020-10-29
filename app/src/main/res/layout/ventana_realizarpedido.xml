@@ -3,13 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary">
 
     <SeekBar
         android:id="@+id/ventanapedido_seekbar"
         android:layout_width="299dp"
         android:layout_height="37dp"
         android:layout_marginTop="15dp"
+        android:background="@drawable/radiant_gradient"
         android:max="20"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -25,6 +27,8 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="5dp"
         android:text="0/20"
+        android:textColor="@color/material_on_background_emphasis_high_type"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.852"
         app:layout_constraintStart_toStartOf="parent"

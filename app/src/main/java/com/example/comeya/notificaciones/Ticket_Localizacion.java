@@ -53,7 +53,7 @@ import cz.msebera.android.httpclient.Header;
 import static com.example.comeya.utils.EndPoints.MAPVIEW_BUNDLE_KEY;
 import static com.loopj.android.http.AsyncHttpClient.log;
 
-public class Ticket_Localizacion extends AppCompatActivity implements OnMapReadyCallback {
+public class Ticket_Localizacion extends AppCompatActivity /*implements OnMapReadyCallback*/ {
     TextView Nombre,pedidos;
     MapView mapa;
     ImageView QR;
@@ -72,7 +72,7 @@ public class Ticket_Localizacion extends AppCompatActivity implements OnMapReady
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ticket__localizacion);
-        mapa=findViewById(R.id.Ticket_mapView);
+        //mapa=findViewById(R.id.Ticket_mapView);
         QR=findViewById(R.id.Ticket_imgQR);
         share =findViewById(R.id.Ticket_imageButton_share);
         print =findViewById(R.id.img_print);
@@ -96,7 +96,7 @@ public class Ticket_Localizacion extends AppCompatActivity implements OnMapReady
             }
         });
         nombre_user();
-        initGoogleMap(savedInstanceState);
+        //initGoogleMap(savedInstanceState);
         generarQR();
     }
 
@@ -193,7 +193,7 @@ public class Ticket_Localizacion extends AppCompatActivity implements OnMapReady
             Toast.makeText(getApplicationContext(),"error al ingrsar parametros",Toast.LENGTH_LONG).show();
         }
     }
-
+    /*
     private void initGoogleMap(Bundle savedInstanceState) {
         Bundle mapViewBundle = null;
         if (savedInstanceState != null) {
@@ -262,6 +262,6 @@ public class Ticket_Localizacion extends AppCompatActivity implements OnMapReady
     public void onLowMemory(){
         super.onLowMemory();
         mapa.onLowMemory();
-    }
+    }*/
 
 }

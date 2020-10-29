@@ -4,10 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/groupviewpedidoproducto"
     android:layout_width="match_parent"
+    android:layout_marginBottom="5dp"
     android:layout_height="wrap_content">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:background="#F8F8F8"
         android:layout_width="match_parent"
+        android:layout_marginBottom="4dp"
         android:layout_height="match_parent">
 
         <ImageView
@@ -37,29 +40,29 @@
                 android:id="@+id/Produc_titulo"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:layout_margin="2dp"
+                android:layout_margin="1dp"
                 android:autoSizeTextType="uniform"
-                android:background="#F3F3F3"
+                android:background="#fff"
                 android:paddingLeft="12dp"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/produc_numimg"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_margin="2dp"
+                android:layout_height="45dp"
+                android:layout_margin="1dp"
                 android:autoSizeTextType="uniform"
-                android:background="#F3F3F3"
+                android:background="#fff"
                 android:paddingLeft="12dp"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/produc_precio"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_margin="2dp"
+                android:layout_height="45dp"
+                android:layout_margin="1dp"
                 android:autoSizeTextType="uniform"
-                android:background="#F3F3F3"
+                android:background="#fff"
                 android:paddingLeft="12dp"
                 android:textStyle="bold" />
 
