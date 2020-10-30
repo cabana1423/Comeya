@@ -82,18 +82,10 @@ public class Ventana_editar_rest extends AppCompatDialogFragment {
             AsyncHttpClient clientrest = new AsyncHttpClient();
             clientrest.addHeader("Authorization", UserDataServer.TOKEN);
             RequestParams params = new RequestParams();
-            if(nombre.getText()!=null){
-                params.add("nombre_rest", nombre.getText().toString());
-            }
-             if(propietario.getText()!=null){
-                 params.add("propietario", propietario.getText().toString());
-             }
-            if(telefono.getText()!=null){
-                params.add("telefono", telefono.getText().toString());
-            }
-            if(direccion.getText()!=null){
-                params.add("calle", direccion.getText().toString());
-            }
+            params.add("nombre_rest", nombre.getText().toString());
+            params.add("propietario", propietario.getText().toString());
+            params.add("telefono", telefono.getText().toString());
+            params.add("calle", direccion.getText().toString());
             clientrest.put(EndPoints.SERV_PUTMYREST + RestData.ID_AUX_REST, params, new JsonHttpResponseHandler() {
                 @Override
                 public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
