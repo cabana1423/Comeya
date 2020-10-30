@@ -8,8 +8,8 @@ public class UserDataServer {
     public static String TOKEN_FB="";
     public static String NOMBRE_U="";
 
-    public static String GMAIL_U ="cabana28pp@gmail.com";
-    public static String PASS_U="Mundo14231423";
+    public static String GMAIL_U ="tupedidoya.bo@gmail.com";
+    public static String PASS_U="Holamundo0616";
 
 
 

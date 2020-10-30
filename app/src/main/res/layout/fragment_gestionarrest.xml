@@ -98,12 +98,13 @@
         app:layout_constraintTop_toBottomOf="@+id/GestionarRest_propietario" />
 
     <TextView
+        android:id="@+id/GestionarRest_nombre"
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:layout_marginTop="4dp"
         android:autoSizeTextType="uniform"
         android:textStyle="bold"
-        android:id="@+id/GestionarRest_nombre"
-        android:layout_width="2dp"
-        android:layout_height="13dp"
-        android:layout_marginTop="4dp"
+        android:gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"

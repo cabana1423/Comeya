@@ -98,10 +98,10 @@ public class Ventana_vista_rest extends AppCompatDialogFragment implements OnMap
                         JSONObject obj =response.getJSONObject(0);
                         if(isAdded()) {
                         nombre.setText(obj.getString("nombre_rest"));
-                        propietario.setText(obj.getString("propietario"));
-                        nit.setText(obj.getString("nit"));
-                        telefono.setText(obj.getString("telefono"));
-                        direccion.setText(obj.getString("calle"));
+                        propietario.setText("Propietario: "+obj.getString("propietario"));
+                        nit.setText("NIT: "+obj.getString("nit"));
+                        telefono.setText("Telefono: "+obj.getString("telefono"));
+                        direccion.setText("Direccion"+obj.getString("calle"));
                         String lati=obj.getString("lat");
                         String longi=obj.getString("lon");
                         llenarMapa(lati,longi);

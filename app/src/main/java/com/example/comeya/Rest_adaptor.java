@@ -97,6 +97,7 @@ public class Rest_adaptor extends RecyclerView.Adapter<Rest_adaptor.Holderrest>{
         public Holderrest(@NonNull View itemView) {
             super(itemView);
             titleRest=itemView.findViewById(R.id.Restviewtitulo);
+            titleRest.setSelected( true);
             direccion=itemView.findViewById(R.id.Resyviewdireccion);
             telefono=itemView.findViewById(R.id.Restviewphone);
             fotorest=itemView.findViewById(R.id.Restviewimg);

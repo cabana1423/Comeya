@@ -105,7 +105,7 @@ public class realizar_pedido extends AppCompatActivity {
                     try {
                         JSONObject obj =response.getJSONObject(i);
                         adaptadorproducto.add(new PedidoView(obj.getString("nombre_menu"),obj.getString("descripcion")
-                                ,obj.getString("precio"),obj.getString("foto_produc"),obj.getString("_id")));
+                                ,"precio: "+obj.getString("precio"),obj.getString("foto_produc"),obj.getString("_id")));
 
                     } catch (JSONException e) {
                         e.printStackTrace();

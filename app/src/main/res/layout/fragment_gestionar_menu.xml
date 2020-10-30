@@ -4,16 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/radiant_gradient"
+    android:background="@color/colorAccent"
     tools:context=".GestionarMenu">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:background="#fff
-"
         android:id="@+id/ListMymenus"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="10dp"
+        android:background="#E8E8E8"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -38,17 +37,17 @@
         app:layout_constraintVertical_bias="0.128" />
 
     <TextView
-        android:gravity="center"
-        android:autoSizeTextType="uniform"
-        android:textColor="@color/colorPrimary"
-        android:shadowColor="@color/browser_actions_text_color"
-        android:shadowRadius="3"
-        android:textStyle="bold"
         android:id="@+id/textView2"
         android:layout_width="152dp"
         android:layout_height="21dp"
         android:layout_marginTop="4dp"
+        android:autoSizeTextType="uniform"
+        android:gravity="center"
+        android:shadowColor="@color/browser_actions_text_color"
+        android:shadowRadius="3"
         android:text="Productos"
+        android:textColor="#35364E"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/ListMymenus"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"

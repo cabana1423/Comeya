@@ -18,7 +18,7 @@
 
         <ImageView
             android:id="@+id/Restviewimg"
-            android:layout_width="150dp"
+            android:layout_width="130dp"
             android:layout_height="0dp"
             android:layout_margin="3dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -41,6 +41,12 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
+                android:ellipsize="marquee"
+                android:fadingEdge="horizontal"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:scrollHorizontally="true"
+
+                android:layout_gravity="center_vertical"
                 android:id="@+id/Restviewtitulo"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
@@ -48,9 +54,11 @@
                 android:autoSizeTextType="uniform"
                 android:background="#fff"
                 android:paddingLeft="12dp"
-                android:textStyle="italic" />
+                android:textStyle="italic"
+                android:singleLine="true" />
 
             <TextView
+                android:layout_gravity="center_vertical"
                 android:id="@+id/Resyviewdireccion"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
@@ -61,6 +69,7 @@
                 android:textStyle="italic" />
 
             <TextView
+                android:layout_gravity="center_vertical"
                 android:id="@+id/Restviewphone"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"

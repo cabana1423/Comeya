@@ -97,7 +97,7 @@ public class Home extends Fragment {
                 for (int i=0;i<response.length();i++){
                     try {
                         JSONObject obj =response.getJSONObject(i);
-                        adaptadormenu.add(new Menuview(obj.getString("nombre_menu"),obj.getString("precio"),obj.getString("descripcion")
+                        adaptadormenu.add(new Menuview(obj.getString("nombre_menu"),"precio: "+obj.getString("precio")+" Bs",obj.getString("descripcion")
                                 ,obj.getString("foto_produc"),obj.getString("id_rest_menu"),obj.getString("nombre_rest"),obj.getString("url_rest")));
                     } catch (JSONException e) {
                         e.printStackTrace();
