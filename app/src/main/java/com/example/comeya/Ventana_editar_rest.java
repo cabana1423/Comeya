@@ -45,6 +45,9 @@ import static com.example.comeya.crear_Myrest.CODE_PERMISSION;
 
 public class Ventana_editar_rest extends AppCompatDialogFragment {
     private TextView nombre, propietario, telefono, direccion;
+    private ImageView foto_rest;
+    private Button cargarimg;
+    private  String path,url="",id_img="";
 
     @NonNull
     @Override
@@ -79,16 +82,16 @@ public class Ventana_editar_rest extends AppCompatDialogFragment {
             AsyncHttpClient clientrest = new AsyncHttpClient();
             clientrest.addHeader("Authorization", UserDataServer.TOKEN);
             RequestParams params = new RequestParams();
-            if(nombre.getText().toString()!=null){
+            if(nombre.getText()!=null){
                 params.add("nombre_rest", nombre.getText().toString());
             }
-             if(propietario.getText().toString()!=null){
+             if(propietario.getText()!=null){
                  params.add("propietario", propietario.getText().toString());
              }
-            if(telefono.getText().toString()!=null){
+            if(telefono.getText()!=null){
                 params.add("telefono", telefono.getText().toString());
             }
-            if(direccion.getText().toString()!=null){
+            if(direccion.getText()!=null){
                 params.add("calle", direccion.getText().toString());
             }
             clientrest.put(EndPoints.SERV_PUTMYREST + RestData.ID_AUX_REST, params, new JsonHttpResponseHandler() {
